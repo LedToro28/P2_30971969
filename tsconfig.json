@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2016",
     "module": "CommonJS",
-    "outDir": "./dist",
+    "outDir": "./src/dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
