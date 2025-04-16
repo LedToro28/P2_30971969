@@ -1,0 +1,41 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    background-image: url('https://getwallpapers.com/wallpaper/full/6/5/9/12928.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    line-height: 1.8;
+}
+h1{
+    background-color: rgb(34, 42, 98, 0.8);
+    padding: 20px;
+    width: 50%;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 3em;
+    text-align: center;
+    margin-top: 20px;
+}
+div{
+    background-color: rgba(222, 184, 65, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+p{
+    margin: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
