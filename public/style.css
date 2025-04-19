@@ -1,18 +1,106 @@
-/* General Styles */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+}
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
-    background-image: url('https://getwallpapers.com/wallpaper/full/6/5/9/12928.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    max-width: 100%; 
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    color: #333;
+    color: #000;
     line-height: 1.8;
+}
+header{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+main section{
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#inicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#informacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#servicios{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#opciones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.servicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-width: 20%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#contacto{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#contacto form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 50%;
+}
+#contacto form input, #contacto form textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+footer{
+    font-size: larger;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+footer #redes{
+    font-size: 30px;
 }
