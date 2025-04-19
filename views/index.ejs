@@ -3,15 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 0</title>
+    <title>CICLEXPRESS</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <h1>¡Hola Mundo!</h1>
-    <div>
-        <p>Nombre Completo: <%= nombreCompleto %></p>
-        <p>Número de Cédula: <%= cedula %></p>
-        <p>Sección Inscrita: <%= seccion %></p>
-    </div>
+
+    <header>
+        <a href="#inicio"><ion-icon name="home"></ion-icon>Inicio</a>
+        <a href="#informacion"><ion-icon name="information-circle"></ion-icon>Acerca de</a>
+        <a href="#servicios"><ion-icon name="build"></ion-icon>Servicios</a>
+        <a href="#contacto"><ion-icon name="mail"></ion-icon>Contacto</a>
+        <h1>CICLEXPRESS</h1>
+    </header>
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a CICLEXPRESS</h2>
+            <p>Tu tienda de bicicletas en línea.</p>
+            <img src="https://www.example.com/image.jpg" alt="Bicicleta" width="300" height="200">
+        </section>
+        <section id="informacion">
+            <h2>Acerca de nosotros</h2>
+            <p>En CICLEXPRESS ofrecemos una amplia gama de bicicletas y accesorios para todos los gustos y necesidades.</p>
+            <img src="https://www.example.com/image.jpg" alt="Bicicleta" width="300" height="200">
+        </section>
+        <section id="servicios">
+            <h2>Nuestros servicios</h2>
+            <div class="servicio">
+                <h3>servicio 1</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, error harum? Nemo quos, dignissimos tempora dolor magni neque repudiandae aperiam perspiciatis quisquam quaerat fugiat ipsam odio eligendi quo, beatae tenetur?</p>
+                <img src="https://www.example.com/image.jpg" alt="Bicicleta" width="300" height="200">
+            </div>
+            <div class="servicio">
+                <h3>servicio 2</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque ad quasi, eius eligendi eos ullam placeat in sequi, reprehenderit et fuga maxime numquam nulla nesciunt. Expedita, aut suscipit. Exercitationem, veritatis?</p>
+                <img src="https://www.example.com/image.jpg" alt="Bicicleta" width="300" height="200">
+            </div>
+            <div class="servicio">
+                <h3>servicio 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel minus consequatur inventore officiis excepturi, doloribus temporibus culpa, sint eveniet ullam eum id incidunt expedita alias dolores sit, pariatur accusantium esse?</p>
+                <img src="https://www.example.com/image.jpg" alt="Bicicleta" width="300" height="200">
+            </div>
+
+        </section>
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+            <form action="/contacto" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div id="redes">
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-icon name="logo-whatsapp"></ion-icon>
+        </div>
+        <p>&copy; 2023 Task 1. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
