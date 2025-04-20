@@ -2,28 +2,84 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: 1px solid black;
+    font-family: 'Arial', sans-serif;
+}
+:root{
+    --fondo: #ffffff;
+    --boton: #3ba7d6;
+    --head: #3ba7d6;
+    --home: rgba(0, 0, 0, 0.5);
+    --info: #ecf9ff;
+    --section: #ffe8e8;
+    --servicios: #30b9ce;
+    --contacto: #30b9ce;
+    --ubicacion: #0097ae;
+    --footer: #2a1140;
+    --servicio: #f7f7f7;
+    --servicio-hover: #a5f3ff;
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
 }
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
     height: 100%;
-    max-width: 100%; 
-    background-color: #fff;
+    width: 100%; 
+    background-color: var(--fondo);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    color: #000;
     line-height: 1.8;
 }
 header{
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 20px;
-    text-align: center;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    background-color: var(--head);
+    color: var(--font-2);
+    padding: 10px 20px;
     width: 100%;
+}
+header #search{
+    display: flex;
+    align-items: center;
+}
+header #search label{
+    color: var(--font-3);
+    font-size: 20px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--font-2);
+    display: flex;
+    align-items: center;
+}
+header #search input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+}
+#menu{
+    display: flex;
+    align-items: center;
+}
+#menu a{
+    display: flex;
+    align-items: center;
+    color: var(--font-2);
+    text-decoration: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+#menu a:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#menu a ion-icon{
+    font-size: 20px;
+    margin-right: 5px;
 }
 main{
     flex: 1;
@@ -35,35 +91,41 @@ main{
 }
 main section{
     width: 100%;
+    height: 100%;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
 }
-#inicio{
+#home{
+    color: var(--font-2);
+    padding: 0;
+    height: 100vh;
+    background-image: url('https://www.launer-reisen.de/wp-content/uploads/2022/09/Fahrrad-Arten-1024x684.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#home div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+    background-color: var(--home);
 }
-#informacion{
+#info{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--info)
 }
 #servicios{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--servicios);
 }
 #opciones{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
     width: 100%;
 }
 .servicio{
@@ -71,20 +133,35 @@ main section{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    min-width: 20%;
+    background-color: var(--servicio);
+    padding: 3%;
+    transition: all 0.7s ease;
+}
+.servicio:hover{
+    background-color: var(--servicio-hover);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.7s ease;
 }
 #contacto{
     display: flex;
-    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.8);
+}
+#contacto div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--contacto);
 }
 #contacto form{
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 50%;
+    border-radius: 5px;
+    padding: 3%;
 }
 #contacto form input, #contacto form textarea{
     width: 100%;
@@ -96,7 +173,7 @@ main section{
 footer{
     font-size: larger;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--footer);
     color: white;
     padding: 10px;
     text-align: center;
