@@ -1,0 +1,226 @@
+/* Agrega estos estilos al final de tu archivo public/css/style.css */
+
+/* ===================== */
+/* Estilos Específicos de la Página de Contacto */
+/* ===================== */
+
+/* Sección de Introducción a Contacto */
+#contact-intro {
+    /* Estilos heredados de .section, como padding y text-align: center */
+    background-color: #e9ecef; /* Fondo claro como en servicios-intro */
+}
+
+#contact-intro h1 {
+    /* Color y margen heredados, ajusta si es necesario */
+}
+
+#contact-intro .subtitle {
+     /* Estilos heredados, ajusta si es necesario */
+     font-size: 1.2em;
+     color: #555;
+     max-width: 700px; /* Ancho máximo para el subtítulo */
+     margin: 0 auto 20px auto; /* Centrar y dar espacio abajo */
+}
+
+
+/* Sección de Formulario de Contacto */
+#contact-form-section .form-container {
+    max-width: 700px; /* Ancho máximo para el formulario */
+    margin: 0 auto; /* Centrar el formulario dentro de la sección */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra sutil */
+    text-align: left; /* Alinea el texto del formulario a la izquierda */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Espacio entre grupos de formulario */
+}
+
+.form-group label {
+    display: block; /* Pone la etiqueta en su propia línea */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    display: block; /* Pone el input/textarea en su propia línea */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Resalta el borde al enfocar */
+    box-shadow: 0 0 5px rgba(0,123,255,0.25);
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar solo verticalmente */
+}
+
+#contactForm button[type="submit"] {
+    width: 100%; /* Botón de enviar ocupa todo el ancho del formulario */
+    margin-top: 10px;
+    /* Estilos de botón heredados de .btn.btn-primary.btn-large */
+}
+
+
+/* Sección "Ubícanos" */
+#location .container {
+    text-align: center; /* Centra el H2 de la sección */
+}
+
+#location h2 {
+     margin-bottom: 40px;
+}
+
+#location .location-content {
+    display: flex; /* Usa flexbox para el layout de la info y el mapa */
+    gap: 40px; /* Espacio entre el bloque de info y el mapa */
+    align-items: flex-start; /* Alinea arriba */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    text-align: left; /* Alinea el texto dentro de este contenedor a la izquierda */
+}
+
+.contact-info-block {
+    flex: 1; /* Permite que este bloque crezca */
+    min-width: 280px; /* Ancho mínimo antes de envolver */
+}
+
+.contact-info-block p {
+    margin-bottom: 10px;
+    display: flex; /* Alinea icono y texto */
+    align-items: center;
+}
+
+.contact-info-block ion-icon {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-right: 10px;
+    flex-shrink: 0; /* Evita que el icono se comprima */
+}
+
+.map-container {
+    flex: 2; /* Permite que el mapa ocupe más espacio */
+    min-width: 300px; /* Ancho mínimo antes de envolver */
+    background-color: #eee; /* Fondo si el mapa no carga */
+    display: flex; /* Flexbox para centrar el iframe/placeholder si es necesario */
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden; /* Esconde partes del mapa si se redondean las esquinas */
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra */
+}
+
+.map-container iframe {
+    width: 100%; /* El iframe ocupa todo el ancho del contenedor */
+    height: 450px; /* Altura fija para el mapa (ajusta si quieres) */
+    border: 0; /* Quita el borde por defecto del iframe */
+    display: block; /* Evita espacio extra debajo del iframe */
+}
+
+/* Si usas un placeholder en lugar de iframe */
+.map-placeholder {
+     width: 100%;
+     height: 450px; /* Misma altura que el iframe */
+     background-color: #ccc;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: #555;
+     font-size: 1.2em;
+}
+
+
+/* Sección de Opiniones de Clientes (reutiliza estilos si ya los tienes) */
+#customer-opinions .container {
+     /* El H2 ya está centrado por .section */
+}
+
+/* Si ya creaste estos estilos para la página de inicio, puedes saltarte esta parte */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Rejilla responsiva */
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center; /* Centra el contenido de cada testimonio */
+}
+
+.testimonial-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex; /* Usa flexbox para alinear contenido (cita y autor) */
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el autor hacia abajo si hay espacio */
+}
+
+.testimonial-item p {
+    font-style: italic; /* Estilo cursiva para la cita */
+    margin-bottom: 15px;
+     flex-grow: 1; /* Permite que la cita ocupe espacio */
+}
+
+.testimonial-item p strong {
+    display: block; /* Pone el nombre del autor en una nueva línea */
+    margin-top: 10px;
+    font-style: normal; /* Quita la cursiva del nombre */
+    color: #333;
+}
+
+
+/* ===================== */
+/* Media Query para Móviles (Ajustes específicos si son necesarios) */
+/* ===================== */
+@media (max-width: 768px) {
+    /* Ajustes generales para móviles ya están en la media query principal */
+
+    /* Layout de Ubicación apilado en móvil */
+    #location .location-content {
+        flex-direction: column; /* Apila el bloque de info y el mapa */
+        gap: 30px; /* Espacio entre ellos */
+    }
+
+     .contact-info-block,
+     .map-container {
+         min-width: 100%; /* Ocupa todo el ancho disponible */
+     }
+
+     /* Altura del mapa más reducida en móvil si es necesario */
+     .map-container iframe,
+     .map-placeholder {
+         height: 300px; /* Altura reducida del mapa */
+     }
+
+    /* Testimonios apilados en móvil (si el minmax lo permite, si no, ya se apilan) */
+    .testimonials-grid {
+         gap: 20px;
+    }
+
+    .testimonial-item {
+        padding: 20px;
+    }
+
+     /* Ajustes para el formulario en móvil */
+     #contact-form-section .form-container {
+         padding: 20px; /* Reduce el padding del formulario en móvil */
+     }
+
+}
+
+/* --- Reutilización de estilos de layout y componentes generales --- */
+/* Asegúrate de que los estilos para .container, .section, .bg-light, .btn,
+   .subtitle, .text-center, y los iconos ion-icon (tamaño general)
+   estén definidos ANTES de estos estilos específicos si no los tienes en otro lugar.
+   Idealmente, en la parte superior de tu style.css o en un archivo base.css */

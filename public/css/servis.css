@@ -1,0 +1,126 @@
+/* Agrega estos estilos al final de tu archivo public/css/style.css */
+
+/* ===================== */
+/* Estilos Específicos de la Página de Servicios */
+/* ===================== */
+
+/* Sección de Introducción a Servicios */
+#services-intro {
+    /* El padding y text-align ya vienen de la clase .section */
+    /* Puedes añadir un fondo diferente si quieres */
+    background-color: #e9ecef; /* Un gris muy claro para variar */
+}
+
+#services-intro h1 {
+    /* Estilos heredados o específicos si necesitas */
+     color: #0056b3;
+}
+
+#services-intro .subtitle {
+     /* Estilos heredados o específicos si necesitas */
+     font-size: 1.2em;
+     color: #555;
+     max-width: 800px; /* Ancho máximo para el subtítulo */
+     margin: 0 auto 20px auto; /* Centrar y dar espacio abajo */
+}
+
+
+/* Sección Lista de Servicios Detallados */
+#services-list .services-grid {
+    display: grid;
+    /* Crea columnas que se ajustan automáticamente.
+       Cada columna tendrá un ancho mínimo de 280px y ocupará
+       el espacio disponible equitativamente (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Espacio entre los items de servicio */
+    margin-top: 40px; /* Espacio debajo del título H2 de la sección */
+}
+
+/* Estilo para cada item de servicio individual */
+.service-item {
+    background-color: #fff; /* Fondo blanco para las tarjetas */
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave */
+    text-align: center; /* Centra el contenido dentro de la tarjeta */
+    transition: transform 0.3s ease; /* Animación al pasar el mouse */
+    display: flex; /* Usa flexbox para apilar contenido */
+    flex-direction: column;
+    align-items: center; /* Centra items horizontalmente dentro de flexbox */
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Levanta la tarjeta ligeramente al pasar el mouse */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Sombra más pronunciada */
+}
+
+.service-item ion-icon {
+    font-size: 3.5em; /* Tamaño grande para los iconos del servicio */
+    color: #007bff; /* Color primary */
+    margin-bottom: 20px;
+    /* Asegura que el icono no se comprima si el texto es largo */
+    flex-shrink: 0;
+}
+
+.service-item h3 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333; /* Título del servicio más oscuro */
+}
+
+.service-item p {
+    font-size: 1em;
+    color: #555;
+    /* Permite que el párrafo ocupe el espacio restante */
+    flex-grow: 1;
+}
+
+/* Estilo para los botones dentro de los items de servicio (si los añades) */
+.service-item .btn {
+    margin-top: 15px;
+    align-self: stretch; /* Ocupa todo el ancho disponible en flexbox */
+}
+
+
+/* Sección Llamada a la Acción / Contacto en la página de servicios */
+#contact-cta-services {
+     /* Puedes usar los mismos estilos que la CTA de la página de inicio si te gustan */
+     background-color: #0056b3; /* Un color diferente si quieres variar */
+     color: white;
+     padding: 50px 0;
+     text-align: center;
+}
+
+#contact-cta-services h2 {
+     color: white;
+}
+
+#contact-cta-services p {
+     font-size: 1.2em;
+     margin-bottom: 30px;
+}
+
+/* ===================== */
+/* Media Query para Móviles (Ajustes específicos si son necesarios) */
+/* ===================== */
+@media (max-width: 768px) {
+    /* El grid ya se ajusta automáticamente a 1 columna gracias a auto-fit/minmax,
+       pero podrías querer ajustar el padding o el gap */
+    #services-list .services-grid {
+        gap: 20px; /* Reduce el espacio en móviles */
+    }
+
+    .service-item {
+        padding: 20px 15px; /* Reduce el padding interno */
+    }
+
+     .service-item ion-icon {
+         font-size: 3em; /* Reduce ligeramente el tamaño del icono */
+         margin-bottom: 15px;
+     }
+
+     #services-intro .subtitle {
+         font-size: 1.1em;
+     }
+}

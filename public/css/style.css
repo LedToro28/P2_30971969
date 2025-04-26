@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+:root{
+    --fondo: #ffffff;
+    --boton: #3ba7d6;
+    --head: #3ba7d6;
+    --home: rgba(0, 0, 0, 0.5);
+    --info: #ecf9ff;
+    --section: #ffe8e8;
+    --servicios: #30b9ce;
+    --contacto: #30b9ce;
+    --ubicacion: #0097ae;
+    --footer: #2a1140;
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
+}
+.site-header {
+    position: fixed;
+    display: flex; /* Para alinear elementos horizontalmente */
+    justify-content: space-between; /* Espacia el menú y la búsqueda */
+    align-items: center; /* Alinea verticalmente */
+    background-color: var(--head);
+    padding: 10px 20px;
+    width: 100%;
+}
+#main-nav {
+    display: flex; /* Los enlaces del menú también en horizontal */
+    gap: 20px; /* Espacio entre enlaces */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--font-2);
+    display: flex; /* Para alinear el icono y el texto */
+    align-items: center;
+}
+
+.nav-link ion-icon {
+    margin-right: 5px;
+}
+
+#search input {
+    padding: 5px;
+}
+
+/* Ocultar el botón de menú por defecto (en pantallas grandes) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px; /* Tamaño del icono */
+    cursor: pointer;
+    padding: 0;
+}
+
+/* --- Media Query para Pantallas Pequeñas --- */
+@media (max-width: 768px) { /* Define tu punto de ruptura aquí */
+
+    .site-header {
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
+        justify-content: space-between; /* Botón y búsqueda a los lados */
+        padding: 10px;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar el botón de menú en pantallas pequeñas */
+    }
+
+    #search {
+         /* Decide dónde quieres la búsqueda en móvil. Podría quedarse donde está
+            o podrías moverla o ajustarla. */
+         order: 1; /* Podría ajustar el orden si usas flexbox en el header */
+    }
+
+
+    /* Estilos para el menú lateral */
+    #main-nav {
+        /* Posiciona el menú fuera de la pantalla inicialmente */
+        position: fixed;
+        top: 0;
+        left: -250px; /* Oculto a la izquierda (ajusta según ancho) */
+        width: 250px; /* Ancho del menú lateral */
+        height: 100%;
+        background-color: var(--head);
+        flex-direction: column; /* Apila los enlaces verticalmente */
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        transition: left 0.3s ease; /* Animación suave al abrir/cerrar */
+        z-index: 100; /* Asegura que esté por encima del contenido */
+        overflow-y: auto; /* Permite scroll si hay muchos enlaces */
+
+        /* Ocultar los enlaces normales */
+        display: none; /* Temporalmente oculto con display none para la transición inicial */
+    }
+
+    /* Mostrar el menú cuando tiene la clase 'active' (manejado por JS) */
+    #main-nav.active {
+        left: 0; /* Mover a la posición visible */
+        display: flex; /* Volver a mostrar con flex para que los hijos se apilen */
+    }
+
+    .nav-link {
+        padding: 10px 0; /* Espacio vertical para cada enlace en el menú lateral */
+        width: 100%; /* Ocupa todo el ancho del menú lateral */
+    }
+
+    /* (Opcional) Oscurecer el fondo cuando el menú está abierto */
+    /* Puedes añadir un overlay si el menú no cubre toda la pantalla */
+
+}
+footer{
+    font-size: larger;
+    width: 100%;
+    background-color: var(--footer);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+footer #redes{
+    font-size: 30px;
+}

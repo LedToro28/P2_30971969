@@ -4,28 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CICLEXPRESS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/index.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <section id="home">
-            <div>
-                <h2>Bienvenido a CICLEXPRESS</h2>
-                <p>Tu tienda de bicicletas en línea.</p>
+        <section id="hero" class="section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Ciclexpress: Expertos en Reparación para que Vuelvas a Rodar</h1>
+                    <p class="subtitle">Servicio rápido, fiable y especializado en bicicletas y patinetas eléctricas.</p>
+                    <div class="cta-buttons">
+                        <a href="/servicios" class="btn btn-primary">Ver Nuestros Servicios</a>
+                        <a href="/contacto" class="btn btn-secondary">Solicitar Presupuesto</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/img/hero-banner.jpg" alt="Imagen de taller Ciclexpress o vehículo reparado">
+                </div>
             </div>
         </section>
-        <section>
-            quienes somos
+    
+        <section id="why-choose-us" class="section bg-light">
+            <div class="container">
+                <h2>¿Por Qué Elegir Ciclexpress?</h2>
+                <div class="reasons-grid">
+                    <div class="reason-item">
+                        <ion-icon name="people-circle-outline"></ion-icon> <h3>Expertos Calificados</h3>
+                        <p>Nuestro equipo tiene años de experiencia reparando todo tipo de bicicletas y modelos de patinetas eléctricas.</p>
+                    </div>
+                    <div class="reason-item">
+                            <ion-icon name="flash-outline"></ion-icon> <h3>Servicio Rápido y Eficiente</h3>
+                        <p>Entendemos que necesitas tu vehículo de vuelta pronto. Ofrecemos diagnósticos ágiles y reparaciones rápidas.</p>
+                    </div>
+                    <div class="reason-item">
+                            <ion-icon name="shield-checkmark-outline"></ion-icon> <h3>Garantía y Confianza</h3>
+                        <p>Ofrecemos garantía en nuestras reparaciones porque confiamos en la calidad de nuestro trabajo y repuestos.</p>
+                    </div>
+                        <div class="reason-item">
+                        <ion-icon name="wallet-outline"></ion-icon> <h3>Precios Justos</h3>
+                        <p>Servicio de alta calidad a precios competitivos. Transparencia total en todos nuestros presupuestos.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section>
-            porque elergirnos
+    
+        <section id="trajectory" class="section">
+            <div class="container">
+                <h2>Nuestra Trayectoria</h2>
+                <div class="trajectory-content">
+                    <img src="/img/trajectory-image.jpg" alt="Imagen representando historia o equipo"> <p>Ciclexpress nació en [Año de inicio] con el objetivo de ofrecer un servicio de reparación de bicicletas honesto y de calidad en [Tu Ciudad/Zona]. Con la creciente popularidad de la movilidad eléctrica, ampliamos nuestros conocimientos y servicios para convertirnos también en especialistas en patinetas eléctricas.</p>
+                    <p>A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y nuestro compromiso con la excelencia. Hemos superado desafíos, adoptado nuevas tecnologías y formado un equipo apasionado que comparte la visión de mantener tus vehículos de dos ruedas en perfecto estado.</p>
+                        <p>Hoy, Ciclexpress es sinónimo de fiabilidad y experiencia en la comunidad. Seguimos mirando hacia el futuro, listos para adaptarnos y servir las necesidades de movilidad de mañana.</p>
+                    </div>
+            </div>
         </section>
-        <section>
-            opiniones de nuestros clientes
-        </section>
+    
+            <section id="services-summary" class="section bg-light">
+                <div class="container">
+                    <h2>Reparamos:</h2>
+                    <div class="service-types">
+                        <div class="service-type-item">
+                            <ion-icon name="bicycle-outline"></ion-icon>
+                            <h3>Bicicletas</h3>
+                            <p>Todo tipo: MTB, Ruta, Urbanas, BMX, Infantiles.</p>
+                        </div>
+                        <div class="service-type-item">
+                            <ion-icon name="car-sport-outline"></ion-icon> <h3>Patinetas Eléctricas</h3>
+                            <p>Todas las marcas: Xiaomi, Segway, Cecotec, etc.</p>
+                        </div>
+                        </div>
+                    <p class="text-center"><a href="/servicios" class="btn btn-outline">Ver Lista Completa de Servicios</a></p>
+                </div>
+            </section>
+    
+    
+        <section id="cta-contact" class="section">
+                <div class="container text-center">
+                    <h2>¿Necesitas Reparación?</h2>
+                    <p>¡No esperes más! Contáctanos o visítanos para un diagnóstico rápido.</p>
+                    <a href="/contacto" class="btn btn-primary btn-large">¡Contáctanos Ahora!</a>
+                </div>
+            </section>
+    
     </main>
     <%- include('partials/footer.ejs')%>
 </body>

@@ -4,29 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CICLEXPRESS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/info.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <div id="info">
-            <h2>Acerca de nosotros</h2>
-            <p>Un taller de reparación de bicicletas y patinetas eléctricas como "Ciclexpress" puede ofrecer múltiples beneficios y ventajas, tanto para los clientes como para los propietarios del negocio. Aquí te dejo algunos puntos destacados: 
-                <br>
-                <br>
-                <p>1. <b>Movilidad sostenible:</b> Las bicicletas y patinetas eléctricas son medios de transporte ecológicos y económicos. Un taller que garantice su mantenimiento fomenta su uso, ayudando a reducir la contaminación y promoviendo un estilo de vida más saludable.</p>
-                <br>
-                <p>2. Demanda creciente: Con el aumento del uso de patinetas eléctricas y bicicletas en las ciudades, la necesidad de servicios de reparación y mantenimiento está en constante crecimiento. Esto asegura un flujo constante de clientes.</p>
-                <br>
-                <p>3. Seguridad para los usuarios: Un mantenimiento adecuado garantiza que los vehículos estén en óptimas condiciones, reduciendo el riesgo de accidentes y ofreciendo viajes más seguros y agradables.</p>
-                <br>
-                <p>4. Oportunidad de negocio: Además de las reparaciones, se pueden ofrecer servicios adicionales como la venta de repuestos, accesorios y personalización de los vehículos, lo que diversifica las fuentes de ingresos.</p>
-                <br>
-                <p>5. Conexión con la comunidad: Un taller como "Ciclexpress" puede convertirse en un punto de encuentro para ciclistas y usuarios de patinetas, creando una comunidad activa y leal alrededor del negocio.</p>
-            </p>
-        </div>
+        <section id="about-us-intro" class="section">
+            <div class="container">
+                <h1>Sobre Ciclexpress</h1>
+                <p class="subtitle">Conoce nuestra historia, nuestra misión y los valores que nos impulsan.</p>
+    
+                <div class="about-content">
+                    <img src="/img/about-us-image.jpg" alt="Imagen del taller o del equipo Ciclexpress"> <div> <p>Ciclexpress nació de la pasión por las dos ruedas y el compromiso con un servicio de reparación honesto y de alta calidad. Desde nuestros inicios en [Año de inicio], nos hemos dedicado a mantener bicicletas y, más recientemente, patinetas eléctricas en perfecto estado, ayudando a nuestros clientes a disfrutar de su movilidad.</p>
+                        <p>Nuestra misión es ser el taller de confianza para la comunidad de [Tu Ciudad/Zona], ofreciendo diagnósticos precisos, reparaciones duraderas y una atención al cliente excepcional. Creemos en la transparencia, la eficiencia y el trabajo bien hecho.</p>
+                        <p>Valoramos la sostenibilidad, la movilidad urbana y, sobre todo, la satisfacción de nuestros clientes. Nos esforzamos por ser más que un simple taller; queremos ser un aliado para todos los que eligen la bicicleta o la patineta eléctrica como medio de transporte.</p>
+                        </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="our-team" class="section bg-light">
+            <div class="container">
+                <h2>Nuestro Equipo</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="/img/team-member-1.jpg" alt="Foto de [Nombre Miembro 1]"> <h3>[Nombre Miembro 1]</h3>
+                        <p class="role">[Rol o Especialidad, ej: Técnico Principal de Bicicletas]</p>
+                        </div>
+    
+                    <div class="team-member">
+                        <img src="/img/team-member-2.jpg" alt="Foto de [Nombre Miembro 2]">
+                        <h3>[Nombre Miembro 2]</h3>
+                        <p class="role">[Rol o Especialidad, ej: Especialista en Patinetas Eléctricas]</p>
+                    </div>
+    
+                     <div class="team-member">
+                        <img src="/img/team-member-3.jpg" alt="Foto de [Nombre Miembro 3]">
+                        <h3>[Nombre Miembro 3]</h3>
+                        <p class="role">[Rol o Especialidad, ej: Atención al Cliente]</p>
+                    </div>
+    
+                    </div>
+            </div>
+        </section>
+    
+        <section id="faq" class="section">
+            <div class="container">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>¿Qué tipo de bicicletas reparan?</h3>
+                        <p>Reparamos todo tipo de bicicletas: de montaña (MTB), de ruta, urbanas, híbridas, BMX, bicicletas para niños y bicicletas eléctricas.</p>
+                    </div>
+    
+                    <div class="faq-item">
+                        <h3>¿Reparan todas las marcas de patinetas eléctricas?</h3>
+                        <p>Sí, trabajamos con la mayoría de las marcas y modelos de patinetas eléctricas populares, como Xiaomi, Segway, Cecotec, Ninebot, etc.</p>
+                    </div>
+    
+                    <div class="faq-item">
+                        <h3>¿Cuánto tiempo tarda una reparación?</h3>
+                        <p>El tiempo depende del tipo de reparación. Los pinchazos o ajustes básicos suelen ser rápidos (a veces en el día). Para reparaciones más complejas, te daremos un estimado en el presupuesto inicial.</p>
+                    </div>
+    
+                    <div class="faq-item">
+                        <h3>¿Ofrecen garantía en sus reparaciones?</h3>
+                        <p>Sí, ofrecemos garantía en nuestras reparaciones. Los detalles específicos se proporcionarán con tu presupuesto.</p>
+                    </div>
+    
+                     <div class="faq-item">
+                        <h3>¿Necesito pedir cita previa?</h3>
+                        <p>Para un mejor servicio, recomendamos pedir cita, especialmente para diagnósticos o reparaciones complejas. Sin embargo, puedes visitarnos para reparaciones rápidas como pinchazos.</p>
+                    </div>
+    
+                     <div class="faq-item">
+                        <h3>¿Venden repuestos?</h3>
+                        <p>Sí, contamos con una selección de repuestos comunes y podemos pedir piezas específicas si no las tenemos en stock.</p>
+                     </div>
+                    </div>
+            </div>
+        </section>
+    
+         <section id="info-contact-cta" class="section bg-light">
+             <div class="container text-center">
+                 <h2>¿Aún Tienes Dudas?</h2>
+                 <p>Si no encontraste la información que buscas, contáctanos directamente.</p>
+                 <a href="/contacto" class="btn btn-primary btn-large">Ir a la Página de Contacto</a>
+             </div>
+         </section>
+    
+    
     </main>
     <%- include('partials/footer.ejs')%>
 </body>

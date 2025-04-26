@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CICLEXPRESS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <header>
-        <div id="menu">
-            <a href="/"><ion-icon name="home"></ion-icon>home</a>
-            <a href="/info"><ion-icon name="information-circle"></ion-icon>Informacion</a>
-            <a href="/servicios"><ion-icon name="build"></ion-icon>Servicios</a>
-            <a href="/contacto"><ion-icon name="mail"></ion-icon>Contacto</a>
-        </div>
+    <header class="site-header">
+        <button class="menu-toggle" aria-label="Abrir menú">
+            <ion-icon name="menu-outline"></ion-icon> </button>
+    
+        <nav id="main-nav">
+            <a href="/" class="nav-link"><ion-icon name="home"></ion-icon>Home</a>
+            <a href="/info" class="nav-link"><ion-icon name="information-circle"></ion-icon>Informacion</a>
+            <a href="/servicios" class="nav-link"><ion-icon name="build"></ion-icon>Servicios</a>
+            <a href="/contacto" class="nav-link"><ion-icon name="mail"></ion-icon>Contacto</a>
+        </nav>
+    
         <div id="search">
-            <label for="search">
-                <input type="text" placeholder="Buscar...">
+            <label for="search-input"> <input type="text" id="search-input" placeholder="Buscar...">
                 <ion-icon name="search"></ion-icon>
             </label>
         </div>
     </header>
+    <script src="/js/menu.js"></script>
 </body>
 </html>

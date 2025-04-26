@@ -4,67 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CICLEXPRESS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/servis.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <div id="servicios">
-            <h2>Nuestros servicios</h2>
-            <div id="opciones">
-                <div class="servicio">
-                    <h3>Reparación de baterías</h3>
-                    <p>
-    
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Mantenimiento General</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Diagnostico y reparacion de motores electricos</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Revision del sistema electrico</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>PAS</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Mantenimiento de Frenos</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Sustitucion de Piezas</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio">
-                    <h3>Perzonalizacion</h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                
+        <section id="services-intro" class="section">
+            <div class="container">
+                <h1>Servicios Expertos para Tu Bicicleta o Patineta Eléctrica</h1>
+                <p class="subtitle">En Ciclexpress, ofrecemos soluciones completas para mantener tu vehículo en óptimas condiciones. Nuestro equipo cualificado se encarga de todo, desde el mantenimiento básico hasta las reparaciones más complejas.</p>
             </div>
-        </div>
+        </section>
+    
+        <section id="services-list" class="section bg-light">
+            <div class="container">
+                <h2>Nuestros Servicios Detallados</h2>
+                <div class="services-grid">
+                    <article class="service-item">
+                        <ion-icon name="search-outline"></ion-icon> <h3>Diagnóstico Completo</h3>
+                        <p>Evaluamos minuciosamente tu vehículo para identificar cualquier problema, ofreciéndote un presupuesto preciso y transparente.</p>
+                        </article>
+    
+                    <article class="service-item">
+                         <ion-icon name="bicycle-outline"></ion-icon> <h3>Reparación de Pinchazos y Neumáticos</h3>
+                         <p>Solucionamos rápidamente pinchazos y cambiamos cubiertas o cámaras desgastadas para que sigas rodando seguro.</p>
+                         </article>
+    
+                    <article class="service-item">
+                        <ion-icon name="settings-outline"></ion-icon> <h3>Ajuste y Reparación de Frenos y Cambios</h3>
+                        <p>Optimizamos el rendimiento de tus frenos y cambios para una conducción suave, segura y eficiente.</p>
+                        </article>
+    
+                    <article class="service-item">
+                        <ion-icon name="build-outline"></ion-icon> <h3>Mantenimiento Preventivo</h3>
+                        <p>Servicio completo de lubricación, limpieza, ajustes básicos y revisión general para prolongar la vida útil y prevenir problemas mayores.</p>
+                        </article>
+    
+                     <article class="service-item">
+                        <ion-icon name="battery-charging-outline"></ion-icon> <h3>Diagnóstico y Reemplazo de Baterías (Eléctricas)</h3>
+                        <p>Diagnosticamos problemas de rendimiento de la batería en patinetas eléctricas y realizamos reemplazos seguros y profesionales.</p>
+                        </article>
+    
+                    <article class="service-item">
+                        <ion-icon name="hardware-chip-outline"></ion-icon> <h3>Reparación de Motor y Electrónica (Patinetas)</h3>
+                        <p>Solucionamos fallos en el motor, controladora y otros componentes electrónicos clave de tu patineta eléctrica.</p>
+                        </article>
+    
+                </div>
+                 <div class="text-center" style="margin-top: 40px;">
+                      <p>¿No encuentras lo que buscas? <a href="/contacto">Contáctanos</a> con los detalles.</p>
+                 </div>
+            </div>
+        </section>
+    
+        <section id="contact-cta-services" class="section">
+             <div class="container text-center">
+                 <h2>Programa Tu Servicio Hoy Mismo</h2>
+                 <p>Estamos listos para darte el mejor servicio y poner tu vehículo de nuevo en marcha.</p>
+                 <a href="/contacto" class="btn btn-primary btn-large">Solicitar Presupuesto o Cita</a>
+             </div>
+         </section>
+    
+    
     </main>
     <%- include('partials/footer.ejs')%>
 </body>
