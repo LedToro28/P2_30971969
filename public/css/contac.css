@@ -1,37 +1,35 @@
-/* Agrega estos estilos al final de tu archivo public/css/style.css */
-
-/* ===================== */
-/* Estilos Específicos de la Página de Contacto */
-/* ===================== */
-
-/* Sección de Introducción a Contacto */
-#contact-intro {
-    /* Estilos heredados de .section, como padding y text-align: center */
-    background-color: #e9ecef; /* Fondo claro como en servicios-intro */
+:root{
+    --fondo: ;
+    --boton: #3ba7d6;
+    --head: #3ba7d6;
+    --opacidad: rgba(0, 0, 0, 0.5);
+    --footer: #2a1140;
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
 }
-
-#contact-intro h1 {
-    /* Color y margen heredados, ajusta si es necesario */
+/* Sección de Introducción a Contacto */   
+#contact-intro {
+    padding: 80px 5%;
+    background-color: #e9ecef; 
 }
 
 #contact-intro .subtitle {
      /* Estilos heredados, ajusta si es necesario */
      font-size: 1.2em;
      color: #555;
-     max-width: 700px; /* Ancho máximo para el subtítulo */
-     margin: 0 auto 20px auto; /* Centrar y dar espacio abajo */
+     max-width: 700px;
+     margin: 0 auto 20px auto; 
 }
-
 
 /* Sección de Formulario de Contacto */
 #contact-form-section .form-container {
-    max-width: 700px; /* Ancho máximo para el formulario */
-    margin: 0 auto; /* Centrar el formulario dentro de la sección */
+    margin-top: 3%;
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra sutil */
-    text-align: left; /* Alinea el texto del formulario a la izquierda */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
 }
 
 .form-group {
@@ -39,7 +37,7 @@
 }
 
 .form-group label {
-    display: block; /* Pone la etiqueta en su propia línea */
+    display: block;
     margin-bottom: 8px;
     font-weight: bold;
     color: #555;
@@ -49,8 +47,8 @@
 .form-group input[type="email"],
 .form-group input[type="tel"],
 .form-group textarea {
-    display: block; /* Pone el input/textarea en su propia línea */
-    width: 100%; /* Ocupa todo el ancho del contenedor */
+    display: block; 
+    width: 100%; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -60,24 +58,33 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #007bff; /* Resalta el borde al enfocar */
+    border-color: #007bff;
     box-shadow: 0 0 5px rgba(0,123,255,0.25);
 }
 
 textarea {
-    resize: vertical; /* Permite redimensionar solo verticalmente */
+    resize: vertical; 
 }
 
 #contactForm button[type="submit"] {
-    width: 100%; /* Botón de enviar ocupa todo el ancho del formulario */
+    background-color: var(--boton);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
     margin-top: 10px;
-    /* Estilos de botón heredados de .btn.btn-primary.btn-large */
+    transition: all 1s;
+}
+#contactForm button[type="submit"]:hover{
+    background-color: var(--boton);
+    padding: 15px 10px;
+    transition: all 1s;
 }
 
 
 /* Sección "Ubícanos" */
 #location .container {
-    text-align: center; /* Centra el H2 de la sección */
+    text-align: center; 
 }
 
 #location h2 {
@@ -85,21 +92,21 @@ textarea {
 }
 
 #location .location-content {
-    display: flex; /* Usa flexbox para el layout de la info y el mapa */
-    gap: 40px; /* Espacio entre el bloque de info y el mapa */
-    align-items: flex-start; /* Alinea arriba */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    text-align: left; /* Alinea el texto dentro de este contenedor a la izquierda */
+    display: flex;
+    gap: 40px; 
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
 }
 
 .contact-info-block {
-    flex: 1; /* Permite que este bloque crezca */
-    min-width: 280px; /* Ancho mínimo antes de envolver */
+    flex: 1;
+    min-width: 280px;
 }
 
 .contact-info-block p {
     margin-bottom: 10px;
-    display: flex; /* Alinea icono y texto */
+    display: flex;
     align-items: center;
 }
 
@@ -112,27 +119,27 @@ textarea {
 
 .map-container {
     flex: 2; /* Permite que el mapa ocupe más espacio */
-    min-width: 300px; /* Ancho mínimo antes de envolver */
-    background-color: #eee; /* Fondo si el mapa no carga */
-    display: flex; /* Flexbox para centrar el iframe/placeholder si es necesario */
+    min-width: 300px; 
+    background-color: #eee;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    overflow: hidden; /* Esconde partes del mapa si se redondean las esquinas */
+    overflow: hidden;
      box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra */
 }
 
 .map-container iframe {
-    width: 100%; /* El iframe ocupa todo el ancho del contenedor */
-    height: 450px; /* Altura fija para el mapa (ajusta si quieres) */
-    border: 0; /* Quita el borde por defecto del iframe */
-    display: block; /* Evita espacio extra debajo del iframe */
+    width: 100%; 
+    height: 450px; 
+    border: 0; 
+    display: block
 }
 
 /* Si usas un placeholder en lugar de iframe */
 .map-placeholder {
      width: 100%;
-     height: 450px; /* Misma altura que el iframe */
+     height: 450px; 
      background-color: #ccc;
      display: flex;
      justify-content: center;
@@ -141,19 +148,13 @@ textarea {
      font-size: 1.2em;
 }
 
-
-/* Sección de Opiniones de Clientes (reutiliza estilos si ya los tienes) */
-#customer-opinions .container {
-     /* El H2 ya está centrado por .section */
-}
-
 /* Si ya creaste estos estilos para la página de inicio, puedes saltarte esta parte */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Rejilla responsiva */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 30px;
     margin-top: 40px;
-    text-align: center; /* Centra el contenido de cada testimonio */
+    text-align: center; 
 }
 
 .testimonial-item {
@@ -161,21 +162,21 @@ textarea {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex; /* Usa flexbox para alinear contenido (cita y autor) */
+    display: flex; 
     flex-direction: column;
-    justify-content: space-between; /* Empuja el autor hacia abajo si hay espacio */
+    justify-content: space-between; 
 }
 
 .testimonial-item p {
-    font-style: italic; /* Estilo cursiva para la cita */
+    font-style: italic;
     margin-bottom: 15px;
-     flex-grow: 1; /* Permite que la cita ocupe espacio */
+     flex-grow: 1; 
 }
 
 .testimonial-item p strong {
-    display: block; /* Pone el nombre del autor en una nueva línea */
+    display: block; 
     margin-top: 10px;
-    font-style: normal; /* Quita la cursiva del nombre */
+    font-style: normal; 
     color: #333;
 }
 
@@ -184,12 +185,12 @@ textarea {
 /* Media Query para Móviles (Ajustes específicos si son necesarios) */
 /* ===================== */
 @media (max-width: 768px) {
-    /* Ajustes generales para móviles ya están en la media query principal */
+
 
     /* Layout de Ubicación apilado en móvil */
     #location .location-content {
-        flex-direction: column; /* Apila el bloque de info y el mapa */
-        gap: 30px; /* Espacio entre ellos */
+        flex-direction: column;
+        gap: 30px;
     }
 
      .contact-info-block,
@@ -200,7 +201,7 @@ textarea {
      /* Altura del mapa más reducida en móvil si es necesario */
      .map-container iframe,
      .map-placeholder {
-         height: 300px; /* Altura reducida del mapa */
+         height: 300px;
      }
 
     /* Testimonios apilados en móvil (si el minmax lo permite, si no, ya se apilan) */
@@ -214,13 +215,7 @@ textarea {
 
      /* Ajustes para el formulario en móvil */
      #contact-form-section .form-container {
-         padding: 20px; /* Reduce el padding del formulario en móvil */
+         padding: 20px;
      }
 
 }
-
-/* --- Reutilización de estilos de layout y componentes generales --- */
-/* Asegúrate de que los estilos para .container, .section, .bg-light, .btn,
-   .subtitle, .text-center, y los iconos ion-icon (tamaño general)
-   estén definidos ANTES de estos estilos específicos si no los tienes en otro lugar.
-   Idealmente, en la parte superior de tu style.css o en un archivo base.css */

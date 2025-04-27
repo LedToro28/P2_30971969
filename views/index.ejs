@@ -12,7 +12,7 @@
     <%- include('partials/header.ejs')%>
     <main>
         <section id="hero" class="section">
-            <div class="container">
+            <div id="imagen" class="container">
                 <div class="hero-content">
                     <h1>Ciclexpress: Expertos en Reparación para que Vuelvas a Rodar</h1>
                     <p class="subtitle">Servicio rápido, fiable y especializado en bicicletas y patinetas eléctricas.</p>
@@ -20,9 +20,6 @@
                         <a href="/servicios" class="btn btn-primary">Ver Nuestros Servicios</a>
                         <a href="/contacto" class="btn btn-secondary">Solicitar Presupuesto</a>
                     </div>
-                </div>
-                <div class="hero-image">
-                    <img src="/img/hero-banner.jpg" alt="Imagen de taller Ciclexpress o vehículo reparado">
                 </div>
             </div>
         </section>
@@ -52,19 +49,20 @@
         </section>
     
         <section id="trajectory" class="section">
-            <div class="container">
-                <h2>Nuestra Trayectoria</h2>
-                <div class="trajectory-content">
-                    <img src="/img/trajectory-image.jpg" alt="Imagen representando historia o equipo"> <p>Ciclexpress nació en [Año de inicio] con el objetivo de ofrecer un servicio de reparación de bicicletas honesto y de calidad en [Tu Ciudad/Zona]. Con la creciente popularidad de la movilidad eléctrica, ampliamos nuestros conocimientos y servicios para convertirnos también en especialistas en patinetas eléctricas.</p>
-                    <p>A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y nuestro compromiso con la excelencia. Hemos superado desafíos, adoptado nuevas tecnologías y formado un equipo apasionado que comparte la visión de mantener tus vehículos de dos ruedas en perfecto estado.</p>
+            <div id="trajectory-img">
+                <div class="container">
+                    <h2>Nuestra Trayectoria</h2>
+                    <div class="trajectory-content">
+                        <p>A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y nuestro compromiso con la excelencia. Hemos superado desafíos, adoptado nuevas tecnologías y formado un equipo apasionado que comparte la visión de mantener tus vehículos de dos ruedas en perfecto estado.</p>
                         <p>Hoy, Ciclexpress es sinónimo de fiabilidad y experiencia en la comunidad. Seguimos mirando hacia el futuro, listos para adaptarnos y servir las necesidades de movilidad de mañana.</p>
                     </div>
+                </div>
             </div>
         </section>
     
             <section id="services-summary" class="section bg-light">
                 <div class="container">
-                    <h2>Reparamos:</h2>
+                    <h2>Reparamos</h2>
                     <div class="service-types">
                         <div class="service-type-item">
                             <ion-icon name="bicycle-outline"></ion-icon>

@@ -1,31 +1,17 @@
-/* ===================== */
-/* Estilos Generales y Reset Básico */
-/* ===================== */
-body {
-    font-family: 'Arial', sans-serif; /* O tu fuente preferida */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #fff;
+:root{
+    --fondo: #ffffff;
+    --opacidad: rgba(0, 0, 0, 0.5);
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
+    --blue: #3ba7d6;
 }
-
-*, *::before, *::after {
-    box-sizing: border-box; /* Facilita el manejo de padding y border en anchos */
-}
-
-img {
-    max-width: 100%; /* Las imágenes no se saldrán de su contenedor */
-    height: auto;
-}
-
 a {
     text-decoration: none;
-    color: inherit; /* Hereda el color del texto del padre por defecto */
+    color: inherit;
 }
-
 h1, h2, h3 {
-    color: #0056b3; /* Un color de ejemplo para los títulos */
+    color: var(--boton);
     margin-bottom: 0.8em;
     line-height: 1.2;
 }
@@ -40,25 +26,25 @@ p {
 
 /* Estilo para el contenedor principal de contenido */
 .container {
-    width: 90%; /* Ancho relativo */
-    max-width: 1200px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 0 15px; /* Espacio en los lados en pantallas pequeñas */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 0 15px;
 }
 
 /* Estilo básico para las secciones */
 .section {
-    padding: 60px 0; /* Espacio arriba y abajo de cada sección */
-    text-align: center; /* Centrar texto en secciones por defecto */
+
+    text-align: center;
 }
 
 .section h2 {
-    margin-bottom: 40px; /* Más espacio debajo de los títulos de sección */
+    margin-bottom: 40px;
 }
 
 /* Clases de utilidades */
 .bg-light {
-    background-color: #f8f8f8; /* Fondo gris claro para alternar secciones */
+    background-color: var(--font-2);
 }
 
 .text-center {
@@ -69,7 +55,7 @@ p {
 /* Estilos de Botones */
 /* ===================== */
 .btn {
-    display: inline-block; /* Permite padding y margen */
+    display: inline-block;
     padding: 10px 20px;
     margin: 5px;
     border: none;
@@ -81,17 +67,17 @@ p {
 }
 
 .btn-primary {
-    background-color: #007bff; /* Azul primary */
-    color: white;
+    background-color: #007bff;
+    color: var(--font-2);
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: var(--blue);
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Gris secondary */
-    color: white;
+    background-color: var(--font-3);
+    color: var(--font-2);
 }
 
 .btn-secondary:hover {
@@ -114,119 +100,56 @@ p {
     font-size: 1.2em;
 }
 
-
-/* ===================== */
-/* Estilos del Header y Navegación (Desktop First) */
-/* ===================== */
-.site-header {
-    background-color: #f0f0f0;
-    padding: 10px 20px;
-    display: flex; /* Usa flexbox para alinear elementos en la cabecera */
-    justify-content: space-between; /* Espacio entre menú y búsqueda */
-    align-items: center; /* Centrado vertical */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-}
-
-/* Estilos para los enlaces de navegación en desktop */
-#main-nav {
-    display: flex; /* Alinea los enlaces del menú horizontalmente */
-    gap: 20px; /* Espacio entre los enlaces */
-    align-items: center; /* Centra verticalmente iconos y texto */
-}
-
-.nav-link {
-    color: #333; /* Color del texto del enlace */
-    font-weight: bold;
-    display: flex; /* Para alinear el icono y el texto dentro del enlace */
-    align-items: center;
-}
-
-.nav-link:hover {
-    color: #007bff; /* Cambia color al pasar el mouse */
-}
-
-/* Espacio entre el icono y el texto en el enlace */
-.nav-link ion-icon {
-    margin-right: 5px;
-    font-size: 1.2em; /* Tamaño del icono */
-}
-
-/* Estilos para el campo de búsqueda */
-#search input {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-#search label {
-    display: flex;
-    align-items: center;
-}
-
-#search ion-icon {
-    margin-left: 8px;
-    font-size: 1.2em;
-    color: #555;
-    cursor: pointer; /* Indica que el icono de búsqueda es clickeable (si le añades JS) */
-}
-
-
-/* Ocultar el botón de menú por defecto (en desktop) */
-.menu-toggle {
-    display: none;
-}
-
 /* ===================== */
 /* Estilos de Secciones Específicas */
 /* ===================== */
 
 /* Sección Hero */
 #hero {
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('/img/hero-background.jpg'); /* Fondo con imagen y overlay */
+    height: 100vh;
+    color: var(--font-2);
+    background-image: url('https://th.bing.com/th/id/R.c0f1e81ffecd578db09167ad66da3847?rik=FdS4sCFTgU15hw&pid=ImgRaw&r=0');
     background-size: cover;
-    background-position: center;
-    padding: 80px 0; /* Más padding */
+    background-repeat: no-repeat;
+    padding: 0;
 }
 
 #hero .container {
     display: flex;
-    flex-direction: column; /* Contenido apilado por defecto */
+    flex-direction: column;
     align-items: center;
-    gap: 30px; /* Espacio entre contenido y imagen */
+    gap: 30px;
+    width: 100%;
+    height: 100%;
 }
-
+#imagen{
+    background: var(--opacidad);
+    padding: 80px 0;
+    height: 100%;
+    width: 100vw;
+}
 .hero-content {
-    max-width: 700px; /* Ancho máximo para el texto */
+    max-width: 700px;
 }
 
 #hero h1 {
-     color: #0056b3;
+    color: var(--font-2);
      margin-bottom: 10px;
 }
 
 #hero .subtitle {
     font-size: 1.3em;
-    color: #555;
     margin-bottom: 30px;
 }
 
 .cta-buttons {
     margin-top: 20px;
 }
-
-.hero-image img {
-    border-radius: 8px;
-    max-height: 400px; /* Altura máxima para la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
-}
-
-
 /* Sección Por Qué Elegirnos */
 #why-choose-us .reasons-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
-    gap: 30px; /* Espacio entre items */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
     text-align: center;
 }
 
@@ -239,33 +162,48 @@ p {
 }
 
 .reason-item ion-icon {
-    font-size: 3em; /* Tamaño grande para los iconos */
+    font-size: 3em; 
     color: #007bff;
     margin-bottom: 15px;
 }
-
-
 /* Sección Trayectoria */
+#trajectory{
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://th.bing.com/th/id/OIP.7NsXRuDf7B9q2fpqfsTDtwHaFj?w=4000&h=3000&rs=1&pid=ImgDetMain');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--font-2);
+    padding: 0;
+}
+#trajectory h2{
+    color: var(--font-2);
+    margin-bottom: 10px;
+}{
+\
+}
+#trajectory-img{
+    background-color: var(--opacidad);
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+}
+#trajectory p{
+    background-color: rgb(255, 255, 255, 0.2);
+    padding: 5px;
+}
 #trajectory .container {
-    text-align: left; /* Texto alineado a la izquierda para esta sección */
+    text-align: left;
 }
 
 .trajectory-content {
     display: flex;
     gap: 40px;
-    align-items: flex-start; /* Alinea elementos al inicio */
-    flex-wrap: wrap; /* Permite que la imagen y el texto se apilen en móvil */
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
-
-.trajectory-content img {
-     max-width: 300px; /* Ancho máximo para la imagen en desktop */
-     height: auto;
-     border-radius: 8px;
-     flex-shrink: 0; /* Evita que la imagen se encoja */
-}
-
 .trajectory-content p {
-    flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+    flex-grow: 1;
 }
 
 .milestones {
@@ -281,7 +219,7 @@ p {
 }
 
 .milestones li::before {
-    content: "•"; /* Un punto simple como viñeta */
+    content: "•"
     color: #007bff;
     font-weight: bold;
     position: absolute;
@@ -292,7 +230,7 @@ p {
 /* Sección Resumen de Servicios */
 #services-summary .service-types {
      display: grid;
-     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsivas */
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
      gap: 30px;
      text-align: center;
 }
@@ -314,35 +252,19 @@ p {
 
 /* Sección CTA Contacto */
 #cta-contact {
-    background-color: #007bff; /* Fondo azul primary */
+    background-color: #007bff;
     color: white;
     padding: 50px 0;
 }
 
 #cta-contact h2 {
-    color: white; /* Título blanco sobre fondo azul */
+    color: white; 
 }
 
 #cta-contact p {
     font-size: 1.2em;
     margin-bottom: 30px;
 }
-
-/* ===================== */
-/* Estilos del Footer */
-/* ===================== */
-footer {
-    background-color: #333; /* Fondo oscuro */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px; /* Espacio arriba */
-}
-
-footer p {
-    margin: 0;
-}
-
 
 /* ===================== */
 /* Media Query para Móviles (Aplica debajo de 768px) */
@@ -354,30 +276,30 @@ footer p {
     h3 { font-size: 1.3em; }
 
     .section {
-        padding: 40px 0; /* Reduce el padding en móvil */
+        padding: 40px 0;
     }
 
      /* Header móvil */
     .site-header {
-        flex-direction: row; /* Vuelve a poner el botón y la búsqueda en fila */
-        justify-content: space-between; /* Espaciado */
+        flex-direction: row; 
+        justify-content: space-between; 
         align-items: center;
     }
 
     .menu-toggle {
-        display: block; /* Muestra el botón de hamburguesa */
-        color: #333; /* Color del icono */
+        display: block; 
+        color: #333;
     }
 
      #search {
-         width: 100%; /* Búsqueda ocupa todo el ancho debajo del header en algunos layouts */
-         order: 2; /* Podrías cambiar el orden si es necesario */
-         margin-top: 10px; /* Espacio entre header y búsqueda */
-         text-align: left; /* Alinea la búsqueda a la izquierda en móvil */
+         width: 100%; 
+         order: 2; 
+         margin-top: 10px;
+         text-align: left; 
      }
 
      #search input {
-         width: calc(100% - 40px); /* Ajusta el ancho del input */
+         width: calc(100% - 40px); 
          display: inline-block;
      }
      #search label {
@@ -387,82 +309,58 @@ footer p {
 
     /* Navegación móvil (menú lateral) */
     #main-nav {
-        /* Vuelve a ocultar la navegación por defecto en pantallas pequeñas */
-        /* Los estilos de 'position: fixed', 'left: -250px', etc., ya están en el estilo principal para pantallas pequeñas */
-        /* Asegúrate de que estos estilos estén en la sección @media */
-
-        position: fixed; /* Fijo en la pantalla */
+        position: fixed; 
         top: 0;
-        left: -250px; /* Oculto fuera de la vista */
-        width: 250px; /* Ancho del menú */
-        height: 100%; /* Altura completa de la pantalla */
+        left: -250px;
+        width: 250px;
+        height: 100%; 
         background-color: #fff;
-        flex-direction: column; /* Los enlaces se apilan verticalmente */
+        flex-direction: column; 
         padding: 20px;
         box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-        transition: left 0.3s ease; /* Animación */
-        z-index: 100; /* Por encima de otros elementos */
-        overflow-y: auto; /* Scroll si el contenido es largo */
-        display: flex; /* Usa flex para que los links se apilen */
+        transition: left 0.3s ease;
+        z-index: 100; 
+        overflow-y: auto; 
+        display: flex; 
     }
 
      /* Estado Activo del menú (cuando JS le añade la clase 'active') */
     #main-nav.active {
-        left: 0; /* Mueve el menú a la posición visible */
+        left: 0;
     }
 
     /* Estilos para los enlaces dentro del menú móvil */
     #main-nav .nav-link {
-        padding: 12px 0; /* Más padding vertical para los enlaces */
-        border-bottom: 1px solid #eee; /* Separador */
-        width: 100%; /* Ocupa todo el ancho del menú lateral */
+        padding: 12px 0; 
+        border-bottom: 1px solid #eee;
+        width: 100%; 
         color: #333;
     }
 
     #main-nav .nav-link:last-child {
-         border-bottom: none; /* No poner separador en el último enlace */
+         border-bottom: none; 
     }
 
 
     /* Ajustes de layout en secciones para móvil */
     #hero .container {
-        flex-direction: column; /* Apila contenido e imagen */
+        flex-direction: column;
     }
 
     #trajectory .trajectory-content {
-        flex-direction: column; /* Apila imagen y texto */
+        flex-direction: column; 
     }
 
      #trajectory .trajectory-content img {
-         max-width: 100%; /* Imagen ocupa todo el ancho disponible */
-         margin-bottom: 20px; /* Espacio debajo de la imagen apilada */
+         max-width: 100%;
+         margin-bottom: 20px;
      }
 
     /* Rejillas de 1 columna en móvil */
     #why-choose-us .reasons-grid,
     #services-summary .service-types {
-         grid-template-columns: 1fr; /* Una columna */
+         grid-template-columns: 1fr; 
     }
 
 
 }
-
-/* ===================== */
-/* Estilos para Ocultar / Mostrar (Usados por JS si implementas overlay) */
-/* ===================== */
-/* Si implementas un overlay de fondo oscuro al abrir el menú, necesitarías estilos para él */
-/* Por ejemplo:
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 99;
-    display: none;
-}
-.overlay.active {
-    display: block;
-}
-*/

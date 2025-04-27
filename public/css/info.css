@@ -1,60 +1,56 @@
-/* Agrega estos estilos al final de tu archivo public/css/style.css */
-
-/* ===================== */
-/* Estilos Específicos de la Página de Información */
-/* ===================== */
-
-/* Sección de Información General / Sobre Nosotros */
+:root{
+    --fondo: #ffffff;
+    --boton: #3ba7d6;
+    --head: #3ba7d6;
+    --opacidad: rgba(0, 0, 0, 0.5);
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
+}
 #about-us-intro {
-    /* Estilos heredados de .section, como padding y text-align: center */
-     background-color: #e9ecef; /* Fondo claro */
+    padding: 0;
+     height: 100vh;
+     background-image: url('https://th.bing.com/th/id/R.1eb2b9962714cd74db4ee4ae19536a62?rik=ByR24kXlDGoHow&pid=ImgRaw&r=0');
+     background-size: cover;
+     background-repeat: no-repeat;
+     color: var(--font-2);
 }
-
-#about-us-intro .container {
-    /* El H1 y subtítulo ya están centrados por .section y .container text-center */
+#about-us-intro #imagen{
+    padding: 80px 5%;
+    background-color: var(--opacidad);
+    width: 100%;
+    height: 100%;
 }
-
-
 #about-us-intro .about-content {
-    display: flex; /* Usa flexbox para la imagen y el texto */
-    gap: 40px; /* Espacio entre la imagen y el texto */
-    align-items: flex-start; /* Alinea los items arriba */
-    flex-wrap: wrap; /* Permite que la imagen y el texto se envuelvan en móvil */
-    text-align: left; /* Alinea el texto dentro de este contenedor a la izquierda */
-    margin-top: 40px; /* Espacio debajo del subtítulo/título principal */
+    display: flex;
+    gap: 40px; 
+    align-items: flex-start;
+    flex-wrap: wrap;
+    text-align: left; 
+    margin-top: 40px; 
 }
-
-#about-us-intro .about-content img {
-    max-width: 400px; /* Ancho máximo para la imagen en desktop */
-    height: auto;
-    border-radius: 8px;
-    flex-shrink: 0; /* Evita que la imagen se encoja */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
 #about-us-intro .about-content div {
-    flex-grow: 1; /* Permite que el contenedor de texto ocupe el espacio restante */
-    /* Puedes añadir un min-width si quieres controlar mejor el punto de quiebre del flex-wrap */
+    flex-grow: 1; 
 }
-
 #about-us-intro .about-content p {
-    margin-bottom: 1em; /* Espacio entre párrafos */
-    color: #555;
+    margin-bottom: 1em; 
+    color: var(--font-2);
 }
 
 
 /* Sección "Nuestro Equipo" */
 #our-team .container {
-    /* El H2 ya está centrado por .section */
+    padding: 5%;
+    text-align: center;
+
 }
 
 #our-team .team-grid {
     display: grid;
-    /* Columnas que se ajustan: ancho mínimo 180px, ocupan espacio equitativo */
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 30px; /* Espacio entre miembros del equipo */
-    margin-top: 40px; /* Espacio debajo del título H2 */
-    text-align: center; /* Centra el contenido de cada miembro */
+    gap: 30px; 
+    margin-top: 40px; 
+    text-align: center; 
 }
 
 .team-member {
@@ -62,18 +58,18 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex; /* Usa flexbox para apilar contenido (imagen, nombre, rol) */
+    display: flex; 
     flex-direction: column;
-    align-items: center; /* Centra horizontalmente los items */
+    align-items: center;
 }
 
 .team-member img {
-    width: 100px; /* Ancho fijo para la foto */
-    height: 100px; /* Altura fija */
-    border-radius: 50%; /* Forma redonda para la foto */
-    object-fit: cover; /* Asegura que la imagen cubra el círculo */
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%; 
+    object-fit: cover; 
     margin-bottom: 15px;
-    border: 3px solid #007bff; /* Borde alrededor de la foto */
+    border: 3px solid #007bff; 
 }
 
 .team-member h3 {
@@ -90,33 +86,34 @@
     font-style: italic;
 }
 
-.team-member .bio { /* Si añades una descripción más larga */
+.team-member .bio { 
     font-size: 0.9em;
     color: #666;
-    text-align: left; /* Alinea el texto de la bio a la izquierda */
-    flex-grow: 1; /* Permite que la bio ocupe el espacio restante */
+    text-align: left; 
+    flex-grow: 1; 
 }
 
 
 /* Sección "Preguntas Frecuentes" (FAQ) */
 #faq .container {
-     /* El H2 ya está centrado por .section */
+    padding: 5%;
+    border-top: 5px gray solid;
 }
 
 #faq .faq-list {
-    max-width: 800px; /* Ancho máximo para la lista de FAQ */
-    margin: 40px auto 0 auto; /* Centra la lista debajo del título */
-    text-align: left; /* Alinea el texto dentro de la lista a la izquierda */
-}
+    max-width: 800px;
+    margin: 40px auto 0 auto;
+    text-align: left;
+} 
 
 .faq-item {
-    margin-bottom: 25px; /* Espacio entre cada pregunta/respuesta */
+    margin-bottom: 25px; 
     padding-bottom: 20px;
-    border-bottom: 1px solid #eee; /* Separador entre items */
+    border-bottom: 1px solid #eee;
 }
 
 .faq-item:last-child {
-    border-bottom: none; /* No poner separador en el último item */
+    border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -126,28 +123,26 @@
     color: #333;
     margin-top: 0;
     margin-bottom: 10px;
-    cursor: pointer; /* Sugiere que se puede interactuar (si usas JS para acordeón) */
+    cursor: pointer; 
 }
 
 .faq-item p {
     font-size: 1em;
     color: #555;
-    margin-bottom: 0; /* No hay margen debajo del último párrafo */
-    /* Si usas JS para un acordeón, este párrafo estaría oculto por defecto */
+    margin-bottom: 0; 
 }
 
 
 /* Sección Llamada a la Acción en la página de información */
 #info-contact-cta {
-     /* Reutiliza estilos de otras secciones CTA */
-     background-color: #0056b3; /* Fondo azul oscuro */
+     background-color: var(--fondo); 
      color: white;
      padding: 50px 0;
      text-align: center;
 }
 
 #info-contact-cta h2 {
-     color: white;
+     color: var(--font-2);
 }
 
 #info-contact-cta p {
@@ -160,39 +155,36 @@
 /* Media Query para Móviles (Ajustes específicos si son necesarios) */
 /* ===================== */
 @media (max-width: 768px) {
-    /* Ajustes generales para móviles ya están en la media query principal */
 
-    /* Layout de "Sobre Nosotros" apilado en móvil */
     #about-us-intro .about-content {
-        flex-direction: column; /* Apila imagen y texto */
-        gap: 30px; /* Espacio entre ellos */
+        flex-direction: column; 
+        gap: 30px;
     }
 
      #about-us-intro .about-content img {
-         max-width: 100%; /* Imagen ocupa todo el ancho disponible */
-          margin-bottom: 15px; /* Espacio debajo de la imagen apilada */
-          /* Quitar o ajustar sombra si es necesario */
+         max-width: 100%; 
+          margin-bottom: 15px;
      }
 
      #about-us-intro .about-content div {
-         text-align: center; /* Centra el texto si la imagen no está */
+         text-align: center; 
      }
      #about-us-intro .about-content p {
-         text-align: left; /* Pero mantiene los párrafos justificados o alineados a la izquierda si el layout lo permite */
+         text-align: left; 
      }
 
 
     /* Rejilla de Equipo: se ajusta automáticamente a 1 o 2 columnas según el minmax */
     #our-team .team-grid {
-         gap: 20px; /* Reduce el espacio en móvil */
+         gap: 20px; 
     }
 
     .team-member {
-        padding: 15px; /* Reduce el padding */
+        padding: 15px;
     }
 
     .team-member img {
-        width: 80px; /* Tamaño un poco más pequeño en móvil */
+        width: 80px;
         height: 80px;
     }
 
@@ -224,9 +216,3 @@
     }
 
 }
-
-/* --- Reutilización de estilos de layout y componentes generales --- */
-/* Asegúrate de que los estilos para .container, .section, .bg-light, .btn,
-   .subtitle, .text-center, y los iconos ion-icon (tamaño general)
-   estén definidos ANTES de estos estilos específicos si no los tienes en otro lugar.
-   Idealmente, en la parte superior de tu style.css o en un archivo base.css */
