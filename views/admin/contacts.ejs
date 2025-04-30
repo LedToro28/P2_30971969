@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs')%>
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2><%= pageTitle %></h2>
+
+                <% if (contacts && contacts.length > 0) { %>
+                    <div class="table-responsive"> {/* Wrapper opcional para scroll en móvil */}
+                        <table class="contacts-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Comentario</th>
+                                    <th>IP</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% contacts.forEach(contact => { %>
+                                    <tr>
+                                        <td><%= contact.id %></td>
+                                        <td><%= contact.name %></td>
+                                        <td><%= contact.email %></td>
+                                        <td><%= contact.comment %></td>
+                                        <td><%= contact.ip_address %></td>
+                                        <td><%= contact.created_at %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } else { %>
+                    <p>No hay contactos registrados aún.</p>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer.ejs')%>
+<style>
+    /* Estilos básicos para la tabla de administración */
+    .contacts-table {
+        width: 100%;
+        border-collapse: collapse; /* Elimina el espacio entre bordes de celda */
+        margin-top: 20px;
+    }
+
+    .contacts-table th,
+    .contacts-table td {
+        border: 1px solid #ddd; /* Borde de celda */
+        padding: 8px;
+        text-align: left;
+    }
+
+    .contacts-table th {
+        background-color: #f2f2f2; /* Fondo para el encabezado */
+        color: #333;
+        font-weight: bold;
+    }
+
+    .contacts-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Raya las filas */
+    }
+
+    .contacts-table tbody tr:hover {
+        background-color: #e9e9e9; /* Resalta fila al pasar el mouse */
+    }
+
+    /* Estilo para columnas largas (ej: comentario, IP) */
+    .contacts-table td:nth-child(4) { /* Columna Comentario */
+        word-break: break-word; /* Rompe palabras largas si es necesario */
+        max-width: 300px; /* Ancho máximo opcional */
+    }
+     .contacts-table td:nth-child(5) { /* Columna IP */
+        word-break: break-word;
+        max-width: 150px; /* Ancho máximo opcional */
+    }
+
+    /* Responsive básico para la tabla */
+    @media (max-width: 768px) {
+        .table-responsive {
+            overflow-x: auto; /* Añade scroll horizontal si la tabla es muy ancha */
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        }
+        .contacts-table, .contacts-table thead, .contacts-table tbody, .contacts-table th, .contacts-table td, .contacts-table tr {
+            display: block; /* Apila celdas en móvil */
+        }
+        .contacts-table thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px; /* Oculta el encabezado original */
+        }
+        .contacts-table tr { border: 1px solid #ccc; margin-bottom: 5px; }
+        .contacts-table td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%; /* Espacio para la "etiqueta" */
+            text-align: right; /* Alinea el valor a la derecha */
+        }
+        .contacts-table td:before {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            font-weight: bold;
+            content: attr(data-label); /* Usa el atributo data-label para la etiqueta */
+            text-align: left;
+        }
+        /* Añadir data-label a cada td en el HTML para mostrar las etiquetas en móvil */
+         /* Esto es complejo de hacer solo con EJS, una alternativa es mostrar la tabla normal y usar overflow-x */
+         /* Voy a dejar el overflow-x más simple, y comentar la parte compleja */
+    }
+</style>
+<style>
+    /* Estilos básicos para la tabla de administración */
+    .contacts-table {
+        width: 100%;
+        border-collapse: collapse; /* Elimina el espacio entre bordes de celda */
+        margin-top: 20px;
+    }
+
+    .contacts-table th,
+    .contacts-table td {
+        border: 1px solid #ddd; /* Borde de celda */
+        padding: 8px;
+        text-align: left;
+    }
+
+    .contacts-table th {
+        background-color: #f2f2f2; /* Fondo para el encabezado */
+        color: #333;
+        font-weight: bold;
+    }
+
+    .contacts-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Raya las filas */
+    }
+
+    .contacts-table tbody tr:hover {
+        background-color: #e9e9e9; /* Resalta fila al pasar el mouse */
+    }
+
+    /* Estilo para columnas largas (ej: comentario, IP) */
+    .contacts-table td:nth-child(4) { /* Columna Comentario */
+        word-break: break-word; /* Rompe palabras largas si es necesario */
+        max-width: 300px; /* Ancho máximo opcional */
+    }
+     .contacts-table td:nth-child(5) { /* Columna IP */
+        word-break: break-word;
+        max-width: 150px; /* Ancho máximo opcional */
+    }
+
+    /* Responsive básico para la tabla */
+    @media (max-width: 768px) {
+        .table-responsive {
+            overflow-x: auto; /* Añade scroll horizontal si la tabla es muy ancha */
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        }
+        /* La parte de apilar celdas es más compleja con EJS. Usar overflow-x es más simple */
+    }
+</style>
+</body>
+</html>
