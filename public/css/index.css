@@ -179,8 +179,6 @@ p {
 #trajectory h2{
     color: var(--font-2);
     margin-bottom: 10px;
-}{
-\
 }
 #trajectory-img{
     background-color: var(--opacidad);
@@ -219,7 +217,7 @@ p {
 }
 
 .milestones li::before {
-    content: "•"
+    content: "•";
     color: #007bff;
     font-weight: bold;
     position: absolute;

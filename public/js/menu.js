@@ -30,9 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-
-         // (Opcional) Cerrar el menú si haces clic fuera de él
-         // Esto requiere un overlay o manejar clics en el documento/body
-         // Es un poco más avanzado, pero mejora la UX
     }
 });
