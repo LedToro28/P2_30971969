@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/informacion.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <section id="about-us-intro" class="section">
-            <div  id="imagen" class="container">
+        <section style="background-image: url('https://images.unsplash.com/photo-1540558304464-3dd8b97f9734?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); padding: 0%;">
+            <div class="home opa">
                 <h1>Sobre Ciclexpress</h1>
                 <p class="subtitle">Conoce nuestra historia, nuestra misión y los valores que nos impulsan.</p>
-    
                 <div class="about-content">
                         <p>Nuestra misión es ser el taller de confianza para la comunidad de [Tu Ciudad/Zona], ofreciendo diagnósticos precisos, reparaciones duraderas y una atención al cliente excepcional. Creemos en la transparencia, la eficiencia y el trabajo bien hecho.</p>
                         <p>Valoramos la sostenibilidad, la movilidad urbana y, sobre todo, la satisfacción de nuestros clientes. Nos esforzamos por ser más que un simple taller; queremos ser un aliado para todos los que eligen la bicicleta o la patineta eléctrica como medio de transporte.</p>
@@ -24,33 +20,31 @@
             </div>
         </section>
     
-        <section id="our-team" class="section bg-light">
-            <div class="container">
-                <h2>Nuestro Equipo</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="/img/team-member-1.jpg" alt="">
-                        <h3>Juan Gonzalez</h3>
-                        <p class="role">Técnico Principal de Bicicletas</p>
-                        </div>
-    
-                    <div class="team-member">
-                        <img src="/img/team-member-2.jpg" alt="">
-                        <h3>Angelimar Garcia</h3>
-                        <p class="role">Especialista en Patinetas Eléctricas</p>
-                    </div>
-    
-                     <div class="team-member">
-                        <img src="/img/team-member-3.jpg" alt="">
-                        <h3>Anthony Vidal</h3>
-                        <p class="role">Atención al Cliente</p>
-                    </div>
-    
-                    </div>
+        <section class="team">
+            <h2>Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <h3>Juan La Posta</h3>
+                    <p class="role">Técnico Principal de Bicicletas</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <h3>Diana Magnes</h3>
+                    <p class="role">Especialista en Patinetas Eléctricas</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1522556189639-b150ed9c4330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <h3>Anthony Castillos</h3>
+                    <p class="role">Atención al Cliente</p>
+                </div>
+
             </div>
         </section>
     
-        <section id="faq" class="section">
+        <section id="faq">
             <div class="container">
                 <h2>Preguntas Frecuentes</h2>
                 <div class="faq-list">
@@ -87,15 +81,11 @@
             </div>
         </section>
     
-         <section id="info-contact-cta" class="section bg-light">
-             <div class="container text-center">
+         <section class="info-extra">
                  <h2>¿Aún Tienes Dudas?</h2>
                  <p>Si no encontraste la información que buscas, contáctanos directamente.</p>
-                 <a href="/contacto" class="btn btn-primary btn-large">Ir a la Página de Contacto</a>
-             </div>
+                 <a href="/contacto" class="btn btn-light btn-large">Ir a la Página de Contacto</a>
          </section>
-    
-    
     </main>
     <%- include('partials/footer.ejs')%>
 </body>

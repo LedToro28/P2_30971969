@@ -13,6 +13,7 @@ const port = 3000;
 // Middleware que NO dependen de la conexión a la DB (van fuera del callback)
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
+app.use('/bootstrap-icons', express.static(path.join(__dirname, '../node_modules/bootstrap-icons/font')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

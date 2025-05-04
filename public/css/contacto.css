@@ -3,122 +3,49 @@
     --boton: #3ba7d6;
     --head: #3ba7d6;
     --opacidad: rgba(0, 0, 0, 0.5);
-    --footer: #2a1140;
-    --font-1: #000;
-    --font-2: #fff;
-    --font-3: #999;
 }
-/* Sección de Introducción a Contacto */   
 #contact-intro {
     padding: 80px 5%;
     background-color: #e9ecef; 
+    .subtitle {
+        font-size: 1.2em;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto 20px auto; 
+   }
 }
 
-#contact-intro .subtitle {
-     /* Estilos heredados, ajusta si es necesario */
-     font-size: 1.2em;
-     color: #555;
-     max-width: 700px;
-     margin: 0 auto 20px auto; 
-}
-
-/* Sección de Formulario de Contacto */
-#contact-form-section .form-container {
-    margin-top: 3%;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: left;
-}
-
-.form-group {
-    margin-bottom: 20px; /* Espacio entre grupos de formulario */
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group textarea {
-    display: block; 
-    width: 100%; 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0,123,255,0.25);
-}
-
-textarea {
-    resize: vertical; 
-}
-
-#contactForm button[type="submit"] {
-    background-color: var(--boton);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
-    transition: all 1s;
-}
-#contactForm button[type="submit"]:hover{
-    background-color: var(--boton);
-    padding: 15px 10px;
-    transition: all 1s;
-}
-
-
-/* Sección "Ubícanos" */
-#location .container {
-    text-align: center; 
-}
-
-#location h2 {
-     margin-bottom: 40px;
-}
-
-#location .location-content {
+.location {
+    text-align: center;
+    h2 {
+        margin-bottom: 40px;
+   }
+   .location-content {
     display: flex;
     gap: 40px; 
     align-items: center;
     flex-wrap: wrap;
     text-align: left;
-}
-
-.contact-info-block {
-    flex: 1;
-    min-width: 280px;
-}
-
-.contact-info-block p {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.contact-info-block ion-icon {
-    font-size: 1.5em;
-    color: #007bff;
-    margin-right: 10px;
-    flex-shrink: 0; /* Evita que el icono se comprima */
+        .info-block {
+            flex: 1;
+            min-width: 280px;
+            p {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+            i {
+                font-size: 1.5em;
+                color: #007bff;
+                margin-right: 10px;
+                flex-shrink: 0; 
+            }
+        }
+    }
 }
 
 .map-container {
-    flex: 2; /* Permite que el mapa ocupe más espacio */
+    flex: 2; 
     min-width: 300px; 
     background-color: #eee;
     display: flex;
@@ -126,94 +53,62 @@ textarea {
     align-items: center;
     border-radius: 8px;
     overflow: hidden;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    iframe {
+        width: 100%; 
+        height: 450px; 
+        border: 0; 
+        display: block
+    }
 }
 
-.map-container iframe {
-    width: 100%; 
-    height: 450px; 
-    border: 0; 
-    display: block
-}
-
-/* Si usas un placeholder en lugar de iframe */
-.map-placeholder {
-     width: 100%;
-     height: 450px; 
-     background-color: #ccc;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     color: #555;
-     font-size: 1.2em;
-}
-
-/* Si ya creaste estos estilos para la página de inicio, puedes saltarte esta parte */
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 30px;
     margin-top: 40px;
-    text-align: center; 
+    text-align: center;
+    .testimonial-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between; 
+        p {
+            font-style: italic;
+            margin-bottom: 15px;
+            flex-grow: 1; 
+            strong {
+                display: block; 
+                margin-top: 10px;
+                font-style: normal; 
+                color: #333;
+            }
+        }
+    }
 }
 
-.testimonial-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-between; 
-}
-
-.testimonial-item p {
-    font-style: italic;
-    margin-bottom: 15px;
-     flex-grow: 1; 
-}
-
-.testimonial-item p strong {
-    display: block; 
-    margin-top: 10px;
-    font-style: normal; 
-    color: #333;
-}
-
-
-/* ===================== */
-/* Media Query para Móviles (Ajustes específicos si son necesarios) */
-/* ===================== */
 @media (max-width: 768px) {
-
-
-    /* Layout de Ubicación apilado en móvil */
     #location .location-content {
         flex-direction: column;
         gap: 30px;
     }
-
      .contact-info-block,
      .map-container {
-         min-width: 100%; /* Ocupa todo el ancho disponible */
+         min-width: 100%; 
      }
-
-     /* Altura del mapa más reducida en móvil si es necesario */
      .map-container iframe,
      .map-placeholder {
          height: 300px;
      }
-
-    /* Testimonios apilados en móvil (si el minmax lo permite, si no, ya se apilan) */
     .testimonials-grid {
          gap: 20px;
     }
-
     .testimonial-item {
         padding: 20px;
     }
-
-     /* Ajustes para el formulario en móvil */
      #contact-form-section .form-container {
          padding: 20px;
      }

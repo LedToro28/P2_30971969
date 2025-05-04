@@ -4,98 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/servicios.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <section id="services-intro" class="section">
-            <div class="container">
-                <h1>Servicios Expertos para Tu Bicicleta o Patineta Eléctrica</h1>
-                <p class="subtitle">En Ciclexpress, ofrecemos soluciones completas para mantener tu vehículo en óptimas condiciones. Nuestro equipo cualificado se encarga de todo, desde el mantenimiento básico hasta las reparaciones más complejas.</p>
-            </div>
+        <section class="home h-s">
+            <h1>Servicios Expertos para Tu Bicicleta o Patineta Eléctrica</h1>
+            <p class="subtitle">En Ciclexpress, ofrecemos soluciones completas para mantener tu vehículo en óptimas condiciones. Nuestro equipo cualificado se encarga de todo, desde el mantenimiento básico hasta las reparaciones más complejas.</p>
         </section>
     
-        <section id="services-list" class="section bg-light">
-            <div class="container">
-                <h2>Nuestros Servicios Detallados</h2>
-                <div class="services-grid">
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item"  style="background-image: url('https://cdn.mammothbikes.com/blogs/large/221129_1.jpg');">
-                            <div class="container-img">
-                                <ion-icon name="search-outline"></ion-icon> <h3>Diagnóstico Completo</h3>
-                                <p>Evaluamos minuciosamente tu vehículo para identificar cualquier problema, ofreciéndote un presupuesto preciso y transparente.</p>
-    
+        <section class="servicios">
+            <h2>Nuestros Servicios Detallados</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><i class="bi bi-hammer"></i> Reparación de Motor y Electrónica (Patinetas)</h5>
+                              <p class="card-text">Solucionamos fallos en el motor, controladora y otros componentes electrónicos clave de tu patineta eléctrica.</p>
                             </div>
-                        </article>
+                          </div>
                     </a>
-
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item"  style="background-image: url('https://images.ladepeche.fr/api/v1/images/view/64bb49ec37f88f1ef51b371a/full/image.jpg?v=1');">
-                            <div class="container-img">
-                                <ion-icon name="bicycle-outline"></ion-icon> <h3>Reparación de Pinchazos y Neumáticos</h3>
-                                <p>Solucionamos rápidamente pinchazos y cambiamos cubiertas o cámaras desgastadas para que sigas rodando seguro.</p>
-    
-                            </div>
-                        </article>
-                    </a>
-
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item"  style="background-image: url('https://www.firstcomponents.com/wp-content/uploads/2018/10/mountain-bike-remove-front-wheel-2a.jpg');">
-                            <div class="container-img">
-                                <ion-icon name="settings-outline"></ion-icon> <h3>Ajuste y Reparación de Frenos y Cambios</h3>
-                                <p>Optimizamos el rendimiento de tus frenos y cambios para una conducción suave, segura y eficiente.</p>
-    
-                            </div>
-                        </article>
-                    </a>
-
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item"  style="background-image: url('https://th.bing.com/th/id/OIP.uGMe804Y8Ey_KCOLprc8MgHaEK?w=960&h=540&rs=1&pid=ImgDetMain');">
-                            <div class="container-img">
-                                <ion-icon name="build-outline"></ion-icon> <h3>Mantenimiento Preventivo</h3>
-                                <p>Servicio completo de lubricación, limpieza, ajustes básicos y revisión general para prolongar la vida útil y prevenir problemas mayores.</p>
-    
-                            </div>
-                        </article>
-                    </a>
-
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item" style="background-image: url('https://i.ytimg.com/vi/Xnh8hoyySpM/hqdefault.jpg');">
-                            <div class="container-img">
-                                <ion-icon name="battery-charging-outline"></ion-icon> <h3>Diagnóstico y Reemplazo de Baterías (Eléctricas)</h3>
-                                <p>Diagnosticamos problemas de rendimiento de la batería en patinetas eléctricas y realizamos reemplazos seguros y profesionales.</p>
-    
-                            </div>
-                        </article>
-                    </a>
-
-                    <a href="/payment" class="nav-link"><ion-icon name="mail"></ion-icon>
-                        <article class="service-item" style="background-image: url('https://www.bikeanalyzed.com/wp-content/uploads/2022/08/IMG_5282-500x380.jpg');">
-                            <div class="container-img">
-                                <ion-icon name="hardware-chip-outline"></ion-icon> <h3>Reparación de Motor y Electrónica (Patinetas)</h3>
-                                <p>Solucionamos fallos en el motor, controladora y otros componentes electrónicos clave de tu patineta eléctrica.</p>
-    
-                            </div>
-                        </article>
-                    </a>
-
-    
                 </div>
-            </div>
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://plus.unsplash.com/premium_photo-1716915954992-291733ca4f58?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><i class="bi bi-lightning-charge-fill"></i> Diagnóstico y Reemplazo de Baterías (Eléctricas)</h5>
+                              <p class="card-text">Diagnosticamos problemas de rendimiento de la batería en patinetas eléctricas y realizamos reemplazos seguros y profesionales.</p>
+                            </div>
+                          </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://plus.unsplash.com/premium_photo-1726743850386-e8c9833ac658?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-funnel-fill"></i> Mantenimiento Preventivo</h5>
+                            <p class="card-text">Servicio completo de lubricación, limpieza, ajustes básicos y revisión general para prolongar la vida útil y prevenir problemas mayores.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1675798227643-da319f8ee8f7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><i class="bi bi-gear-fill"></i> Ajuste y Reparación de Frenos y Cambios</h5>
+                              <p class="card-text">Optimizamos el rendimiento de tus frenos y cambios para una conducción suave, segura y eficiente.</p>
+                            </div>
+                          </div>
+                    </a>   
+                </div>
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1592222166121-93437e78d8d0?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><i class="bi bi-tools"></i> Reparación de Pinchazos y Neumáticos</h5>
+                              <p class="card-text">Solucionamos rápidamente pinchazos y cambiamos cubiertas o cámaras desgastadas para que sigas rodando seguro.</p>
+                            </div>
+                          </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/payment">
+                        <div class="card h-100">
+                            <img src="https://plus.unsplash.com/premium_photo-1683141512519-a9e7ace3c088?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><i class="bi bi-clipboard2-pulse-fill"></i> Diagnóstico Completo</h5>
+                              <p class="card-text">Evaluamos minuciosamente tu vehículo para identificar cualquier problema, ofreciéndote un presupuesto preciso y transparente.</p>
+                            </div>
+                          </div>
+                    </a>
+                </div>
+              </div>
         </section>
     
-        <section id="contact-cta-services" class="section">
-             <div class="container text-center">
+        <section class="info-extra">
                  <h2>Programa Tu Servicio Hoy Mismo</h2>
                  <p>Estamos listos para darte el mejor servicio y poner tu vehículo de nuevo en marcha.</p>
-                 <a href="/contacto" class="btn btn-primary btn-large">Solicitar Presupuesto o Cita</a>
-             </div>
+                 <a href="/contacto" class="btn btn-light btn-large">Solicitar Presupuesto o Cita <i class="bi bi-pencil-square"></i></a>
          </section>
-    
-    
     </main>
     <%- include('partials/footer.ejs')%>
 </body>

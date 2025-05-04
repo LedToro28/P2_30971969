@@ -6,359 +6,79 @@
     --font-3: #999;
     --blue: #3ba7d6;
 }
-a {
-    text-decoration: none;
-    color: inherit;
-}
-h1, h2, h3 {
-    color: var(--boton);
-    margin-bottom: 0.8em;
-    line-height: 1.2;
-}
-
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.5em; }
-
-p {
-    margin-bottom: 1em;
-}
-
-/* Estilo para el contenedor principal de contenido */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto; 
-    padding: 0 15px;
-}
-
-/* Estilo básico para las secciones */
-.section {
-
-    text-align: center;
-}
-
-.section h2 {
-    margin-bottom: 40px;
-}
-
-/* Clases de utilidades */
-.bg-light {
-    background-color: var(--font-2);
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* ===================== */
-/* Estilos de Botones */
-/* ===================== */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: var(--font-2);
-}
-
-.btn-primary:hover {
-    background-color: var(--blue);
-}
-
-.btn-secondary {
-    background-color: var(--font-3);
-    color: var(--font-2);
-}
-
-.btn-secondary:hover {
-    background-color: #545b62;
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: #007bff;
-    border: 1px solid #007bff;
-}
-
-.btn-outline:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-large {
-    padding: 15px 30px;
-    font-size: 1.2em;
-}
-
-/* ===================== */
-/* Estilos de Secciones Específicas */
-/* ===================== */
-
-/* Sección Hero */
-#hero {
-    height: 100vh;
-    color: var(--font-2);
-    background-image: url('https://th.bing.com/th/id/R.c0f1e81ffecd578db09167ad66da3847?rik=FdS4sCFTgU15hw&pid=ImgRaw&r=0');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 0;
-}
-
-#hero .container {
+.beneficios .reasons-grid {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-}
-#imagen{
-    background: var(--opacidad);
-    padding: 80px 0;
-    height: 100%;
-    width: 100vw;
-}
-.hero-content {
-    max-width: 700px;
-}
-
-#hero h1 {
-    color: var(--font-2);
-     margin-bottom: 10px;
-}
-
-#hero .subtitle {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-}
-
-.cta-buttons {
-    margin-top: 20px;
-}
-/* Sección Por Qué Elegirnos */
-#why-choose-us .reasons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    flex-wrap: wrap;
+    justify-content: space-around;
     gap: 30px;
     text-align: center;
+    .reason-item {
+        padding: 10px;
+        max-width: 200px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        i {
+            font-size: 3em; 
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+    }
 }
-
-.reason-item {
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.cta-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-
-.reason-item ion-icon {
-    font-size: 3em; 
-    color: #007bff;
-    margin-bottom: 15px;
-}
-/* Sección Trayectoria */
-#trajectory{
-    width: 100%;
-    height: 100vh;
-    background-image: url('https://th.bing.com/th/id/OIP.7NsXRuDf7B9q2fpqfsTDtwHaFj?w=4000&h=3000&rs=1&pid=ImgDetMain');
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--font-2);
-    padding: 0;
-}
-#trajectory h2{
-    color: var(--font-2);
-    margin-bottom: 10px;
-}
-#trajectory-img{
-    background-color: var(--opacidad);
-    width: 100%;
-    height: 100%;
-    padding: 5%;
-}
-#trajectory p{
-    background-color: rgb(255, 255, 255, 0.2);
-    padding: 5px;
-}
-#trajectory .container {
-    text-align: left;
-}
-
 .trajectory-content {
     display: flex;
     gap: 40px;
     align-items: flex-start;
     flex-wrap: wrap;
+    p {
+        flex-grow: 1;
+    }
 }
-.trajectory-content p {
-    flex-grow: 1;
-}
-
-.milestones {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-.milestones li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.milestones li::before {
-    content: "•";
-    color: #007bff;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
-
-
-/* Sección Resumen de Servicios */
 #services-summary .service-types {
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
      gap: 30px;
      text-align: center;
+     .service-type-item {
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+         background-color: #fff;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+         i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+       }
+    }
 }
 
-.service-type-item {
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-     background-color: #fff;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.service-type-item ion-icon {
-     font-size: 3em;
-     color: #007bff;
-     margin-bottom: 15px;
-}
-
-
-/* Sección CTA Contacto */
-#cta-contact {
-    background-color: #007bff;
-    color: white;
-    padding: 50px 0;
-}
-
-#cta-contact h2 {
-    color: white; 
-}
-
-#cta-contact p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
-/* ===================== */
-/* Media Query para Móviles (Aplica debajo de 768px) */
-/* ===================== */
 @media (max-width: 768px) {
-
     h1 { font-size: 2em; }
     h2 { font-size: 1.8em; }
     h3 { font-size: 1.3em; }
 
-    .section {
-        padding: 40px 0;
+    .beneficios .reasons-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+        text-align: center;
+        .reason-item {
+            padding: 10px;
+            max-width: 500px;
+            border: 1px solid #ccc;
+            i {
+                font-size: 3em; 
+                color: #007bff;
+                margin-bottom: 15px;
+            }
+        }
     }
-
-     /* Header móvil */
-    .site-header {
-        flex-direction: row; 
-        justify-content: space-between; 
-        align-items: center;
-    }
-
-    .menu-toggle {
-        display: block; 
-        color: #333;
-    }
-
-     #search {
-         width: 100%; 
-         order: 2; 
-         margin-top: 10px;
-         text-align: left; 
-     }
-
-     #search input {
-         width: calc(100% - 40px); 
-         display: inline-block;
-     }
-     #search label {
-         width: 100%;
-     }
-
-
-    /* Navegación móvil (menú lateral) */
-    #main-nav {
-        position: fixed; 
-        top: 0;
-        left: -250px;
-        width: 250px;
-        height: 100%; 
-        background-color: #fff;
-        flex-direction: column; 
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-        transition: left 0.3s ease;
-        z-index: 100; 
-        overflow-y: auto; 
-        display: flex; 
-    }
-
-     /* Estado Activo del menú (cuando JS le añade la clase 'active') */
-    #main-nav.active {
-        left: 0;
-    }
-
-    /* Estilos para los enlaces dentro del menú móvil */
-    #main-nav .nav-link {
-        padding: 12px 0; 
-        border-bottom: 1px solid #eee;
-        width: 100%; 
-        color: #333;
-    }
-
-    #main-nav .nav-link:last-child {
-         border-bottom: none; 
-    }
-
-
-    /* Ajustes de layout en secciones para móvil */
-    #hero .container {
-        flex-direction: column;
-    }
-
-    #trajectory .trajectory-content {
-        flex-direction: column; 
-    }
-
-     #trajectory .trajectory-content img {
-         max-width: 100%;
-         margin-bottom: 20px;
-     }
-
-    /* Rejillas de 1 columna en móvil */
-    #why-choose-us .reasons-grid,
-    #services-summary .service-types {
-         grid-template-columns: 1fr; 
-    }
-
-
 }

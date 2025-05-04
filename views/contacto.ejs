@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/contacto.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
@@ -16,88 +13,84 @@
                 <h1>Ponte en Contacto con Ciclexpress</h1>
                 <p class="subtitle">¿Tienes preguntas, necesitas un presupuesto o quieres programar una reparación? ¡Estamos aquí para ayudarte!</p>
             </div>
-        </section>
-    
-        <section id="contact-form-section" class="section bg-light">
-            <div class="container">
-                <h2>Envíanos un Mensaje</h2>
+            <div>
                 <div class="form-container">
                     <form action="/contact/add" method="POST" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nombre Completo:</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre Completo:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required placeholder="Tu nombre">
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required placeholder="tu.correo@ejemplo.com">
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Tu Mensaje:</label>
+                                    <textarea class="form-control" id="comment" name="comment" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                                </div>
+                            </div>
                         </div>
-    
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico:</label>
-                            <input type="email" id="email" name="email" required placeholder="tu.correo@ejemplo.com">
-                        </div>
-    
-                        <!-- <div class="form-group">
-                            <label for="phone">Teléfono (Opcional):</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono">
-                        </div>
-    
-                        <div class="form-group">
-                            <label for="subject">Asunto:</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Asunto del mensaje">
-                        </div> -->
-    
-                        <div class="form-group">
-                            <label for="message">Tu Mensaje:</label>
-                            <textarea id="comment" name="comment" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
-                        </div>
-    
-                        <button type="submit" class="btn btn-primary btn-large">Enviar Mensaje</button>
+            
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Enviar Mensaje <i class="bi bi-send-fill"></i></button>
                     </form>
                 </div>
             </div>
         </section>
     
-        <section id="location" class="section">
-            <div class="container">
-                <h2>Ubícanos</h2>
-                <div class="location-content">
-                    <div class="contact-info-block">
-                        <p><ion-icon name="location-outline"></ion-icon> <strong>Dirección:</strong></p>
-                        <p>direccion de ejemplo, urbanizacion de ejemplo, ubicacion de ejemplo</p>
-    
-                        <p style="margin-top: 20px;"><ion-icon name="call-outline"></ion-icon> <strong>Teléfono:</strong></p>
-                        <p>+58 000 000 00</p>
-    
-                        <p style="margin-top: 20px;"><ion-icon name="mail-outline"></ion-icon> <strong>Email:</strong></p>
-                        <p>info@ciclexpress.com</p>
-    
-                        <p style="margin-top: 20px;"><ion-icon name="time-outline"></ion-icon> <strong>Horario:</strong></p>
-                        <p>de lunes a sabado desde las 9:00 a.m. hasta las 5:00 p.m. </p>
-    
-                    </div>
-                    <!--google maps-->
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dXXXXX!2dXXXXX!3dXXXXX!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z...!" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+        <section class="location">
+            <h2>Ubícanos</h2>
+            <div class="location-content">
+                <div class="info-block">
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i> 
+                        <strong>Dirección:</strong>
+                    </p><p>direccion de ejemplo, urbanizacion de ejemplo, ubicacion de ejemplo</p>
+                    
+                    <p>
+                        <i class="bi bi-telephone-fill"></i> 
+                        <strong>Teléfono:</strong>
+                    </p><p>+58 000 000 00</p>
+
+                    <p>
+                        <i class="bi bi-telephone-fill"></i> 
+                        <strong>Email:</strong>
+                    </p><p>info@ciclexpress.com</p>
+
+                    <p>
+                        <i class="bi bi-calendar-week-fill"></i> 
+                        <strong>Horario:</strong>
+                    </p><p>de lunes a sabado desde las 9:00 a.m. hasta las 5:00 p.m. </p>
+
+                </div>
+                <!--google maps-->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dXXXXX!2dXXXXX!3dXXXXX!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z...!" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
     
-        <section id="customer-opinions" class="section bg-light">
-            <div class="container">
-                <h2>Lo Que Dicen Nuestros Clientes</h2>
-                 <div class="testimonials-grid">
-                     <div class="testimonial-item">
-                         <p>"Increíble servicio en Ciclexpress. Repararon mi patineta en tiempo récord y a un precio justo. ¡Volveré seguro!"</p>
-                         <p><strong>— Ana Martínez</strong></p>
-                     </div>
-                     <div class="testimonial-item">
-                         <p>"Llevé mi bicicleta para un mantenimiento general y quedó como nueva. El personal es muy amable y profesional."</p>
-                         <p><strong>— Carlos Rodríguez</strong></p>
-                     </div>
-                     <div class="testimonial-item">
-                         <p>"Excelente atención y conocimiento técnico. Resolvieron un problema complejo con mi patineta eléctrica que en otros sitios no pudieron."</p>
-                         <p><strong>— Sofía Gómez</strong></p>
-                     </div>
-                 </div>
-            </div>
+        <section id="opiniones">
+            <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-item">
+                        <p>"Increíble servicio en Ciclexpress. Repararon mi patineta en tiempo récord y a un precio justo. ¡Volveré seguro!"</p>
+                        <p><strong>— Ana Martínez</strong></p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Llevé mi bicicleta para un mantenimiento general y quedó como nueva. El personal es muy amable y profesional."</p>
+                        <p><strong>— Carlos Rodríguez</strong></p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Excelente atención y conocimiento técnico. Resolvieron un problema complejo con mi patineta eléctrica que en otros sitios no pudieron."</p>
+                        <p><strong>— Sofía Gómez</strong></p>
+                    </div>
+                </div>
         </section>
     </main>
     <%- include('partials/footer.ejs')%>

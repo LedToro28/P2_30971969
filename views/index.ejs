@@ -4,89 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/index.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
-        <section id="hero" class="section">
-            <div id="imagen" class="container">
-                <div class="hero-content">
-                    <h1>Ciclexpress: Expertos en Reparación para que Vuelvas a Rodar</h1>
-                    <p class="subtitle">Servicio rápido, fiable y especializado en bicicletas y patinetas eléctricas.</p>
-                    <div class="cta-buttons">
-                        <a href="/servicios" class="btn btn-primary">Ver Nuestros Servicios</a>
-                        <a href="/contacto" class="btn btn-secondary">Solicitar Presupuesto</a>
-                    </div>
+        <section style="background-image: url('https://images.unsplash.com/photo-1563990308267-cd6d3cc09318?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); padding: 0%;">
+            <div class="home opa">
+                <h1>Ciclexpress: Expertos en Reparación para que Vuelvas a Rodar</h1>
+                <p class="subtitle">Servicio rápido, fiable y especializado en bicicletas y patinetas eléctricas.</p>
+                <div class="cta-buttons">
+                    <a href="/servicios" class="btn btn-primary">Ver Nuestros Servicios <i class="bi bi-boxes"></i></a>
+                    <a href="/contacto" class="btn btn-light">Solicitar Presupuesto <i class="bi bi-pencil-square"></i></a>
                 </div>
-            </div>
+            </div> 
         </section>
     
-        <section id="why-choose-us" class="section bg-light">
-            <div class="container">
+        <section>
+            <div class="beneficios">
                 <h2>¿Por Qué Elegir Ciclexpress?</h2>
                 <div class="reasons-grid">
                     <div class="reason-item">
-                        <ion-icon name="people-circle-outline"></ion-icon> <h3>Expertos Calificados</h3>
+                        <i class="bi bi-mortarboard-fill"></i> <h3>Expertos Calificados</h3>
                         <p>Nuestro equipo tiene años de experiencia reparando todo tipo de bicicletas y modelos de patinetas eléctricas.</p>
                     </div>
                     <div class="reason-item">
-                            <ion-icon name="flash-outline"></ion-icon> <h3>Servicio Rápido y Eficiente</h3>
+                        <i class="bi bi-lightning-fill"></i> <h3>Rápidos y Eficientes</h3>
                         <p>Entendemos que necesitas tu vehículo de vuelta pronto. Ofrecemos diagnósticos ágiles y reparaciones rápidas.</p>
                     </div>
                     <div class="reason-item">
-                            <ion-icon name="shield-checkmark-outline"></ion-icon> <h3>Garantía y Confianza</h3>
+                        <i class="bi bi-bookmark-check-fill"></i> <h3>Garantía y Confianza</h3>
                         <p>Ofrecemos garantía en nuestras reparaciones porque confiamos en la calidad de nuestro trabajo y repuestos.</p>
                     </div>
                         <div class="reason-item">
-                        <ion-icon name="wallet-outline"></ion-icon> <h3>Precios Justos</h3>
+                        <i class="bi bi-coin"></i> <h3>Precios Justos</h3>
                         <p>Servicio de alta calidad a precios competitivos. Transparencia total en todos nuestros presupuestos.</p>
                     </div>
                 </div>
             </div>
         </section>
     
-        <section id="trajectory" class="section">
-            <div id="trajectory-img">
-                <div class="container">
-                    <h2>Nuestra Trayectoria</h2>
-                    <div class="trajectory-content">
-                        <p>A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y nuestro compromiso con la excelencia. Hemos superado desafíos, adoptado nuevas tecnologías y formado un equipo apasionado que comparte la visión de mantener tus vehículos de dos ruedas en perfecto estado.</p>
-                        <p>Hoy, Ciclexpress es sinónimo de fiabilidad y experiencia en la comunidad. Seguimos mirando hacia el futuro, listos para adaptarnos y servir las necesidades de movilidad de mañana.</p>
-                    </div>
+        <section style="background-image: url('https://images.unsplash.com/photo-1515412512744-6e4adc8b5e55?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); padding: 0%;">
+            <div class="opa">
+                <h2>Nuestra Trayectoria</h2>
+                <div class="trajectory-content">
+                    <p>A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y nuestro compromiso con la excelencia. Hemos superado desafíos, adoptado nuevas tecnologías y formado un equipo apasionado que comparte la visión de mantener tus vehículos de dos ruedas en perfecto estado.</p>
+                    <p>Hoy, Ciclexpress es sinónimo de fiabilidad y experiencia en la comunidad. Seguimos mirando hacia el futuro, listos para adaptarnos y servir las necesidades de movilidad de mañana.</p>
                 </div>
             </div>
         </section>
     
-            <section id="services-summary" class="section bg-light">
-                <div class="container">
-                    <h2>Reparamos</h2>
-                    <div class="service-types">
-                        <div class="service-type-item">
-                            <ion-icon name="bicycle-outline"></ion-icon>
-                            <h3>Bicicletas</h3>
-                            <p>Todo tipo: MTB, Ruta, Urbanas, BMX, Infantiles.</p>
-                        </div>
-                        <div class="service-type-item">
-                            <ion-icon name="car-sport-outline"></ion-icon> <h3>Patinetas Eléctricas</h3>
-                            <p>Todas las marcas: Xiaomi, Segway, Cecotec, etc.</p>
-                        </div>
-                        </div>
-                    <p class="text-center"><a href="/servicios" class="btn btn-outline">Ver Lista Completa de Servicios</a></p>
+        <section id="services-summary" class="section bg-light">
+            <div class="container">
+                <h2>Reparamos</h2>
+                <div class="service-types">
+                    <div class="service-type-item">
+                        <i class="bi bi-bicycle"></i>
+                        <h3>Bicicletas</h3>
+                        <p>Todo tipo: MTB, Ruta, Urbanas, BMX, Infantiles.</p>
+                    </div>
+                    <div class="service-type-item">
+                        <i class="bi bi-scooter"></i>
+                        <h3>Patinetas Eléctricas</h3>
+                        <p>Todas las marcas: Xiaomi, Segway, Cecotec, etc.</p>
+                    </div>
                 </div>
-            </section>
+                <p class="text-center"><a href="/servicios" class="btn btn-outline">Ver Lista Completa de Servicios</a></p>
+            </div>
+        </section>
     
-    
-        <section id="cta-contact" class="section">
-                <div class="container text-center">
-                    <h2>¿Necesitas Reparación?</h2>
-                    <p>¡No esperes más! Contáctanos o visítanos para un diagnóstico rápido.</p>
-                    <a href="/contacto" class="btn btn-primary btn-large">¡Contáctanos Ahora!</a>
-                </div>
-            </section>
-    
+        <section class="info-extra">
+                <h2>¿Necesitas Reparación?</h2>
+                <p>¡No esperes más! Contáctanos o visítanos para un diagnóstico rápido.</p>
+                <a href="/contacto" class="btn btn-light btn-large">¡Contáctanos Ahora! <i class="bi bi-send-fill"></i></a>
+        </section>
     </main>
     <%- include('partials/footer.ejs')%>
 </body>
