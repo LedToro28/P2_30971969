@@ -51,7 +51,17 @@
                         <div class="input-group">
                             <select id="expiry-month" name="expiryMonth" class="form-select" required>
                                 <option value="">Mes</option>
-                                <% for(let i = 1; i <= 12; i++){%><option value="<%= String(i).padStart(2, '0') %>"><%= String(i).padStart(2, '0') %></option><% } %>
+                                <option value="">Enero</option>
+                                <option value="">Febrero</option>
+                                <option value="">Marzo</option>
+                                <option value="">Abril</option>
+                                <option value="">Mayo</option>
+                                <option value="">Junio</option>
+                                <option value="">Julio</option>
+                                <option value="">Agosto</option>
+                                <option value="">Septiembre</option>
+                                <option value="">Obtubre</option>
+                                <option value="">Diciembre</option>
                             </select>
                             <span class="input-group-text">/</span>
                             <select id="expiry-year" name="expiryYear" class="form-select" required>
