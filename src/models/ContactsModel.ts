@@ -31,14 +31,9 @@ class ContactsModel {
         )`;
         this.db.run(sql, (err: Error | null) => {
             if (err) {
-                console.error('CALLBACK CREATE TABLE - ERROR:', err.message); // <-- Log detallado de error
+                console.error('CALLBACK CREATE TABLE - ERROR:', err.message); 
             } else {
-                console.log('CALLBACK CREATE TABLE - ÉXITO: Tabla contacts lista o ya existía.'); // <-- Log de éxito
-                 // Opcional: Puedes intentar una SELECT simple aquí para CONFIRMAR que la tabla está AHORA
-                 // this.db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='contacts';", (selectErr, row) => {
-                 //     if (selectErr || !row) { console.error('CALLBACK CREATE TABLE - VERIFY FAILED: Tabla no encontrada después de CREATE.'); }
-                 //     else { console.log('CALLBACK CREATE TABLE - VERIFY SUCCESS: Tabla contacts confirmada.'); }
-                 // });
+                console.log('CALLBACK CREATE TABLE - ÉXITO: Tabla contacts lista o ya existía.'); 
             }
         });
     }
