@@ -1,74 +1,78 @@
-import express, { Request, Response } from 'express';
-import path from 'path';
+// src/app.ts
 
+import express, { Request, Response, Application } from 'express';
+import path from 'path';
 import bodyParser from 'body-parser';
-import sqlite3 from 'sqlite3'; // No es necesario .verbose() en la importación con tipos, se usa en new
+import sqlite3 from 'sqlite3';
+import session from 'express-session'; // << Importa express-session
+import flash from 'connect-flash';     // << Importa connect-flash
 
 import ContactsController from './controllers/ContactsController';
 import ContactsModel from './models/ContactsModel';
 
-const app = express();
+const app: Application = express();
+app.set('trust proxy', true);
 const port = 3000;
 
-// Middleware que NO dependen de la conexión a la DB (van fuera del callback)
+// Middleware que NO dependen de la conexión a la DB
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
 app.use('/bootstrap-icons', express.static(path.join(__dirname, '../node_modules/bootstrap-icons/font')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs'); // <-- SOLO AQUÍ
-app.set('views', path.join(__dirname, '../views')); // <-- SOLO AQUÍ
+// **** CONFIGURACIÓN DE SESIÓN Y MENSAJES FLASH ****
+// Configura express-session. Necesitas una 'secret' para firmar las cookies de sesión.
+// ¡USA UNA CADENA LARGA, COMPLEJA Y ALEATORIA EN PRODUCCIÓN! CAMBIA LA SIGUIENTE LÍNEA.
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'tu-cadena-secreta-cambiala-en-produccion-12345abc', // Usa una variable de entorno en producción
+    resave: false, // No guardar la sesión si no ha cambiado
+    saveUninitialized: true // Guardar una nueva sesión aunque no tenga datos
+}));
+// Configura connect-flash. DEBE ir DESPUÉS de express-session.
+app.use(flash());
+// ****************************************************
 
-// Esto te seguirá mostrando la ruta que EJS está usando ahora
-console.log('EJS Views Directory configured as:', app.get('views'));
 
-// --- Conexión a la base de datos ---
 const db = new sqlite3.Database('./database.db', (err: Error | null) => {
     if (err) {
         console.error('Error al conectar con la base de datos:', err.message);
-        // ** Maneja este error adecuadamente (ej: no inicies el servidor, muestra un mensaje de error fatal) **
-    } else { // <--- CONEXIÓN A LA BASE DE DATOS EXITOSA
+        // Considera terminar el proceso aquí si la DB es crítica: process.exit(1);
+    } else {
         console.log('Conectado a la base de datos SQLite.');
 
-        // --- 1. Configurar Vistas EJS (AHORA que la DB está conectada) ---
+        app.set('view engine', 'ejs');
+        app.set('views', path.join(__dirname, '../views'));
+        console.log('EJS Views Directory configured as:', app.get('views'));
 
-
-        // --- 2. Instanciar Modelos y Controladores (AHORA que la DB está disponible) ---
         const contactsModel = new ContactsModel(db);
         const contactsController = new ContactsController(contactsModel);
 
-        // --- 3. Definir TODAS las Rutas (AHORA que EJS está configurado y Modelos/Controladores están listos) ---
-        // Pon TODAS tus rutas app.get/app.post/app.use aquí dentro
+        // **** RUTAS ****
 
-        // Rutas principales (pueden ir aquí o fuera, pero dentro es más limpio si TODO depende de la DB)
-        // Es mejor pasar el pageTitle desde el controlador
-        app.get('/', (req, res) => { res.render('index', { pageTitle: 'Inicio Ciclexpress' }); });
-        app.get('/servicios', (req, res) => { res.render('servicios', { pageTitle: 'Servicios Ciclexpress' }); }); // Verifica nombre de vista ('servis' vs 'servicios')
-        app.get('/contacto', (req, res) => { res.render('contacto', { pageTitle: 'Contacto Ciclexpress' }); }); // Verifica nombre de vista ('contac' vs 'contacto')
-        app.get('/informacion', (req, res) => { res.render('informacion', { pageTitle: 'Sobre Ciclexpress' }); }); // Verifica nombre de vista ('info' vs 'informacion')
+        // Rutas generales que renderizan vistas (GET)
+        app.get('/', (req: Request, res: Response) => { res.render('index', { pageTitle: 'Inicio Ciclexpress' }); });
+        app.get('/servicios', (req: Request, res: Response) => { res.render('servicios', { pageTitle: 'Servicios Ciclexpress' }); });
+        app.get('/informacion', (req: Request, res: Response) => { res.render('informacion', { pageTitle: 'Sobre Ciclexpress' }); });
 
-        // Rutas de contacto (dependen del controlador/modelo)
-        app.post('/contact/add', contactsController.add);
-        app.get('/admin/contacts', contactsController.index);
+        // *** Usa el nuevo método del controlador para la ruta GET /contacto ***
+        // Este método leerá los mensajes flash y renderizará la vista
+        app.get('/contacto', contactsController.showContactForm); // << Cambia esta línea
 
-        // Rutas de pago (incluso si no usan la DB *aún*, mantenerlas aquí es consistente)
-        app.get('/payment', (req: Request, res: Response) => { res.render('payment', { pageTitle: 'Procesar Pago' }); }); // Pasa pageTitle
+        // Rutas que usan métodos del controlador (POST o GET de acciones)
+        // Estos métodos ya están vinculados (.bind) en el constructor del controlador
+        app.post('/contact/add', contactsController.add); // Usa el método 'add' (ahora guardará flash y redirigirá)
+        app.get('/admin/contacts', contactsController.index); // Usa el método 'index'
+
+        // Rutas de pago (simuladas)
+        app.get('/payment', (req: Request, res: Response) => { res.render('payment', { pageTitle: 'Procesar Pago' }); });
         app.post('/payment/add', (req: Request, res: Response) => {
             console.log("Datos de pago recibidos:", req.body);
-            res.send('<h1>Pago realizado</h1><p>...</p>');
+            res.send('<h1>Pago simulado realizado!</h1><p>Los datos fueron recibidos (simulados).</p>');
         });
-        
 
-        // --- 4. Iniciar el Servidor (SOLO si la conexión a la DB fue exitosa) ---
         app.listen(port, () => {
-          console.log(`Servidor corriendo en ${port}`);
+            console.log(`Servidor corriendo en http://localhost:${port}`);
         });
-
-    } // <--- Fin del bloque 'else' del callback de la DB
-}); // <--- Fin del callback de la conexión a la DB
-
-
-
-
-
+    }
+});
