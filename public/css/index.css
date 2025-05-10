@@ -4,25 +4,25 @@
     --font-1: #000;
     --font-2: #fff;
     --font-3: #999;
-    --blue: #3ba7d6;
+    --blue: #24be1c;
 }
 .beneficios .reasons-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 30px;
     text-align: center;
     .reason-item {
         padding: 10px;
         max-width: 200px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 10px 60px 30px #093b00;
+        border-radius: 10px 60px 30px;
+        background-color: #2d8d1e;
+        box-shadow: 0 2px 5px #000;
         i {
             font-size: 3em; 
-            color: #007bff;
-            margin-bottom: 15px;
+            color: #2d8d1e;
+            margin-bottom: 20px;
         }
     }
 }
@@ -47,13 +47,13 @@
      text-align: center;
      .service-type-item {
         padding: 20px;
-        border: 1px solid #eee;
+        border: 1px #eee;
         border-radius: 8px;
-         background-color: #fff;
+         background-color: #24753d;
          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
          i {
             font-size: 3em;
-            color: #007bff;
+            color: #298f12;
             margin-bottom: 15px;
        }
     }
@@ -72,13 +72,22 @@
         text-align: center;
         .reason-item {
             padding: 10px;
-            max-width: 500px;
+            max-width: 250px;
             border: 1px solid #ccc;
             i {
                 font-size: 3em; 
-                color: #007bff;
+                color: #2d8d1e;
                 margin-bottom: 15px;
             }
         }
+    }
+
+    .cta-buttons{
+        justify-content: center; /* Asegura que los botones sigan centrados en pantallas pequeñas */
+    }
+
+    .trajectory-content {
+        gap: 20px; /* Reduce el espacio entre los párrafos en pantallas pequeñas */
+        padding: 20px 10px; /* Reduce el padding en pantallas pequeñas */
     }
 }
