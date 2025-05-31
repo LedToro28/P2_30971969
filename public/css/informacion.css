@@ -34,7 +34,7 @@
         gap: 50px;
         text-align: center;
         .team-member {
-            background-color: #a5bcaf;
+            background-color: #6d3c52;
             width: 250px;
             padding: 20px;
             border-radius: 10px 30px 60px;
@@ -43,18 +43,18 @@
             flex-direction: column;
             align-items: center;
             img {
-                width: 200px;
-                height: 200px;
+                width: 240px;
+                height: 240px;
                 border-radius: 80%;
                 object-fit: cover;
-                margin-bottom: 15px;
-                border: 3px solid #a5bcaf;
+                margin-bottom: 5px;
+                border: 5px solid #1b0c1a;
             }
             h3 {
                 font-size: 1.2em;
                 margin-top: 0;
                 margin-bottom: 5px;
-                color: #333;
+                color: #1b0c1a;
             }
             .bio {
                 font-size: 0.9em;
@@ -64,7 +64,7 @@
             }
             p {
                 font-size: 0.9em;
-                color: #555;
+                color: #fadcd5;
                 margin-bottom: 10px;
                 font-style: italic;
             }
@@ -109,7 +109,7 @@
 
 .faq-item h3 {
     font-size: 1.1em;
-    color: #333;
+    color: #1b0c1a;
     margin-top: 0;
     margin-bottom: 10px;
     cursor: pointer;
@@ -117,7 +117,7 @@
 
 .faq-item p {
     font-size: 1em;
-    color: #555;
+    color: #1b0c1a;
     margin-bottom: 0;
 }
 

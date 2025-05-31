@@ -1,15 +1,9 @@
-:root{
-    --fondo: ;
-    --boton: #0f7217;
-    --head: #0f7217;
-    --opacidad: rgba(0, 0, 0, 0.5);
-}
 #contact-intro {
     padding: 80px 5%;
     background:url(https://images.pexels.com/photos/1105018/pexels-photo-1105018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) ; 
     .subtitle {
         font-size: 1.2em;
-        color: #000000;
+        color: #1b0c1a;
         max-width: 500px;
         margin: 0 auto 20px auto; 
    }
@@ -36,7 +30,7 @@
             }
             i {
                 font-size: 1.5em;
-                color: #3c802d;
+                color: #4b2138;
                 margin-right: 10px;
                 flex-shrink: 0; 
             }
@@ -70,7 +64,7 @@
     text-align: center;
 
     .testimonial-item {
-        background-color: #9caba1;
+        background-color: #6d3c52;
         padding: 30px;
         border-radius: 10px 30px 60px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -85,7 +79,7 @@
                 display: block; 
                 margin-top: 2px;
                 font-style: normal; 
-                color: #2d222f;
+                color: #1b0c1a;
             }
         }
     }

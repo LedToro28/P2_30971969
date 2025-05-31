@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #f8f9fa;
+    background: #fadcd5;
     overflow-x: hidden;
 }
 
@@ -24,8 +24,8 @@ html, body {
 /* Sidebar fijo y compacto */
 .sidebar {
     grid-area: sidebar;
-    background: #343a40;
-    color: #fff;
+    background: #1b0c1a;
+    color: #fadcd5;
     height: 100vh;
     padding: 32px 0 0 0;
     display: flex;
@@ -47,7 +47,7 @@ html, body {
 }
 
 .sidebar .nav-link {
-    color: rgba(255,255,255,0.85);
+    color: #fadcd5;
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 0;
@@ -57,7 +57,7 @@ html, body {
 }
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
-    color: #fff;
+    color: #765d67;
     background: rgba(255,255,255,0.12);
 }
 .sidebar .nav-link i {
@@ -69,7 +69,7 @@ html, body {
 .content-area {
     grid-area: content;
     padding: 32px 16px 16px 16px;
-    background: #f8f9fa;
+    background-image: url(https://images.pexels.com/photos/212942/pexels-photo-212942.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
