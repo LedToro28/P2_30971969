@@ -1,28 +1,29 @@
 :root{
-    --fondo: #ffffff;
+    --fondo: #fadcd5;
     --opacidad: rgba(0, 0, 0, 0.5);
-    --font-1: #000;
-    --font-2: #fff;
-    --font-3: #999;
-    --blue: #3ba7d6;
+    --font-1: #1b0c1a;
+    --font-2: #fadcd5;
+    --font-3: #fadcd5;
+    --blue: #1b0c1a;
 }
 .beneficios .reasons-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 30px;
     text-align: center;
     .reason-item {
         padding: 10px;
         max-width: 200px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        i {
-            font-size: 3em; 
-            color: #007bff;
-            margin-bottom: 15px;
+        border: 10px 60px 30px #4b2138;
+        border-radius: 10px 60px 30px;
+        background-color: #6d3c52;
+        box-shadow: 0 5px 10px #4802ed;
+        
+        i{
+            font-size: 5em; 
+            color: #1b0c1a;
+            margin-bottom: 10px;
         }
     }
 }
@@ -43,17 +44,17 @@
 #services-summary .service-types {
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-     gap: 30px;
+     gap: 50px;
      text-align: center;
      .service-type-item {
         padding: 20px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-         background-color: #fff;
-         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px #6d3c52;
+        border-radius: 10px 60px 30px;
+         background-color: #6d3c52;
+         box-shadow: 0 5px 10px rgba(0,0,0,0.05);
          i {
             font-size: 3em;
-            color: #007bff;
+            color: #1b0c1a;
             margin-bottom: 15px;
        }
     }
@@ -72,13 +73,22 @@
         text-align: center;
         .reason-item {
             padding: 10px;
-            max-width: 500px;
-            border: 1px solid #ccc;
+            max-width: 250px;
+            border: 1px solid #fadcd5;
             i {
                 font-size: 3em; 
-                color: #007bff;
+                color: #1b0c1a;
                 margin-bottom: 15px;
             }
         }
+    }
+
+    .cta-buttons{
+        justify-content: center; /* Asegura que los botones sigan centrados en pantallas pequeñas */
+    }
+
+    .trajectory-content {
+        gap: 20px; /* Reduce el espacio entre los párrafos en pantallas pequeñas */
+        padding: 20px 10px; /* Reduce el padding en pantallas pequeñas */
     }
 }

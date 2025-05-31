@@ -4,18 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <%- include('partials/header.ejs')%>
     <main>
         <section id="contact-intro" class="section">
             <div class="container text-center">
-                <h1>Ponte en Contacto con Ciclexpress</h1>
+                <h1>Ponte en Contacto con Jardines Sagitario</h1>
                 <p class="subtitle">¿Tienes preguntas, necesitas un presupuesto o quieres programar una reparación? ¡Estamos aquí para ayudarte!</p>
             </div>
             <div>
                 <div class="form-container">
-                    <form action="/contact/add" method="POST" id="contactForm">
+                    <% if (successMessage && successMessage.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= successMessage[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<% if (errorMessage && errorMessage.length > 0) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= errorMessage[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+                    <form action="/contacto" method="POST" id="contactForm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -27,12 +40,16 @@
                                     <label for="email" class="form-label">Correo Electrónico:</label>
                                     <input type="email" class="form-control" id="email" name="email" required placeholder="tu.correo@ejemplo.com">
                                 </div>
+
+                                <div class="mt-3">
+                                    <div class="g-recaptcha" data-sitekey="6Lc8BU0rAAAAANPCZ40FGu6bm9lv7q9Xq-IBGqWv"></div>
+                                </div>
                             </div>
             
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="message" class="form-label">Tu Mensaje:</label>
-                                    <textarea class="form-control" id="comment" name="comment" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -60,12 +77,12 @@
                     <p>
                         <i class="bi bi-telephone-fill"></i> 
                         <strong>Email:</strong>
-                    </p><p>info@ciclexpress.com</p>
+                    </p><p>info@JardinesSJTRO.com</p>
 
                     <p>
                         <i class="bi bi-calendar-week-fill"></i> 
                         <strong>Horario:</strong>
-                    </p><p>de lunes a sabado desde las 9:00 a.m. hasta las 5:00 p.m. </p>
+                    </p><p>De Lunes a Sabado desde las 8:00 a.m. hasta las 5:00 p.m. </p>
 
                 </div>
                 <!--google maps-->
@@ -79,16 +96,34 @@
             <h2>Lo Que Dicen Nuestros Clientes</h2>
                 <div class="testimonials-grid">
                     <div class="testimonial-item">
-                        <p>"Increíble servicio en Ciclexpress. Repararon mi patineta en tiempo récord y a un precio justo. ¡Volveré seguro!"</p>
-                        <p><strong>— Ana Martínez</strong></p>
+                        <p>"Excelente atencion de Jardines Sagitario. Me encanto el acabdo de mi Jardin, y la asesoria para mantenerlo es impresionante ¡Regresare seguro!"</p>
+                        <p><strong>— Jessie Ryand</strong></p>
                     </div>
                     <div class="testimonial-item">
-                        <p>"Llevé mi bicicleta para un mantenimiento general y quedó como nueva. El personal es muy amable y profesional."</p>
-                        <p><strong>— Carlos Rodríguez</strong></p>
+                        <p>"Asisti a su taller y me encantaron los temas. El lo personal aprendi mucho sobre la naturaleza gracias a ellos"</p>
+                        <p><strong>— Ax Mirez</strong></p>
                     </div>
+
                     <div class="testimonial-item">
-                        <p>"Excelente atención y conocimiento técnico. Resolvieron un problema complejo con mi patineta eléctrica que en otros sitios no pudieron."</p>
-                        <p><strong>— Sofía Gómez</strong></p>
+                        <p>"Impecable servicio y conocimiento de Jardineria. Resolvieron mi problema con mi Jardin interior, me encanto el servio y la asesoria para el manteniemto me encanto"</p>
+                        <p><strong>— Andre Martinez</strong></p>
+                    </div>
+                         
+                    <div class="testimonial-item">
+                        <p>"Ordene la instalacion de un sistema de riego. Y Me facino como quedo y puedo programar las horas en las que quiero que se active si no estoy en casa"</p>
+                        <p><strong>— Airys Haspen</strong></p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p>"Siempre quise iniciar en el mundo de la Jardineria. Y gracias a su taller ahora tengo la confianza y los conocimientos para hacerlo"</p>
+                        <p><strong>— Alex scott</strong></p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p>"Tenia tiempo buscando las herramientas e implementos necesarios para iniciar mi Jardin. y gracias a Jardines Sagitario ya puedo hacerlo."</p>
+                        <p><strong>— Nevada Grey</strong></p>
+                    </div>
+
                     </div>
                 </div>
         </section>
