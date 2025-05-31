@@ -1,9 +1,15 @@
+:root{
+    --fondo: ;
+    --boton: #0f7217;
+    --head: #0f7217;
+    --opacidad: rgba(0, 0, 0, 0.5);
+}
 #contact-intro {
     padding: 80px 5%;
     background:url(https://images.pexels.com/photos/1105018/pexels-photo-1105018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) ; 
     .subtitle {
         font-size: 1.2em;
-        color:#1b0c1a;
+        color: #000000;
         max-width: 500px;
         margin: 0 auto 20px auto; 
    }
@@ -16,7 +22,7 @@
    }
    .location-content {
     display: flex;
-    gap: 100px; 
+    gap: 80px; 
     align-items: center;
     flex-wrap: wrap;
     text-align: left;
@@ -30,8 +36,8 @@
             }
             i {
                 font-size: 1.5em;
-                color: #6d3c52;
-                margin-right: 20px;
+                color: #3c802d;
+                margin-right: 10px;
                 flex-shrink: 0; 
             }
         }
@@ -64,10 +70,10 @@
     text-align: center;
 
     .testimonial-item {
-        background-color: #765d67;
+        background-color: #9caba1;
         padding: 30px;
         border-radius: 10px 30px 60px;
-        box-shadow: 0 10px 15px rgba(11, 22, 173, 0.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         display: flex; 
         flex-direction: column;
         justify-content: space-between; 

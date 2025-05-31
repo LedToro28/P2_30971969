@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #765d67;
+    background: #f8f9fa;
     overflow-x: hidden;
 }
 
@@ -24,14 +24,14 @@ html, body {
 /* Sidebar fijo y compacto */
 .sidebar {
     grid-area: sidebar;
-    background: #765d67;
-    color: #1b0c1a;
+    background: #343a40;
+    color: #fff;
     height: 100vh;
     padding: 32px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    border-right: 1px solid #2d222f;
+    border-right: 1px solid #23272b;
     z-index: 1040;
 }
 
@@ -47,7 +47,7 @@ html, body {
 }
 
 .sidebar .nav-link {
-    color: #1b0c1a;
+    color: rgba(255,255,255,0.85);
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 0;
@@ -57,11 +57,11 @@ html, body {
 }
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
-    color: #fadcd5;
-    background: #6d3c52;
+    color: #fff;
+    background: rgba(255,255,255,0.12);
 }
 .sidebar .nav-link i {
-    color: #fadcd5;
+    color: white;
     margin-right: 8px;
 }
 
@@ -69,7 +69,7 @@ html, body {
 .content-area {
     grid-area: content;
     padding: 32px 16px 16px 16px;
-    background-image: url(https://images.pexels.com/photos/212942/pexels-photo-212942.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+    background: #f8f9fa;
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
@@ -86,7 +86,7 @@ html, body {
     margin-bottom: 1.5rem;
 }
 .table {
-    background: #fadcd5;
+    background: #fff;
     border-radius: 0.4rem;
     overflow: hidden;
     margin-bottom: 0;
