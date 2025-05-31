@@ -7,32 +7,37 @@
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K44B2M06FN"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K44B2M06FN');
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <form class="d-flex me-auto" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-        </form>
-
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-            <i class="bi bi-list"></i>
+         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-ellipsis"></i>
         </button>
 
         <div class="d-none d-lg-flex" id="navbarNavDesktop">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/"><i class="bi bi-house-fill"></i> Home</a>
+                    <a class="nav-link" aria-current="page" href="/"><i class="fa-solid fa-house-chimney"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                     <a class="nav-link" href="/informacion"><i class="bi bi-info-circle-fill"></i> Informacion</a>
+                     <a class="nav-link" href="/informacion"><i class="fa-solid fa-circle-info"></i> Informacion</a>
                 </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="/servicios"><i class="bi bi-box-seam-fill"></i> Servicios</a>
+                     <a class="nav-link" href="/servicios"><i class="fa-duotone fa-solid fa-server"></i> Servicios</a>
                 </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="/contacto"><i class="bi bi-envelope-fill"></i> Contactanos</a>
+                     <a class="nav-link" href="/contacto"><i class="fa-solid fa-address-book"></i> Contactanos</a>
                 </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="/admin/contacts"><i class="bi bi-person-lines-fill"></i> Tabla-Contactos</a>
+                     <a class="nav-link" href="/admin/contacts"><i class="fa-solid fa-address-card"></i> Tabla-Contactos</a>
                 </li>
             </ul>
         </div>
@@ -46,19 +51,19 @@
     <div class="offcanvas-body">
          <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/"><i class="bi bi-house-fill"></i> Home</a>
+                <a class="nav-link" aria-current="page" href="/"><i class="fa-solid fa-house-chimney"></i> Home</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="/informacion"><i class="bi bi-info-circle-fill"></i> Informacion</a>
+                 <a class="nav-link" href="/informacion"><i class="fa-solid fa-circle-info"></i> Informacion</a>
                 </li>
              <li class="nav-item">
-                 <a class="nav-link" href="/servicios"><i class="bi bi-box-seam-fill"></i> Servicios</a>
+                 <a class="nav-link" href="/servicios"><i class="fa-duotone fa-solid fa-server"></i> Servicios</a>
             </li>
              <li class="nav-item">
-                 <a class="nav-link" href="/contacto"><i class="bi bi-envelope-fill"></i> Contactanos</a>
+                 <a class="nav-link" href="/contacto"><i class="fa-solid fa-address-book"></i> Contactanos</a>
             </li>
              <li class="nav-item">
-                 <a class="nav-link" href="/admin/contacts"><i class="bi bi-person-lines-fill"></i> Tabla-Contactos</a>
+                 <a class="nav-link" href="/admin/contacts"><i class="fa-solid fa-address-card"></i></i> Tabla-Contactos</a>
             </li>
         </ul>
     </div>
