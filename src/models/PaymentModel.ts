@@ -1,136 +1,72 @@
-// src/models/PaymentModel.ts
-
 import sqlite3 from 'sqlite3';
+export interface Payment {
+    id?: number; 
+    user_id: number | null; 
+    amount: number;
+    currency: string;
+    description: string;
+    status: string; 
+    transaction_id_external?: string; 
+    created_at?: string; 
+    updated_at?: string; 
+}
 
-class PaymentModel {
+class PaymentsModel {
     private db: sqlite3.Database;
 
     constructor(db: sqlite3.Database) {
         this.db = db;
+        this.addPayment = this.addPayment.bind(this);
+        this.getAllPayments = this.getAllPayments.bind(this);
     }
 
-    // Crea la tabla 'payments' si no existe
-    createTable(): Promise<void> {
+    async addPayment(paymentData: Omit<Payment, 'id' | 'created_at' | 'updated_at'>): Promise<Payment> {
         return new Promise((resolve, reject) => {
-            this.db.run(`
-                CREATE TABLE IF NOT EXISTS payments (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    transactionId TEXT UNIQUE,
-                    userId INTEGER,
-                    amount REAL,
-                    currency TEXT,
-                    status TEXT,
-                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    buyerEmail TEXT,
-                    description TEXT,
-                    apiResponse TEXT
-                )
-            `, (err) => {
+            const { user_id, amount, currency, description, status, transaction_id_external } = paymentData;
+            
+            const stmt = this.db.prepare(
+                'INSERT INTO payments (user_id, amount, currency, description, status, transaction_id_external) VALUES (?, ?, ?, ?, ?, ?)'
+            );
+
+            stmt.run(
+                user_id,
+                amount,
+                currency,
+                description,
+                status,
+                transaction_id_external,
+                function(this: sqlite3.RunResult, err: Error | null) {
+                    if (err) {
+                        return reject(err);
+                    }
+                    const newPayment: Payment = {
+                        id: this.lastID,
+                        user_id,
+                        amount,
+                        currency,
+                        description,
+                        status,
+                        transaction_id_external,
+                        created_at: new Date().toISOString(), 
+                        updated_at: new Date().toISOString()
+                    };
+                    resolve(newPayment);
+                }
+            );
+            stmt.finalize();
+        });
+    }
+
+    async getAllPayments(): Promise<Payment[]> {
+        return new Promise((resolve, reject) => {
+            this.db.all('SELECT * FROM payments ORDER BY created_at DESC', (err: Error | null, rows: Payment[]) => {
                 if (err) {
-                    console.error('Error al crear la tabla payments:', err.message);
-                    reject(err);
-                } else {
-                    console.log('Tabla payments lista o ya existía.');
-                    resolve();
+                    return reject(err);
                 }
+                resolve(rows);
             });
-        });
-    }
-
-    // Añade un registro de pago
-    async addPaymentRecord(transactionId: string, amount: number, currency: string, status: string, buyerEmail: string | null, description: string | null): Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.db.run(
-                'INSERT INTO payments (transactionId, amount, currency, status, buyerEmail, description) VALUES (?, ?, ?, ?, ?, ?)',
-                [transactionId, amount, currency, status, buyerEmail, description],
-                function(err) {
-                    if (err) {
-                        console.error('Error al insertar registro de pago:', err.message);
-                        reject(err);
-                    } else {
-                        console.log(`Registro de pago insertado con ID: ${this.lastID}, Transacción ID: ${transactionId}`);
-                        resolve();
-                    }
-                }
-            );
-        });
-    }
-
-    // Obtiene un registro de pago por ID interno
-    async getPaymentById(id: number): Promise<any | undefined> {
-        return new Promise((resolve, reject) => {
-            this.db.get(
-                'SELECT id, transactionId, userId, amount, currency, status, timestamp, buyerEmail, description, apiResponse FROM payments WHERE id = ?',
-                [id],
-                (err, row) => {
-                    if (err) {
-                        console.error(`Error al obtener pago por ID ${id}:`, err.message);
-                        reject(err);
-                    } else {
-                        resolve(row);
-                    }
-                }
-            );
-        });
-    }
-
-    // Obtiene todos los registros de pago
-    async getAllPayments(): Promise<any[]> {
-        return new Promise((resolve, reject) => {
-            this.db.all(
-                'SELECT id, transactionId, userId, amount, currency, status, timestamp, buyerEmail, description, apiResponse FROM payments ORDER BY timestamp DESC',
-                [],
-                (err, rows) => {
-                    if (err) {
-                        console.error('Error al obtener todos los pagos:', err.message);
-                        reject(err);
-                    } else {
-                        resolve(rows);
-                    }
-                }
-            );
-        });
-    }
-
-    // Obtiene todos los pagos asociados a un usuario
-    async getPaymentsByUserId(userId: number): Promise<any[]> {
-        return new Promise((resolve, reject) => {
-            this.db.all(
-                'SELECT id, transactionId, userId, amount, currency, status, timestamp, buyerEmail, description, apiResponse FROM payments WHERE userId = ? ORDER BY timestamp DESC',
-                [userId],
-                (err, rows) => {
-                    if (err) {
-                        console.error(`Error al obtener pagos por User ID ${userId}:`, err.message);
-                        reject(err);
-                    } else {
-                        resolve(rows);
-                    }
-                }
-            );
-        });
-    }
-
-    // Actualiza el estado de un pago por transactionId
-    async updatePaymentStatus(transactionId: string, status: string): Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.db.run(
-                'UPDATE payments SET status = ? WHERE transactionId = ?',
-                [status, transactionId],
-                function(err) {
-                    if (err) {
-                        console.error(`Error al actualizar estado del pago con Transacción ID ${transactionId}:`, err.message);
-                        reject(err);
-                    } else if (this.changes === 0) {
-                        console.warn(`Pago con Transacción ID ${transactionId} no encontrado para actualizar estado.`);
-                        resolve();
-                    } else {
-                        console.log(`Estado del pago con Transacción ID ${transactionId} actualizado a "${status}".`);
-                        resolve();
-                    }
-                }
-            );
         });
     }
 }
 
-export default PaymentModel;
+export default PaymentsModel;

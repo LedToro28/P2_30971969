@@ -1,31 +1,30 @@
-import { db } from '../db';
 import sqlite3 from 'sqlite3';
-
 export interface Contact {
-    id: number;
+    id?: number;
     name: string;
     email: string;
-    country?: string;
-    clientIp?: string;
+    country: string;
+    client_ip: string;
     created_at?: string;
+    updated_at?: string;
 }
 
 export interface Message {
-    id: number;
-    contactId: number;
-    message: string;
-    timestamp?: string;
-    status?: string;
-    replyMessage?: string;
-    repliedAt?: string;
-    repliedBy?: string;
+    id?: number;
+    contact_id: number;
+    message_content: string;
+    status: 'new' | 'read' | 'replied' | 'Pending' | 'Respondido';
+    reply_content?: string;
+    replied_by?: string;
+    created_at?: string;
+    updated_at?: string;
 }
 
-export interface MessageWithContact extends Message {
-    name: string;
-    email: string;
-    country?: string;
-    clientIp?: string;
+export interface DetailedMessage extends Message {
+    contact_name?: string;
+    contact_email?: string;
+    contact_country?: string;
+    contact_client_ip?: string;
 }
 
 class ContactsModel {
@@ -33,100 +32,118 @@ class ContactsModel {
 
     constructor(db: sqlite3.Database) {
         this.db = db;
+        this.findContactByEmail = this.findContactByEmail.bind(this);
+        this.findContactById = this.findContactById.bind(this);
+        this.addContact = this.addContact.bind(this);
+        this.addMessage = this.addMessage.bind(this);
+        this.getAllContacts = this.getAllContacts.bind(this);
+        this.getMessagesByStatus = this.getMessagesByStatus.bind(this);
+        this.getMessageById = this.getMessageById.bind(this);
+        this.updateMessageReplyStatus = this.updateMessageReplyStatus.bind(this);
     }
 
-    // Busca un contacto por email
-    findContactByEmail(email: string): Promise<Contact | null> {
+    async findContactById(id: number): Promise<Contact | null> {
         return new Promise((resolve, reject) => {
-            db.get('SELECT * FROM contacts WHERE email = ?', [email], (err, row) => {
-                if (err) reject(err);
-                else resolve(row ? (row as Contact) : null);
+            this.db.get('SELECT * FROM contacts WHERE id = ?', [id], (err: Error | null, row: Contact) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(row || null);
             });
         });
     }
 
-    // Crea un nuevo contacto
-    addContact(name: string, email: string, country: string, clientIp: string): Promise<number> {
+    async findContactByEmail(email: string): Promise<Contact | null> {
         return new Promise((resolve, reject) => {
-            db.run(
-                'INSERT INTO contacts (name, email, country, clientIp) VALUES (?, ?, ?, ?)',
-                [name, email, country, clientIp],
-                function (err) {
-                    if (err) reject(err);
-                    else resolve(this.lastID);
+            this.db.get('SELECT * FROM contacts WHERE email = ?', [email], (err: Error | null, row: Contact) => {
+                if (err) {
+                    return reject(err);
                 }
-            );
-        });
-    }
-
-    // Guarda un mensaje asociado a un contacto
-    addMessage(contactId: number, message: string): Promise<number> {
-        return new Promise((resolve, reject) => {
-            db.run(
-                'INSERT INTO messages (contactId, message) VALUES (?, ?)',
-                [contactId, message],
-                function (err) {
-                    if (err) reject(err);
-                    else resolve(this.lastID);
-                }
-            );
-        });
-    }
-
-    // Devuelve todos los contactos ordenados por fecha de creación
-    getAllContacts(): Promise<Contact[]> {
-        return new Promise((resolve, reject) => {
-            db.all('SELECT * FROM contacts ORDER BY created_at DESC', [], (err, rows) => {
-                if (err) reject(err);
-                else resolve(rows as Contact[]);
+                resolve(row || null);
             });
         });
     }
 
-    // Devuelve mensajes por estado, incluyendo datos del contacto
-    getMessagesByStatus(status: string): Promise<MessageWithContact[]> {
+    async addContact(name: string, email: string, country: string, clientIp: string): Promise<number> {
         return new Promise((resolve, reject) => {
-            db.all(
-                `SELECT m.*, c.name, c.email, c.country, c.clientIp
-                 FROM messages m
-                 JOIN contacts c ON m.contactId = c.id
-                 WHERE m.status = ?
-                 ORDER BY m.timestamp DESC`,
-                [status],
-                (err, rows) => {
-                    if (err) reject(err);
-                    else resolve(rows as MessageWithContact[]);
+            const stmt = this.db.prepare('INSERT INTO contacts (name, email, country, client_ip) VALUES (?, ?, ?, ?)');
+            stmt.run(name, email, country, clientIp, function(this: sqlite3.RunResult, err: Error | null) {
+                if (err) {
+                    return reject(err);
                 }
-            );
+                resolve(this.lastID);
+            });
+            stmt.finalize();
         });
     }
 
-    // Devuelve un mensaje por ID, incluyendo datos del contacto
-    getMessageById(messageId: number): Promise<MessageWithContact | null> {
+    async getAllContacts(): Promise<Contact[]> {
         return new Promise((resolve, reject) => {
-            db.get(
-                `SELECT m.*, c.name, c.email, c.country, c.clientIp
-                 FROM messages m
-                 JOIN contacts c ON m.contactId = c.id
-                 WHERE m.id = ?`,
-                [messageId],
-                (err, row) => {
-                    if (err) reject(err);
-                    else resolve((row as MessageWithContact) || null);
+            this.db.all('SELECT * FROM contacts ORDER BY created_at DESC', (err: Error | null, rows: Contact[]) => {
+                if (err) {
+                    return reject(err);
                 }
-            );
+                resolve(rows);
+            });
         });
     }
 
-    // Actualiza el estado y respuesta de un mensaje
-    updateMessageReplyStatus(messageId: number, replyMessage: string, repliedBy: string): Promise<void> {
+    async addMessage(contactId: number, messageContent: string): Promise<number> {
         return new Promise((resolve, reject) => {
-            db.run(
-                `UPDATE messages SET status = 'Respondido', replyMessage = ?, repliedAt = CURRENT_TIMESTAMP, repliedBy = ? WHERE id = ?`,
-                [replyMessage, repliedBy, messageId],
-                function (err) {
-                    if (err) reject(err);
-                    else resolve();
+            const stmt = this.db.prepare('INSERT INTO messages (contact_id, message_content, status) VALUES (?, ?, ?)');
+            stmt.run(contactId, messageContent, 'new', function(this: sqlite3.RunResult, err: Error | null) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(this.lastID);
+            });
+            stmt.finalize();
+        });
+    }
+
+    async getMessagesByStatus(status: 'new' | 'read' | 'replied' | 'Pending' | 'Respondido'): Promise<Message[]> {
+        return new Promise((resolve, reject) => {
+            this.db.all('SELECT * FROM messages WHERE status = ? ORDER BY created_at DESC', [status], (err: Error | null, rows: Message[]) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(rows);
+            });
+        });
+    }
+
+    async getMessageById(messageId: number): Promise<DetailedMessage | null> {
+        return new Promise((resolve, reject) => {
+            this.db.get(`
+                SELECT
+                    m.*,
+                    c.name as contact_name,
+                    c.email as contact_email,
+                    c.country as contact_country,
+                    c.client_ip as contact_client_ip
+                FROM messages m
+                JOIN contacts c ON m.contact_id = c.id
+                WHERE m.id = ?
+            `, [messageId], (err: Error | null, row: DetailedMessage) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(row || null);
+            });
+        });
+    }
+
+    async updateMessageReplyStatus(messageId: number, replyContent: string, repliedBy: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+  
+            this.db.run(
+                'UPDATE messages SET status = ?, reply_content = ?, replied_by = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+                ['Respondido', replyContent, repliedBy, messageId], 
+                (err: Error | null) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve();
                 }
             );
         });

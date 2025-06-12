@@ -9,11 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "./src",
     "resolveJsonModule": true,
-    "moduleResolution": "node",  
-    "baseUrl": ".",             
-    "paths": {                   
-      "*": ["node_modules/*"]
-    }
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*"

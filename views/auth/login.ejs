@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    
+    <!-- Incluye todos tus CSS aquí -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/list_contactos.css">
+    <link rel="stylesheet" href="/css/servicios.css">
+    <link rel="stylesheet" href="/css/informacion.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/contacto.css">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Awesome para iconos (asegúrate de que esta URL sea accesible o instala el paquete) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/6H7eQ934aB325j6K5jR/QpT0o+Kx/L3d3R5Wl4nJ2jP3f1A5F5k8k2Z9K0N1w8P2h4+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google reCAPTCHA Script (solo si recaptchaSiteKey está definido) -->
+    <% if (typeof recaptchaSiteKey !== 'undefined' && recaptchaSiteKey) { %>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <% } %>
+    <!-- Google Analytics Script (solo si googleAnalyticsId está definido) -->
+    <% if (typeof googleAnalyticsId !== 'undefined' && googleAnalyticsId) { %>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<%= googleAnalyticsId %>"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '<%= googleAnalyticsId %>');
+        </script>
+    <% } %>
+
+    <!-- Metadatos Open Graph/Twitter específicos para esta página -->
+    <meta property="og:title" content="<%= pageTitle || 'Iniciar Sesión' %> - Ciclexpress">
+    <meta property="og:description" content="<%= pageDescription || 'Inicia sesión en tu cuenta de Ciclexpress.' %>">
+    <meta property="og:image" content="<%= ogImage || 'https://ciclexpress.onrender.com/img/login_social.jpg' %>">
+    <meta property="og:url" content="<%= ogUrl || (req.protocol + '://' + req.get('host') + req.originalUrl) %>">
+</head>
+<body>
+    <!-- Navbar (incluido desde el parcial) -->
+    <%- include('../partials/_navbar.ejs') %>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg p-4 p-md-5">
+                    <h2 class="text-center mb-4">Acceso a la Administración</h2>
+                    
+                    <!-- Mensajes Flash (incluidos desde el parcial) -->
+                    <%- include('../partials/flash_messages.ejs') %>
+
+                    <form action="/login" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario o Email</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        <!-- reCAPTCHA div -->
+                        <% if (typeof recaptchaSiteKey !== 'undefined' && recaptchaSiteKey) { %>
+                            <div class="g-recaptcha" data-sitekey="<%= recaptchaSiteKey %>"></div>
+                            <br>
+                        <% } %>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>
+                    </form>
+
+                    <div class="text-center mb-3">
+                        <p>O inicia sesión con:</p>
+                        <a href="/auth/google" class="btn btn-danger w-100">
+                            <i class="fab fa-google me-2"></i> Iniciar con Google
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <p>¿No tienes una cuenta? <a href="/register">Regístrate aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (incluido desde el parcial) -->
+    <%- include('../partials/footer.ejs') %>
+
+    <!-- Scripts de Bootstrap JS -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Tus scripts personalizados si tienes alguno -->
+    <script src="/js/script.js"></script>
+</body>
+</html>

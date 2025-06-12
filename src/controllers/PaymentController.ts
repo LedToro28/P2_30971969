@@ -1,126 +1,102 @@
 import { Request, Response } from 'express';
-import fetch from 'node-fetch';
+import PaymentsModel, { Payment } from '../models/PaymentModel';
 import MailerService from '../service/MailerService';
-import PaymentModel from '../models/PaymentModel';
 
-class PaymentController {
-    private readonly API_BASE_URL = 'https://fakepayment.onrender.com';
+class PaymentsController {
     private mailerService: MailerService;
-    private paymentModel: PaymentModel;
-    private readonly API_KEY = process.env.FAKE_PAYMENT_API_KEY;
+    private paymentsModel: PaymentsModel;
 
-    constructor(mailerService: MailerService, paymentModel: PaymentModel) {
+    constructor(mailerService: MailerService, paymentsModel: PaymentsModel) {
         this.mailerService = mailerService;
-        this.paymentModel = paymentModel;
-        if (!this.API_KEY) {
-            console.warn('ADVERTENCIA: La clave de API de Fake Payment (FAKE_PAYMENT_API_KEY) no está configurada en .env. Las solicitudes de pago fallarán.');
-        }
+        this.paymentsModel = paymentsModel;
+
         this.showPaymentForm = this.showPaymentForm.bind(this);
         this.add = this.add.bind(this);
+        this.index = this.index.bind(this);
     }
 
-    // Renderiza el formulario de pago
     showPaymentForm(req: Request, res: Response): void {
         res.render('payment', {
-            pageTitle: 'Procesar Pago'
+            pageTitle: 'Realizar Pago',
+            ogDescription: 'Procese su pago de forma segura por los servicios de jardinería en jardines sagitario.',
+            ogImage: 'https://fakepayment.onrender.com/', 
+            ogUrl: req.protocol + '://' + req.get('host') + req.originalUrl 
         });
     }
 
-    // Procesa el pago y maneja la respuesta de la API simulada
     async add(req: Request, res: Response): Promise<void> {
-        const {
-            service,
-            email,
-            cardName,
-            cardNumber,
-            expiryMonth,
-            expiryYear,
-            cvc,
-            amount,
-            currency
-        } = req.body;
+        const { amount, currency, service, description, email: customerEmailFromForm } = req.body;
 
-        if (!service || !email || !cardName || !cardNumber || !expiryMonth || !expiryYear || !cvc || !amount || !currency) {
-            req.flash('paymentError', 'Error: Todos los campos del formulario de pago son obligatorios.');
+        if (!amount || isNaN(Number(amount)) || !currency || !service) {
+            req.flash('error', 'Por favor, completa todos los campos de pago correctamente.');
             return res.redirect('/payment');
         }
-
-        const cleanedCardNumber = cardNumber.replace(/[\s-]/g, '');
-        const parsedAmount = parseFloat(amount);
-        if (isNaN(parsedAmount) || parsedAmount <= 0) {
-            req.flash('paymentError', 'Error: El monto a pagar debe ser un número positivo.');
-            return res.redirect('/payment');
-        }
-
-        const reference = `payment_id_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
-        const description = `Pago por servicio: ${service}`;
-        const formattedExpiryMonth = String(expiryMonth).padStart(2, '0');
 
         try {
-            const paymentPayload = {
-                "amount": parsedAmount.toFixed(2),
-                "card-number": cleanedCardNumber,
-                "cvv": cvc,
-                "expiration-month": formattedExpiryMonth,
-                "expiration-year": String(expiryYear),
-                "full-name": cardName,
-                "currency": currency,
-                "description": description,
-                "reference": reference
-            };
+            const parsedAmount = parseFloat(amount);
 
-            const fakePaymentApiResponse = await fetch(`${this.API_BASE_URL}/payments`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.API_KEY}`
-                },
-                body: JSON.stringify(paymentPayload)
+            const transactionId = Math.floor(Math.random() * 1000000);
+            const paymentStatus = 'Completado';
+
+            let userIdForPayment: number | null = null;
+            let userNameForEmail: string = 'Cliente';
+            let userEmailForEmail: string = 'cliente@example.com';
+
+            if (req.user) {
+                const authenticatedUser = req.user as Express.User;
+                userIdForPayment = authenticatedUser.id ?? null;
+                userNameForEmail = authenticatedUser.username || authenticatedUser.display_name || 'Usuario';
+                userEmailForEmail = authenticatedUser.email || 'cliente@example.com';
+            } else {
+                if (customerEmailFromForm) {
+                    userEmailForEmail = customerEmailFromForm;
+                }
+            }
+
+            const newPayment = await this.paymentsModel.addPayment({
+                user_id: userIdForPayment,
+                amount: parsedAmount,
+                currency: currency,
+                description: description || service,
+                status: paymentStatus,
+                transaction_id_external: `TRX-${transactionId}`
             });
 
-            const rawResponseText = await fakePaymentApiResponse.text();
-            let paymentResult;
-            try {
-                paymentResult = JSON.parse(rawResponseText);
-            } catch (parseError) {
-                req.flash('paymentError', `Error en el pago: La API devolvió un formato inesperado o un error interno.`);
-                return res.redirect('/payment');
-            }
+            await this.mailerService.sendPaymentConfirmation(
+                userNameForEmail,
+                userEmailForEmail,
+                {
+                    id: newPayment.id as number,
+                    amount: parsedAmount,
+                    currency: currency,
+                    date: new Date().toLocaleDateString('es-ES'),
+                    description: description || service,
+                    status: paymentStatus
+                }
+            );
 
-            if (fakePaymentApiResponse.ok && paymentResult.success) {
-                req.flash('paymentSuccess', `¡Pago exitoso! Transacción ID: ${paymentResult.data.transaction_id || paymentResult.data.reference}`);
-                try {
-                    await this.mailerService.sendPaymentConfirmation(
-                        email,
-                        cardName,
-                        paymentResult.data.transaction_id || paymentResult.data.reference,
-                        parsedAmount.toFixed(2),
-                        currency,
-                        new Date()
-                    );
-                } catch (emailError) {
-                    // Error al enviar correo de confirmación de pago
-                }
-                try {
-                    await this.paymentModel.addPaymentRecord(
-                        paymentResult.data.transaction_id || paymentResult.data.reference,
-                        parsedAmount,
-                        currency,
-                        'completed',
-                        email,
-                        description
-                    );
-                } catch (dbError) {
-                    // Error al guardar registro de pago en DB
-                }
-            } else {
-                req.flash('paymentError', `Error en el pago: ${paymentResult.message || 'Transacción rechazada.'}`);
-            }
-        } catch (apiError) {
-            req.flash('paymentError', 'Error al procesar el pago. Intenta de nuevo más tarde.');
+            req.flash('paymentSuccess', `¡Pago de ${parsedAmount.toFixed(2)} ${currency} realizado con éxito! ID de transacción: ${transactionId}`);
+            res.redirect('/payment');
+        } catch (err) {
+            console.error('Error al procesar el pago:', err);
+            req.flash('paymentError', 'Hubo un error al procesar tu pago. Por favor, intenta de nuevo más tarde.');
+            res.redirect('/payment');
         }
-        res.redirect('/payment');
+    }
+
+    async index(req: Request, res: Response): Promise<void> {
+        try {
+            const allPayments = await this.paymentsModel.getAllPayments();
+            res.render('admin/payments', {
+                pageTitle: 'Pagos Realizados',
+                payments: allPayments
+            });
+        } catch (err) {
+            console.error('Error al obtener pagos:', err);
+            req.flash('error', 'Hubo un error al obtener los pagos.');
+            res.redirect('/admin');
+        }
     }
 }
 
-export default PaymentController;
+export default PaymentsController;

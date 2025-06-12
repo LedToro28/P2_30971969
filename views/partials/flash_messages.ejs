@@ -1,0 +1,55 @@
+<% if (successMessage && successMessage.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= successMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (errorMessage && errorMessage.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= errorMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (paymentSuccess && paymentSuccess.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= paymentSuccess %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (paymentError && paymentError.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= paymentError %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (replySuccess && replySuccess.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= replySuccess %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (replyError && replyError.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= replyError %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (replyWarning && replyWarning.length > 0) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= replyWarning %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (unsentReplyMessage && unsentReplyMessage.length > 0) { %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <%= unsentReplyMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>

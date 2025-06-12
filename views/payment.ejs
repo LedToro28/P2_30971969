@@ -68,7 +68,7 @@
                             <select id="expiry-year" name="expiryYear" class="form-select" required>
                                 <option value="">Año</option>
                                 <% const currentYear = new Date().getFullYear(); %>
-                                <% for(let i = -1; i < 10; i++){%><option value="<%= currentYear + i %>"><%= currentYear + i %></option><% } %>
+                                <% for(let i = 0; i < 10; i++){%><option value="<%= currentYear + i %>"><%= currentYear + i %></option><% } %>
                             </select>
                         </div>
                     </div>

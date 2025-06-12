@@ -1,114 +1,126 @@
-// src/controllers/AdminController.ts
-
-import { Request, Response } from 'express';
-import ContactsModel from '../models/ContactsModel';
+import { Request, Response, NextFunction } from 'express';
+import ContactsModel, { DetailedMessage } from '../models/ContactsModel';
 import MailerService from '../service/MailerService';
-import PaymentModel from '../models/PaymentModel';
 
-class AdminController {
+class AdminController { 
     private contactsModel: ContactsModel;
     private mailerService: MailerService;
-    private paymentModel: PaymentModel;
 
-    constructor(contactsModel: ContactsModel, mailerService: MailerService, paymentModel: PaymentModel) {
+    constructor(
+        contactsModel: ContactsModel,
+        mailerService: MailerService,
+    ) {
         this.contactsModel = contactsModel;
         this.mailerService = mailerService;
-        this.paymentModel = paymentModel;
-
-        this.showContactList = this.showContactList.bind(this);
-        this.showPendingReplies = this.showPendingReplies.bind(this);
+        this.index = this.index.bind(this);
         this.sendReply = this.sendReply.bind(this);
-        this.showPaymentList = this.showPaymentList.bind(this);
-        this.showAdminDashboard = this.showAdminDashboard.bind(this);
-        this.showRepliedMessages = this.showRepliedMessages.bind(this);
+        this.getMessagesByStatus = this.getMessagesByStatus.bind(this);
+        this.getMessageById = this.getMessageById.bind(this);
     }
 
-    // Renderiza el panel de administración con todos los datos necesarios
-    async showAdminDashboard(req: Request, res: Response): Promise<void> {
+    async index(req: Request, res: Response): Promise<void> {
         try {
             const allContacts = await this.contactsModel.getAllContacts();
-            const pendingContacts = await this.contactsModel.getMessagesByStatus('Pending');
-            const repliedContacts = await this.contactsModel.getMessagesByStatus('Respondido');
-            const payments = await this.paymentModel.getAllPayments();
-
-            res.render('administracion', {
-                pageTitle: 'Panel de Administración',
-                allContacts,
-                pendingContacts,
-                repliedContacts,
-                payments
+            res.render('admin/contacts', {
+                pageTitle: 'Todos los Contactos (Admin)',
+                contacts: allContacts
             });
-        } catch (error) {
-            req.flash('error', 'Error al cargar los datos del panel de administración.');
-            res.render('administracion', {
-                pageTitle: 'Panel de Administración',
-                allContacts: [],
-                pendingContacts: [],
-                repliedContacts: [],
-                payments: []
-            });
+        } catch (err) {
+            console.error('Error al obtener todos los contactos (Admin):', err);
+            req.flash('error', 'Hubo un error al obtener los contactos de administración.');
+            res.redirect('/admin');
         }
     }
 
-    // Redirige a la vista principal del panel
-    showContactList(req: Request, res: Response): void {
-        res.redirect('/admin');
-    }
+    async getMessagesByStatus(req: Request, res: Response): Promise<void> {
+        const { status } = req.params;
+        type MessageStatus = 'new' | 'read' | 'replied' | 'Pending' | 'Respondido';
+        const validStatuses: MessageStatus[] = ['new', 'read', 'replied', 'Pending', 'Respondido'];
 
-    showPendingReplies(req: Request, res: Response): void {
-        res.redirect('/admin');
-    }
-
-    showPaymentList(req: Request, res: Response): void {
-        res.redirect('/admin');
-    }
-
-    showRepliedMessages(req: Request, res: Response): void {
-        res.redirect('/admin');
-    }
-
-    // Envía una respuesta a un mensaje pendiente
-    async sendReply(req: Request, res: Response): Promise<void> {
-        const messageId = parseInt(req.params.messageId);
-        const { replySubject, replyContent } = req.body;
-
-        if (isNaN(messageId)) {
-            req.flash('replyError', 'ID de mensaje inválido para enviar respuesta.');
-            return res.redirect('/admin');
-        }
-        if (!replyContent || replyContent.trim() === '') {
-            req.flash('replyError', 'El mensaje de respuesta no puede estar vacío.');
-            return res.redirect('/admin');
+        if (!validStatuses.includes(status as MessageStatus)) {
+            req.flash('error', `Estado de mensaje inválido: ${status}.`);
+            return res.redirect('/admin/contacts');
         }
 
         try {
-            const message = await this.contactsModel.getMessageById(messageId);
+            const messages = await this.contactsModel.getMessagesByStatus(status as MessageStatus);
+            res.render('admin/messages', {
+                pageTitle: `Mensajes ${status}`,
+                messages
+            });
+        } catch (err) {
+            console.error('Error al obtener mensajes por estado (Admin):', err);
+            req.flash('error', 'Hubo un error al obtener los mensajes.');
+            res.redirect('/admin');
+        }
+    }
 
+    async getMessageById(req: Request, res: Response): Promise<void> {
+        const { messageId } = req.params;
+        try {
+            const message = await this.contactsModel.getMessageById(Number(messageId));
             if (!message) {
-                req.flash('replyError', `Mensaje con ID ${messageId} no encontrado para enviar respuesta.`);
-                return res.redirect('/admin');
+                req.flash('error', 'Mensaje no encontrado.');
+                return res.redirect('/admin/contacts');
             }
-            if (message.status !== 'Pending') {
-                req.flash('replyWarning', `El mensaje de ${message.name} (ID: ${messageId}) ya ha sido respondido.`);
-                return res.redirect('/admin');
+            res.render('admin/messageDetail', {
+                pageTitle: 'Detalle del Mensaje',
+                message
+            });
+        } catch (err) {
+            console.error('Error al obtener detalle del mensaje (Admin):', err);
+            req.flash('error', 'Hubo un error al obtener el mensaje.');
+            res.redirect('/admin');
+        }
+    }
+
+    async sendReply(req: Request, res: Response): Promise<void> {
+        const { messageId } = req.params;
+        const { replyContent } = req.body;
+
+        const adminName = (req.user as Express.User)?.username || (req.user as Express.User)?.display_name || 'Administrador Desconocido';
+
+        try {
+            if (!messageId || isNaN(Number(messageId))) {
+                req.flash('error', 'ID de mensaje inválido.');
+                return res.redirect('/admin/contacts');
             }
 
-            const adminName = 'Admin';
-            await this.mailerService.sendContactReply(
-                message.email,
-                message.message,
-                replyContent,
-                adminName,
-                true
+            const originalMessage = await this.contactsModel.getMessageById(Number(messageId));
+
+            if (!originalMessage) {
+                req.flash('error', 'Mensaje original no encontrado para enviar respuesta.');
+                return res.redirect('/admin/contacts');
+            }
+
+            if (originalMessage.status === 'replied' || originalMessage.status === 'Respondido') {
+                req.flash('replyWarning', `El mensaje de ${originalMessage.contact_name} (ID: ${messageId}) ya ha sido respondido.`);
+                return res.redirect(`/admin/message/${messageId}`);
+            }
+
+            if (originalMessage.contact_email && originalMessage.contact_name) {
+                await this.mailerService.sendReplyToContact(
+                    originalMessage.contact_name, 
+                    originalMessage.contact_email, 
+                    replyContent ?? '',
+                    originalMessage.message_content 
+                );
+                req.flash('success', `Respuesta enviada exitosamente a ${originalMessage.contact_name}. Correo enviado al usuario.`); // CORREGIDO: usar contact_name
+            } else {
+                req.flash('replyWarning', 'Respuesta guardada, pero no se pudo enviar el correo al usuario (email o nombre de contacto no disponible).');
+            }
+
+            await this.contactsModel.updateMessageReplyStatus(
+                Number(messageId),
+                replyContent ?? '',
+                adminName
             );
 
-            await this.contactsModel.updateMessageReplyStatus(messageId, replyContent, adminName);
-
-            req.flash('replySuccess', `Respuesta enviada exitosamente a ${message.name}.`);
-            res.redirect('/admin');
-        } catch (error) {
-            req.flash('replyError', `Error al enviar la respuesta para el mensaje con ID ${messageId}.`);
-            res.redirect('/admin');
+            res.redirect(`/admin/contacts`);
+        } catch (err) {
+            console.error('Error al enviar la respuesta (Admin):', err);
+            req.flash('error', 'Hubo un error al enviar la respuesta. Por favor, intenta de nuevo más tarde.');
+            res.redirect(`/admin/contacts`);
         }
     }
 }
