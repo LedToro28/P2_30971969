@@ -1,16 +1,16 @@
 // src/models/UserModel.ts
 
 import sqlite3 from 'sqlite3';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'; // Este módulo será encontrado después de la instalación
 
 // Define la interfaz para un usuario
 export interface User {
     id?: number;
-    username: string;
-    password_hash?: string; // Opcional, ya que puede ser un usuario de Google
+    username: string; // Puede ser un valor por defecto para Google, o null si solo se usa email/google_id
+    password_hash?: string; // Opcional para usuarios de Google
     google_id?: string;
     display_name?: string;
-    email: string;
+    email: string; // El email debería ser obligatorio para todos los usuarios (local o Google)
     created_at?: string;
 }
 
@@ -28,7 +28,7 @@ class UserModel {
         this.createLocalUser = this.createLocalUser.bind(this);
         this.createUserWithGoogle = this.createUserWithGoogle.bind(this);
         this.updateUser = this.updateUser.bind(this);
-        this.comparePassword = this.comparePassword.bind(this); // Asegura que comparePassword esté vinculado
+        this.comparePassword = this.comparePassword.bind(this);
     }
 
     /**
@@ -133,22 +133,23 @@ class UserModel {
      */
     async createUserWithGoogle(email: string, googleId: string, displayName: string): Promise<User> {
         // Para Google, no necesitamos un username local ni password_hash
+        // Se puede generar un username por defecto o dejarlo null si tu esquema lo permite
+        const defaultUsername = `google_${googleId.substring(0, 8)}`; // Generar un username único por defecto
         return new Promise((resolve, reject) => {
             this.db.run(
-                'INSERT INTO users (email, google_id, display_name) VALUES (?, ?, ?)',
-                [email, googleId, displayName],
+                'INSERT INTO users (username, email, google_id, display_name) VALUES (?, ?, ?, ?)',
+                [defaultUsername, email, googleId, displayName], // Añadir username aquí
                 function(this: sqlite3.RunResult, err: Error | null) {
                     if (err) {
                         console.error('Error al crear usuario con Google:', err.message);
                         return reject(err);
                     }
-                    // Retorna el objeto usuario completo (sin el hash de contraseña, si lo hubiera)
                     resolve({
                         id: this.lastID,
+                        username: defaultUsername,
                         email,
                         google_id: googleId,
                         display_name: displayName,
-                        username: '', // Puede ser una cadena vacía o generar uno si es necesario para el sistema
                     });
                 }
             );
