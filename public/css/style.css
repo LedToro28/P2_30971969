@@ -1,0 +1,242 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+body {
+    text-align: center; /* Centra el contenido a nivel del body como fallback */
+}
+:root{
+    --head: #000000;
+    --nav: #24be1c;
+    --opacidad: #000000;
+    --footer: #234011;
+}
+#offcanvasExample {
+    background-color: var(--nav);
+    color: #000000;
+    text-align: center; /* Centra el texto dentro del offcanvas */
+}
+
+#offcanvasExample .offcanvas-header {
+    background-color: var(--head);
+    border-bottom: 1px #000000;
+    color: #000000;
+    display: flex;
+    justify-content: center; /* Centra el contenido del header */
+    align-items: center;
+}
+
+#offcanvasExample .offcanvas-title {
+    margin: 0; /* Elimina el margen predeterminado del título */
+}
+
+.navbar-custom {
+    background-color: var(--nav);
+    display: flex;
+    justify-content: center; /* Centra los elementos de la barra de navegación */
+    align-items: center;
+    button{
+        i{
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+        }
+    }
+}
+
+.navbar-custom .navbar-toggler {
+    /* Mantén los estilos del toggler (menú hamburguesa) a la izquierda/derecha si es necesario */
+}
+
+.navbar-custom .navbar-collapse {
+    justify-content: center; /* Centra los elementos del menú cuando está expandido */
+}
+
+.navbar-custom .navbar-nav {
+    display: flex;
+    justify-content: center; /* Centra los enlaces de navegación */
+    align-items: center;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: #191717;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 0 5px;
+    border: 3px solid transparent;
+    text-align: center; /* Centra el texto del enlace */
+}
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(105, 197, 25, 0.5);
+    border: 3px solid #ccc;
+}
+#offcanvasExample .navbar-nav .nav-link {
+    color: #060606;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border-radius: 5px;
+    text-align: center; /* Centra el texto del enlace en el offcanvas */
+}
+#offcanvasExample .navbar-nav .nav-link:hover {
+    background-color: rgba(105, 197, 25, 0.5);
+}
+section{
+    padding: 5%;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center; /* Centra el texto dentro de las secciones */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    h1, h2, h3 {
+        margin-bottom: 0.8em;
+        line-height: 1.2;
+        font-weight: bold;
+        text-align: center; /* Asegura que los títulos también estén centrados */
+    }
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.5em; }
+    p {
+        margin-bottom: 1em;
+        text-align: center; /* Centra los párrafos */
+    }
+}
+.info-extra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+    background-image: url(https://images.pexels.com/photos/635405/pexels-photo-635405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+    color: rgb(255, 255, 255);
+    p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+}
+.opa{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+    color: whitesmoke;
+    min-height: inherit;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+}
+.home{
+    width: 100%;
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+}
+footer{
+    font-size: larger;
+    width: 100%;
+    background-color: var(--footer);
+    color: whitesmoke;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    #redes{
+        display: flex;
+        justify-content: center; /* Centra los iconos de redes sociales */
+        align-items: center;
+        i{
+            color: whitesmoke;
+            margin: 0 5px;
+            font-size: 30px;
+        }
+    }
+}
+#payment-section {
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #24be1c;
+    text-align: center;
+    h2, p, a{
+        color: whitesmoke;
+    }
+    .payment-form-container {
+        max-width: 90%;
+        padding: 30px;
+        background-color: whitesmoke;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+}
+#services-summary {
+    text-align: center; /* Centra el contenido de la sección de servicios */
+}
+
+#services-summary .service-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+    .service-type-item {
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        background-color: #24753d;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        i {
+            font-size: 3em;
+            color: #298f12;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+#services-summary .btn-outline {
+    /* Los estilos del botón ya deberían estar centrados por el text-align del contenedor padre */
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    section{
+        min-height: auto; /* Ajusta la altura automáticamente en pantallas pequeñas */
+        padding: 15%; /* Aumenta el padding en pantallas pequeñas para mejor espaciado */
+    }
+    .navbar-custom {
+        flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+        align-items: center;
+    }
+    .navbar-custom .navbar-collapse {
+        width: 100%; /* Ocupa todo el ancho */
+    }
+    .navbar-custom .navbar-nav {
+        flex-direction: column; /* Apila los enlaces en pantallas pequeñas */
+        align-items: center;
+        width: 100%;
+    }
+    .navbar-custom .navbar-nav .nav-link {
+        margin: 5px 0; /* Ajusta el margen */
+        text-align: center;
+    }
+    .opa{
+        padding: 15%;
+    }
+    .home{
+        padding: 15%;
+    }
+    #services-summary .service-types {
+        grid-template-columns: 1fr; /* Apila los items de servicio en pantallas pequeñas */
+    }
+}

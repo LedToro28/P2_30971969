@@ -1,0 +1,93 @@
+:root{
+    --fondo: #ffffff;
+    --opacidad: rgba(0, 0, 0, 0.5);
+    --font-1: #000;
+    --font-2: #fff;
+    --font-3: #999;
+    --blue: #24be1c;
+}
+.beneficios .reasons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+    .reason-item {
+        padding: 10px;
+        max-width: 200px;
+        border: 10px 60px 30px #093b00;
+        border-radius: 10px 60px 30px;
+        background-color: #2d8d1e;
+        box-shadow: 0 2px 5px #000;
+        i {
+            font-size: 3em; 
+            color: #2d8d1e;
+            margin-bottom: 20px;
+        }
+    }
+}
+.cta-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.trajectory-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    p {
+        flex-grow: 1;
+    }
+}
+#services-summary .service-types {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 30px;
+     text-align: center;
+     .service-type-item {
+        padding: 20px;
+        border: 1px #eee;
+        border-radius: 8px;
+         background-color: #24753d;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+         i {
+            font-size: 3em;
+            color: #298f12;
+            margin-bottom: 15px;
+       }
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.3em; }
+
+    .beneficios .reasons-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+        text-align: center;
+        .reason-item {
+            padding: 10px;
+            max-width: 250px;
+            border: 1px solid #ccc;
+            i {
+                font-size: 3em; 
+                color: #2d8d1e;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .cta-buttons{
+        justify-content: center; /* Asegura que los botones sigan centrados en pantallas pequeñas */
+    }
+
+    .trajectory-content {
+        gap: 20px; /* Reduce el espacio entre los párrafos en pantallas pequeñas */
+        padding: 20px 10px; /* Reduce el padding en pantallas pequeñas */
+    }
+}

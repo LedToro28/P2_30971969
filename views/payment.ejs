@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+<main>
+    <section id="payment-section">
+        <h2><%= pageTitle %></h2>
+        <p class="subtitle">Completa el siguiente formulario para procesar tu pago.</p>
+        <div class="payment-form-container">
+            <form action="/payment/add" method="POST" id="paymentForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="service-select" class="form-label">Selecciona el Servicio</label>
+                        <select id="service-select" name="service" class="form-select" required>
+                            <option value="">-- Selecciona un Servicio --</option>
+                            <option value="Mantenimiento de jardines">Podas, Fertilización y Limpieza</option>
+                            <option value="Instalación de sistemas de riego">Diseño e implementación de riego automático o por goteo</option>
+                            <option value="Diseño de jardines personalizados">Creación de Espacios Verdes únicos, Adaptados a Gustos y Condiciones Climáticas.</option>
+                            <option value="Venta de insumos de jardinería"> Herramientas, fertilizantes, macetas y todo lo necesario para el cuidado de las plantas.</option>
+                            <option value="Asesoría en jardinería">Consejos sobre el cuidado de especies específicas y optimización de espacios verdes.</option>
+                            <option value="- Control de plagas y enfermedades">Aplicación de tratamientos preventivos y correctivos para proteger las plantas.</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="tu.correo@ejemplo.com">
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="card-name" class="form-label">Nombre del Titular de la Tarjeta</label>
+                        <input type="text" id="card-name" name="cardName" class="form-control" required placeholder="Nombre como aparece en la tarjeta">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="card-number" class="form-label">Número de Tarjeta</label>
+                        <input type="text" id="card-number" name="cardNumber" class="form-control" required placeholder="XXXX XXXX XXXX XXXX" pattern="[0-9\s]{13,19}" title="Número de tarjeta (13 a 19 dígitos)">
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="expiry-month" class="form-label">Fecha de Expiración</label>
+                        <div class="input-group">
+                            <select id="expiry-month" name="expiryMonth" class="form-select" required>
+                                <option value="">Mes</option>
+                                <option value="">Enero</option>
+                                <option value="">Febrero</option>
+                                <option value="">Marzo</option>
+                                <option value="">Abril</option>
+                                <option value="">Mayo</option>
+                                <option value="">Junio</option>
+                                <option value="">Julio</option>
+                                <option value="">Agosto</option>
+                                <option value="">Septiembre</option>
+                                <option value="">Octubre</option>
+                                <option value="">Diciembre</option>
+                            </select>
+                            <span class="input-group-text">/</span>
+                            <select id="expiry-year" name="expiryYear" class="form-select" required>
+                                <option value="">Año</option>
+                                <% const currentYear = new Date().getFullYear(); %>
+                                <% for(let i = 0; i < 10; i++){%><option value="<%= currentYear + i %>"><%= currentYear + i %></option><% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="cvv" class="form-label">Código de Seguridad</label>
+                        <input type="text" id="cvv" name="cvv" class="form-control" required placeholder="XXX" pattern="[0-9]{3,4}" title="Código de seguridad (3 o 4 dígitos)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="amount" class="form-label">Monto a Cancelar</label>
+                        <div class="input-group">
+                            <input type="number" id="amount" name="amount" class="form-control" required min="0.01" step="0.01" placeholder="0.00">
+                            <select id="currency" name="currency" class="form-select">
+                                <option value="BS">BS</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 col-md-6 order-md-2 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Realizar Pago <i class="bi bi-arrow-right-square-fill"></i></button>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-1 mb-3">
+                        <a href="/" class="btn btn-info btn-lg w-100"><i class="bi bi-arrow-left-square-fill"></i> Regresar</a>
+                    </div>
+                
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer.ejs') %>
+</body>
+</html>

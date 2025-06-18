@@ -1,0 +1,117 @@
+:root{
+    --fondo: ;
+    --boton: #0f7217;
+    --head: #0f7217;
+    --opacidad: rgba(0, 0, 0, 0.5);
+}
+#contact-intro {
+    padding: 80px 5%;
+    background:url(https://images.pexels.com/photos/1105018/pexels-photo-1105018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) ; 
+    .subtitle {
+        font-size: 1.2em;
+        color: #000000;
+        max-width: 500px;
+        margin: 0 auto 20px auto; 
+   }
+}
+
+.location {
+    text-align: center;
+    h2 {
+        margin-bottom: 40px;
+   }
+   .location-content {
+    display: flex;
+    gap: 80px; 
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+        .info-block {
+            flex: 1;
+            min-width: 280px;
+            p {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+            i {
+                font-size: 1.5em;
+                color: #3c802d;
+                margin-right: 10px;
+                flex-shrink: 0; 
+            }
+        }
+    }
+}
+
+.map-container {
+    flex: 2; 
+    min-width: 300px; 
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    iframe {
+        width: 100%; 
+        height: 450px; 
+        border: 0; 
+        display: block
+    }
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+
+    .testimonial-item {
+        background-color: #9caba1;
+        padding: 30px;
+        border-radius: 10px 30px 60px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between; 
+        p {
+            font-style: italic;
+            margin-bottom: 15px;
+            flex-grow: 1; 
+            strong {
+                display: block; 
+                margin-top: 10px;
+                font-style: normal; 
+                color: #333;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #location .location-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+     .contact-info-block,
+     .map-container {
+         min-width: 100%; 
+     }
+     .map-container iframe,
+     .map-placeholder {
+         height: 300px;
+     }
+    .testimonials-grid {
+         gap: 20px;
+    }
+    .testimonial-item {
+        padding: 20px;
+    }
+     #contact-form-section .form-container {
+         padding: 20px;
+     }
+
+}
