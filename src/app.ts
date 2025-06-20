@@ -7,12 +7,6 @@ import sqlite3 from 'sqlite3';
 import session from 'express-session';
 import flash from 'connect-flash';
 
-<<<<<<< HEAD
-import ContactsController from './controllers/ContactsController';
-import ContactsModel from './models/ContactsModel';
-
-=======
->>>>>>> 566fc9362263eef9e24a1731117a01507f27c090
 const app: Application = express();
 app.set('trust proxy', true);
 const port = 3000;
@@ -41,24 +35,10 @@ const db = new sqlite3.Database('./database.db', (err: Error | null) => {
         app.set('views', path.join(__dirname, '../views'));
         console.log('EJS Views Directory configured as:', app.get('views'));
 
-<<<<<<< HEAD
-        const contactsModel = new ContactsModel(db);
-        const contactsController = new ContactsController(contactsModel);
-
-=======
->>>>>>> 566fc9362263eef9e24a1731117a01507f27c090
         app.get('/', (req: Request, res: Response) => { res.render('index', { pageTitle: 'Inicio Ciclexpress' }); });
         app.get('/servicios', (req: Request, res: Response) => { res.render('servicios', { pageTitle: 'Servicios Ciclexpress' }); });
         app.get('/informacion', (req: Request, res: Response) => { res.render('informacion', { pageTitle: 'Sobre Ciclexpress' }); });
 
-<<<<<<< HEAD
-        app.get('/contacto', contactsController.showContactForm); 
-
-        app.post('/contact/add', contactsController.add); 
-        app.get('/admin/contacts', contactsController.index); 
-
-=======
->>>>>>> 566fc9362263eef9e24a1731117a01507f27c090
         app.get('/payment', (req: Request, res: Response) => { res.render('payment', { pageTitle: 'Procesar Pago' }); });
         app.post('/payment/add', (req: Request, res: Response) => {
             console.log("Datos de pago recibidos:", req.body);
