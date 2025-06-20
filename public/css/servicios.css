@@ -1,24 +1,235 @@
-.h-s {
-    padding: 80px 5%;
-    background-color: cyan;
-    h1 {
-        color: #0056b3;
-   }
-   .subtitle {
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1b0c1a; 
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #1b0c1a;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    color: rgb(24, 24, 24);
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #fadcd5;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Estilos del Main */
+main {
+    padding: 50px;
+}
+
+/* Sección Home */
+.home.h-s {
+    background-image: url('https://images.pexels.com/photos/4842474/pexels-photo-4842474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
+    color: #fadcd5;
+    text-align: center;
+    padding: 80px 80px;
+    position: relative;
+}
+
+.home.h-s::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro */
+}
+
+.home.h-s > * {
+    position: relative;
+    z-index: 2;
+}
+
+.home.h-s h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.home.h-s .subtitle {
     font-size: 1.2em;
-    color: #555;
-    max-width: 800px;
-    margin: 0 auto 20px auto;
+    max-width: 500px;
+    margin: 0 auto 20px;
 }
+
+/* Sección Servicios */
+.servicios {
+    padding: 40px 20px;
+    text-align: center;
 }
-.servicios{
-    padding: 5%;
-        a{
-            text-decoration: none;
-            background-size: cover;
-            background-repeat: no-repeat;
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }   
+
+.servicios h2 {
+    color: #1b0c1a;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.row.row-cols-1.row-cols-md-3.g-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.col {
+    display: contents; 
+}
+
+.card {
+    border: 5px solid #1b0c1a;
+    border-radius: 10px 60px 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    max-width: 350%;
+    display: flex;
+    flex-direction: column;
+    background-color: #6d3c52;
+    background: linear-gradient(135deg, #fadcd5 0%, #765d67 100%);
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 370px;
+    height: 370px;
+    border-radius: 80%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #4b2138;
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.card-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.95em;
+    color: #1b0c1a;
+}
+
+/* Sección Info Extra */
+.info-extra {
+    background-image: url('https://images.pexels.com/photos/635405/pexels-photo-635405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 80px 50px;
+}
+
+.info-extra h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.info-extra p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* Estilos del Footer (Asumiendo que partials/footer.ejs tiene estilos) */
+footer {
+    background-color: #4b2138; /* Verde oscuro */
+    color: #fadcd5;
+    text-align: center;
+    padding: 1em 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .home.h-s {
+        padding: 80px 15px;
+    }
+
+    .home.h-s h1 {
+        font-size: 2em;
+    }
+
+    .home.h-s .subtitle {
+        font-size: 1em;
+    }
+
+    .row.row-cols-1.row-cols-md-3.g-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .card img {
+        height: 370px;
+    }
+
+    .info-extra {
+        padding: 60px 15px;
+    }
+
+    .info-extra h2 {
+        font-size: 1.8em;
+    }
+
+    .info-extra p {
+        font-size: 1em;
+    }
+
+    .btn-large {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
 }
