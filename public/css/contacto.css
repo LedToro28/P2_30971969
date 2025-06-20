@@ -1,16 +1,16 @@
 :root{
     --fondo: ;
-    --boton: #3ba7d6;
-    --head: #3ba7d6;
+    --boton: #0f7217;
+    --head: #0f7217;
     --opacidad: rgba(0, 0, 0, 0.5);
 }
 #contact-intro {
     padding: 80px 5%;
-    background-color: #e9ecef; 
+    background:url(https://images.pexels.com/photos/1105018/pexels-photo-1105018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) ; 
     .subtitle {
         font-size: 1.2em;
-        color: #555;
-        max-width: 700px;
+        color: #000000;
+        max-width: 500px;
         margin: 0 auto 20px auto; 
    }
 }
@@ -22,7 +22,7 @@
    }
    .location-content {
     display: flex;
-    gap: 40px; 
+    gap: 80px; 
     align-items: center;
     flex-wrap: wrap;
     text-align: left;
@@ -36,7 +36,7 @@
             }
             i {
                 font-size: 1.5em;
-                color: #007bff;
+                color: #3c802d;
                 margin-right: 10px;
                 flex-shrink: 0; 
             }
@@ -68,10 +68,11 @@
     gap: 30px;
     margin-top: 40px;
     text-align: center;
+
     .testimonial-item {
-        background-color: #fff;
+        background-color: #9caba1;
         padding: 30px;
-        border-radius: 8px;
+        border-radius: 10px 30px 60px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         display: flex; 
         flex-direction: column;
