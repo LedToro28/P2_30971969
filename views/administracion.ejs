@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description" content="">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://p2-30971969.onrender.com">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jardines Sagitario">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="p2-30971969.onrender.com">
+<meta property="twitter:url" content="https://p2-30971969.onrender.com">
+<meta name="twitter:title" content="Jardines Sagitario">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle || 'Panel de Administración' %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Solo Bootstrap para tablas y modales -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/admin.css" rel="stylesheet">
+</head>
+<body>
+    <main class="admin-layout-main">
+        <div class="sidebar" id="adminSidebar">
+            <h4 class="mb-4">Panel Admin</h4>
+            <!-- Solo el fragmento relevante del menú lateral -->
+            <ul class="nav" id="adminNav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#contacts" data-target-section="contacts-section">
+                        <i class="fa-solid fa-address-book"></i> Todos los Contactos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin/payments" data-target-section="payments-section">
+                        <i class="fa-solid fa-sack-dollar"></i> Pagos/Ventas
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admin/register" data-target-section="contacts-section">
+                        <i class="fa-solid fa-address-book"></i> Registro
+                    </a>
+                </li>
+                            <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <i class="fa-solid fa-house-chimney"></i> Cerrar sesion
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content-area">
+            <button class="sidebar-toggler" aria-label="Abrir menú" style="margin-bottom:16px;">
+                <i class="bi bi-list" style="font-size:2rem;"></i>
+            </button>
+            <div class="main-content" id="adminMainContent">
+
+                <!-- Lista de Contactos -->
+<section id="contacts-section" class="content-section active">
+  <div>
+    <h2>Contactos</h2>
+    <% if (pendingContacts && pendingContacts.length) { %>
+      <div class="table-responsive mb-5">
+        <table class="table table-warning table-striped table-hover caption-top">
+          <caption style="font-weight: bold; color: black;">
+            Contactos con mensajes
+          </caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Mensaje</th>
+              <th>Pais</th>
+              <th>Fecha</th>
+              <th>IP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pendingContacts.forEach(c => { %>
+              <tr>
+                <td><%= c.id %></td>
+                <td><%= c.name %></td>
+                <td><%= c.email %></td>
+                <td><%= c.message %></td>
+                <td><%= c.country %></td>
+                <td><%= c.created_at %></td>
+                <td><%= c.clientIp %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p>No hay mensajes pendientes.</p>
+    <% } %>
+
+ 
+</section>
+
+
+
+            </div>
+        </div>
+    </main>
+    <!-- Solo Bootstrap JS para modales -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

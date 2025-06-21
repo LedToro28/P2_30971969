@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="description" content="">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://p2-30971969.onrender.com">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jardines Sagitario">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="p2-30971969.onrender.com">
+<meta property="twitter:url" content="https://p2-30971969.onrender.com">
+<meta name="twitter:title" content="Jardines Sagitario">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
@@ -20,12 +37,12 @@
                         <label for="service-select" class="form-label">Selecciona el Servicio</label>
                         <select id="service-select" name="service" class="form-select" required>
                             <option value="">-- Selecciona un Servicio --</option>
-                            <option value="pinchazo">Reparación de Pinchazo / Neumático</option>
-                            <option value="mantenimiento">Mantenimiento General</option>
-                            <option value="frenos-cambios">Ajuste de Frenos y Cambios</option>
-                            <option value="diagnostico">Diagnóstico Completo</option>
-                            <option value="bateria-scooter">Reparación Batería Patineta</option>
-                            <option value="motor-scooter">Reparación Motor/Electrónica Patineta</option>
+                            <option value="Mantenimiento de jardines">Podas, Fertilización y Limpieza</option>
+                            <option value="Instalación de sistemas de riego">Diseño e implementación de riego automático o por goteo</option>
+                            <option value="Diseño de jardines personalizados">Creación de Espacios Verdes únicos, Adaptados a Gustos y Condiciones Climáticas.</option>
+                            <option value="Venta de insumos de jardinería"> Herramientas, fertilizantes, macetas y todo lo necesario para el cuidado de las plantas.</option>
+                            <option value="Asesoría en jardinería">Consejos sobre el cuidado de especies específicas y optimización de espacios verdes.</option>
+                            <option value="- Control de plagas y enfermedades">Aplicación de tratamientos preventivos y correctivos para proteger las plantas.</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -51,17 +68,18 @@
                         <div class="input-group">
                             <select id="expiry-month" name="expiryMonth" class="form-select" required>
                                 <option value="">Mes</option>
-                                <option value="">Enero</option>
-                                <option value="">Febrero</option>
-                                <option value="">Marzo</option>
-                                <option value="">Abril</option>
-                                <option value="">Mayo</option>
-                                <option value="">Junio</option>
-                                <option value="">Julio</option>
-                                <option value="">Agosto</option>
-                                <option value="">Septiembre</option>
-                                <option value="">Octubre</option>
-                                <option value="">Diciembre</option>
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
                             <span class="input-group-text">/</span>
                             <select id="expiry-year" name="expiryYear" class="form-select" required>
@@ -72,15 +90,14 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="cvv" class="form-label">Código de Seguridad</label>
-                        <input type="text" id="cvv" name="cvv" class="form-control" required placeholder="XXX" pattern="[0-9]{3,4}" title="Código de seguridad (3 o 4 dígitos)">
+                        <label for="cvc" class="form-label">Código de Seguridad</label>
+                        <input type="text" id="cvc" name="cvc" class="form-control" required placeholder="XXX" pattern="[0-9]{3,4}" title="Código de seguridad (3 o 4 dígitos)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="amount" class="form-label">Monto a Pagar</label>
+                        <label for="amount" class="form-label">Monto a Cancelar</label>
                         <div class="input-group">
                             <input type="number" id="amount" name="amount" class="form-control" required min="0.01" step="0.01" placeholder="0.00">
                             <select id="currency" name="currency" class="form-select">
-                                <option value="BS">BS</option>
                                 <option value="USD">USD</option>
                                 <option value="EUR">EUR</option>
                             </select>
