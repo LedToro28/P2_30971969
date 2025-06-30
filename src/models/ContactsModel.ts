@@ -1,83 +1,134 @@
+import { db } from '../db';
 import sqlite3 from 'sqlite3';
 
-export interface ContactData { 
+export interface Contact {
+    id: number;
     name: string;
     email: string;
-    comment: string;
-    ip_address?: string; 
+    country?: string;
+    clientIp?: string;
+    created_at?: string;
 }
 
-export interface Contact extends ContactData { 
+export interface Message {
     id: number;
-    created_at: string;
+    contactId: number;
+    message: string;
+    timestamp?: string;
+    status?: string;
+    replyMessage?: string;
+    repliedAt?: string;
+    repliedBy?: string;
 }
 
-class ContactsModel { 
-    private db: sqlite3.Database; 
+export interface MessageWithContact extends Message {
+    name: string;
+    email: string;
+    country?: string;
+    clientIp?: string;
+}
+
+class ContactsModel {
+    private db: sqlite3.Database;
 
     constructor(db: sqlite3.Database) {
         this.db = db;
-        this.createTable();
     }
 
-    createTable(): void {
-        const sql = `CREATE TABLE IF NOT EXISTS contacts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            comment TEXT,
-            ip_address TEXT,
-            created_at TEXT
-        )`;
-        this.db.run(sql, (err: Error | null) => {
-            if (err) {
-                console.error('CALLBACK CREATE TABLE - ERROR:', err.message); 
-            } else {
-                console.log('CALLBACK CREATE TABLE - ÉXITO: Tabla contacts lista o ya existía.'); 
-            }
+    // Busca un contacto por email
+    findContactByEmail(email: string): Promise<Contact | null> {
+        return new Promise((resolve, reject) => {
+            db.get('SELECT * FROM contacts WHERE email = ?', [email], (err, row) => {
+                if (err) reject(err);
+                else resolve(row ? (row as Contact) : null);
+            });
         });
     }
 
-    addContact(contactData: ContactData, callback: (err: Error | null, contactId?: number) => void): void {
-        const sql = `INSERT INTO contacts (name, email, comment, ip_address, created_at)
-                     VALUES (?, ?, ?, ?, ?)`;
-        const now = new Date().toISOString(); 
-
-        this.db.run(
-            sql,
-            [contactData.name, contactData.email, contactData.comment, contactData.ip_address || null, now], 
-            function(this: sqlite3.RunResult, err: Error | null) {
-                if (err) {
-                    console.error('Error al ejecutar INSERT:', err.message);
-                    return callback(err);
+    // Crea un nuevo contacto
+    addContact(name: string, email: string, country: string, clientIp: string): Promise<number> {
+        return new Promise((resolve, reject) => {
+            db.run(
+                'INSERT INTO contacts (name, email, country, clientIp) VALUES (?, ?, ?, ?)',
+                [name, email, country, clientIp],
+                function (err) {
+                    if (err) reject(err);
+                    else resolve(this.lastID);
                 }
-                callback(null, this.lastID);
-            }
-        );
-    }
-
-    getAllContacts(callback: (err: Error | null, contacts?: Contact[]) => void): void {
-        const sql = `SELECT id, name, email, comment, ip_address, created_at FROM contacts ORDER BY created_at DESC`;
-
-        this.db.all(sql, [], (err: Error | null, rows: any[]) => { 
-            if (err) {
-                console.error('Error al ejecutar SELECT:', err.message);
-                return callback(err);
-            }
-            callback(null, rows as Contact[]);
+            );
         });
     }
 
-    closeDb(callback?: (err: Error | null) => void): void {
-        this.db.close((err: Error | null) => {
-            if (err) {
-                console.error('Error al cerrar la base de datos:', err.message);
-            } else {
-                console.log('Conexión a la base de datos cerrada.');
-            }
-            if (callback) {
-                callback(err);
-            }
+    // Guarda un mensaje asociado a un contacto
+    addMessage(contactId: number, message: string): Promise<number> {
+        return new Promise((resolve, reject) => {
+            db.run(
+                'INSERT INTO messages (contactId, message) VALUES (?, ?)',
+                [contactId, message],
+                function (err) {
+                    if (err) reject(err);
+                    else resolve(this.lastID);
+                }
+            );
+        });
+    }
+
+    // Devuelve todos los contactos ordenados por fecha de creación
+    getAllContacts(): Promise<Contact[]> {
+        return new Promise((resolve, reject) => {
+            db.all('SELECT * FROM contacts ORDER BY created_at DESC', [], (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows as Contact[]);
+            });
+        });
+    }
+
+    // Devuelve mensajes por estado, incluyendo datos del contacto
+    getMessagesByStatus(status: string): Promise<MessageWithContact[]> {
+        return new Promise((resolve, reject) => {
+            db.all(
+                `SELECT m.*, c.name, c.email, c.country, c.clientIp, c.country, c.created_at
+                 FROM messages m
+                 JOIN contacts c ON m.contactId = c.id
+                 WHERE m.status = ?
+                 ORDER BY m.timestamp DESC`,
+                [status],
+                (err, rows) => {
+                    if (err) reject(err);
+                    else resolve(rows as MessageWithContact[]);
+                }
+            );
+        });
+    }
+
+    // Devuelve un mensaje por ID, incluyendo datos del contacto
+    getMessageById(messageId: number): Promise<MessageWithContact | null> {
+        return new Promise((resolve, reject) => {
+            db.get(
+                `SELECT m.*, c.name, c.email, c.country, c.clientIp
+                 FROM messages m
+                 JOIN contacts c ON m.contactId = c.id
+                 WHERE m.id = ?`,
+                [messageId],
+                (err, row) => {
+                    if (err) reject(err);
+                    else resolve((row as MessageWithContact) || null);
+                }
+            );
+        });
+    }
+
+    // Actualiza el estado y respuesta de un mensaje
+    updateMessageReplyStatus(messageId: number, replyMessage: string, repliedBy: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `UPDATE messages SET status = 'Respondido', replyMessage = ?, repliedAt = CURRENT_TIMESTAMP, repliedBy = ? WHERE id = ?`,
+                [replyMessage, repliedBy, messageId],
+                function (err) {
+                    if (err) reject(err);
+                    else resolve();
+                }
+            );
         });
     }
 }
