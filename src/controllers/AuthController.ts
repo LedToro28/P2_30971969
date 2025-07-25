@@ -10,6 +10,8 @@ export default class AuthController {
     this.logout = this.logout.bind(this);
     this.showRegister = this.showRegister.bind(this);
     this.register = this.register.bind(this);
+    this.showPublicRegister = this.showPublicRegister.bind(this);
+    this.publicRegister = this.publicRegister.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.isAdmin = this.isAdmin.bind(this);
 
@@ -36,7 +38,7 @@ export default class AuthController {
 
   showLogin(req: Request, res: Response) {
     res.render('login', { 
-      pageTitle: 'Login Admin',
+      pageTitle: 'Login',
       error: req.flash('error'),
       success: req.flash('success')
     });
@@ -74,7 +76,7 @@ export default class AuthController {
       req.login(user, (err) => {
         if (err) return next(err);
         req.flash('success', 'Sesión iniciada correctamente');
-        return res.redirect('/admin');
+        return user.is_admin ? res.redirect('/admin') : res.redirect('/');
       });
 
     } catch (err) {
@@ -101,7 +103,15 @@ export default class AuthController {
       return res.redirect('/login');
     }
     res.render('register', { 
-      pageTitle: 'Registrar Usuario',
+      pageTitle: 'Registrar Usuario Admin',
+      error: req.flash('error'),
+      success: req.flash('success')
+    });
+  }
+
+  showPublicRegister(req: Request, res: Response) {
+    res.render('public-register', { 
+      pageTitle: 'Registro de Usuario',
       error: req.flash('error'),
       success: req.flash('success')
     });
@@ -119,13 +129,43 @@ export default class AuthController {
     }
 
     try {
-      await this.users.createUser(username, password);
-      req.flash('success', 'Usuario creado exitosamente');
+      await this.users.createUser(username, password, true); // Crea admin
+      req.flash('success', 'Usuario administrador creado exitosamente');
       return res.redirect('/admin/register');
     } catch (err: any) {
       console.error('Error en registro:', err);
       req.flash('error', err.message || 'Error al crear usuario');
       return res.redirect('/admin/register');
+    }
+  }
+
+  async publicRegister(req: Request, res: Response) {
+    const { username, password } = req.body;
+    
+    if (!username || !password) {
+      req.flash('error', 'Todos los campos son obligatorios');
+      return res.redirect('/register');
+    }
+
+    if (password.length < 6) {
+      req.flash('error', 'La contraseña debe tener al menos 6 caracteres');
+      return res.redirect('/register');
+    }
+
+    try {
+      const existingUser = await this.users.findByUsername(username);
+      if (existingUser) {
+        req.flash('error', 'El nombre de usuario ya está en uso');
+        return res.redirect('/register');
+      }
+
+      await this.users.createUser(username, password, false); // Crea usuario normal
+      req.flash('success', 'Registro exitoso. Por favor inicia sesión');
+      return res.redirect('/login');
+    } catch (err: any) {
+      console.error('Error en registro público:', err);
+      req.flash('error', err.message || 'Error al registrar usuario');
+      return res.redirect('/register');
     }
   }
 
@@ -140,7 +180,7 @@ export default class AuthController {
 
   // Middleware para verificar admin
   isAdmin(req: Request, res: Response, next: NextFunction) {
-    if (req.isAuthenticated() && req.user?.username === 'admin') {
+    if (req.isAuthenticated() && req.user?.is_admin) {
       return next();
     }
     req.flash('error', 'Acceso no autorizado');

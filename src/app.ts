@@ -27,6 +27,7 @@ declare global {
       username: string;
       password_hash?: string;
       google_id?: string;
+      is_admin: boolean;
     }
   }
 }
@@ -161,6 +162,10 @@ app.post('/payment/add', paymentController.add);
 app.get('/login', authCtrl.showLogin);
 app.post('/login', authCtrl.login);
 app.get('/logout', authCtrl.logout);
+
+// Nuevas rutas de registro público
+app.get('/register', authCtrl.showPublicRegister);
+app.post('/register', authCtrl.publicRegister);
 
 // Rutas de Google OAuth
 app.get('/auth/google', authCtrl.googleAuth);

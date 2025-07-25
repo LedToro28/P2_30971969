@@ -6,6 +6,7 @@ export interface UserRecord {
   username: string;
   password_hash: string;
   google_id?: string;
+  is_admin: boolean;
   created_at: string;
 }
 
@@ -38,9 +39,9 @@ export default class UsersModel {
     });
   }
 
-  async createUser(username: string, password: string): Promise<number> {
-    if (!username || !password) {
-      throw new Error('Username and password are required');
+  async createUser(username: string, password: string, isAdmin: boolean = false): Promise<number> {
+    if (!username || (!password && !isAdmin)) {
+      throw new Error('Username and password are required for non-admin users');
     }
 
     const existingUser = await this.findByUsername(username);
@@ -48,11 +49,13 @@ export default class UsersModel {
       throw new Error('Username already exists');
     }
 
-    const password_hash = await bcrypt.hash(password, 12);
+    // Para usuarios admin, permitir creación sin contraseña (pueden establecerla después)
+    const password_hash = password ? await bcrypt.hash(password, 12) : null;
+
     return new Promise((resolve, reject) => {
       this.db.run(
-        `INSERT INTO users (username, password_hash) VALUES (?, ?)`,
-        [username, password_hash],
+        `INSERT INTO users (username, password_hash, is_admin) VALUES (?, ?, ?)`,
+        [username, password_hash, isAdmin ? 1 : 0],
         function (this: RunResult, err: Error | null) {
           if (err) return reject(err);
           resolve(this.lastID);
@@ -74,7 +77,7 @@ export default class UsersModel {
     const existingUser = await this.findByUsername(email);
     if (existingUser) return existingUser;
 
-    // Crear nuevo usuario para Google
+    // Crear nuevo usuario para Google (no admin por defecto)
     const username = email;
     const displayName = profile.displayName || username.split('@')[0];
 
@@ -83,8 +86,8 @@ export default class UsersModel {
       const dbInstance = this.db;
 
       this.db.run(
-        `INSERT INTO users (username, google_id) VALUES (?, ?)`,
-        [displayName, profile.id],
+        `INSERT INTO users (username, google_id, is_admin) VALUES (?, ?, ?)`,
+        [displayName, profile.id, 0], // is_admin = false
         function (this: RunResult, err: Error | null) {
           if (err) return reject(err);
           
@@ -104,11 +107,28 @@ export default class UsersModel {
   }
 
   async setPassword(userId: number, newPassword: string): Promise<void> {
+    if (!newPassword || newPassword.length < 6) {
+      throw new Error('Password must be at least 6 characters');
+    }
+
     const password_hash = await bcrypt.hash(newPassword, 12);
     return new Promise((resolve, reject) => {
       this.db.run(
         `UPDATE users SET password_hash = ? WHERE id = ?`,
         [password_hash, userId],
+        (err: Error | null) => {
+          if (err) return reject(err);
+          resolve();
+        }
+      );
+    });
+  }
+
+  async makeAdmin(userId: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        `UPDATE users SET is_admin = 1 WHERE id = ?`,
+        [userId],
         (err: Error | null) => {
           if (err) return reject(err);
           resolve();

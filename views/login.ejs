@@ -1,75 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    	<meta name="description" content="">
+    <meta name="description" content="Sistema de administración - Acceso de usuarios">
 
-<!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://p2-30971969.onrender.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jardines Sagitario">
-<meta property="og:description" content="">
-<meta property="og:image" content="">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://p2-30971969.onrender.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jardines Sagitario - Acceso">
+    <meta property="og:description" content="Sistema de administración - Acceso de usuarios">
+    <meta property="og:image" content="">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:domain" content="p2-30971969.onrender.com">
-<meta property="twitter:url" content="https://p2-30971969.onrender.com">
-<meta name="twitter:title" content="Jardines Sagitario">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="p2-30971969.onrender.com">
+    <meta property="twitter:url" content="https://p2-30971969.onrender.com">
+    <meta name="twitter:title" content="Jardines Sagitario - Acceso">
+    <meta name="twitter:description" content="Sistema de administración - Acceso de usuarios">
+    <meta name="twitter:image" content="">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><%= pageTitle %></title>
-  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/admin.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title><%= pageTitle %></title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/admin.css" rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 400px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .auth-logo {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+        .divider {
+            position: relative;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e9ecef;
+            z-index: -1;
+        }
+        .divider-text {
+            display: inline-block;
+            background-color: white;
+            padding: 0 10px;
+            color: #6c757d;
+        }
+        .btn-google {
+            background-color: white;
+            color: #db4437;
+            border: 1px solid #ddd;
+        }
+        .btn-google:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
-<body class="bg-light">
-  <div class="container vh-100 d-flex align-items-center justify-content-center">
-    <div class="card shadow-sm w-100" style="max-width: 400px;">
-      <div class="card-body">
-        <h4 class="card-title text-center mb-4">Acceso Admin</h4>
+<body>
+    <div class="auth-container">
+        <div class="auth-card card">
+            <div class="card-body p-4 p-sm-5">
+                <div class="auth-header">
+                    <h4 class="card-title mb-4">Acceso al Sistema</h4>
+                    <% if (errorMessage.length) { %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <%= errorMessage %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <% } %>
+                    <% if (successMessage.length) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <%= successMessage %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <% } %>
+                </div>
 
-        <% if (errorMessage.length) { %>
-          <div class="alert alert-danger">
-            <%= errorMessage %>
-          </div>
-        <% } %>
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario o email</label>
+                        <input 
+                            id="username" 
+                            name="username" 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="ej. usuario@dominio.com" 
+                            required
+                            autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input 
+                            id="password" 
+                            name="password" 
+                            type="password" 
+                            class="form-control" 
+                            placeholder="Tu contraseña" 
+                            required>
+                        <div class="form-text text-end">
+                            <a href="/forgot-password" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar sesión
+                    </button>
+                </form>
 
-        <form action="/login" method="post">
-          <div class="mb-3">
-            <label for="username" class="form-label">Usuario o email</label>
-            <input 
-              id="username" 
-              name="username" 
-              type="text" 
-              class="form-control" 
-              placeholder="ej. admin@dominio.com" 
-              required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input 
-              id="password" 
-              name="password" 
-              type="password" 
-              class="form-control" 
-              placeholder="Tu contraseña" 
-              required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        </form>
+                <div class="divider">
+                    <span class="divider-text">o continuar con</span>
+                </div>
 
-        <hr class="my-4">
+                <div class="d-grid gap-2">
+                    <a href="/auth/google" class="btn btn-google w-100 py-2">
+                        <i class="bi bi-google me-2"></i> Google
+                    </a>
+                </div>
 
-        <a href="/auth/google" class="btn btn-outline-danger w-100">
-          <i class="fab fa-google me-2"></i> Iniciar con Google
-        </a>
-
-      </div>
+                <div class="text-center mt-4">
+                    <p class="mb-0">¿No tienes una cuenta? 
+                        <a href="/register" class="text-decoration-none fw-bold">Regístrate</a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
