@@ -35,7 +35,6 @@ class ContactsModel {
         this.db = db;
     }
 
-    // Busca un contacto por email
     findContactByEmail(email: string): Promise<Contact | null> {
         return new Promise((resolve, reject) => {
             db.get('SELECT * FROM contacts WHERE email = ?', [email], (err, row) => {
@@ -45,7 +44,6 @@ class ContactsModel {
         });
     }
 
-    // Crea un nuevo contacto
     addContact(name: string, email: string, country: string, clientIp: string): Promise<number> {
         return new Promise((resolve, reject) => {
             db.run(
@@ -59,7 +57,6 @@ class ContactsModel {
         });
     }
 
-    // Guarda un mensaje asociado a un contacto
     addMessage(contactId: number, message: string): Promise<number> {
         return new Promise((resolve, reject) => {
             db.run(
@@ -73,7 +70,6 @@ class ContactsModel {
         });
     }
 
-    // Devuelve todos los contactos ordenados por fecha de creación
     getAllContacts(): Promise<Contact[]> {
         return new Promise((resolve, reject) => {
             db.all('SELECT * FROM contacts ORDER BY created_at DESC', [], (err, rows) => {
@@ -83,7 +79,6 @@ class ContactsModel {
         });
     }
 
-    // Devuelve mensajes por estado, incluyendo datos del contacto
     getMessagesByStatus(status: string): Promise<MessageWithContact[]> {
         return new Promise((resolve, reject) => {
             db.all(
@@ -101,7 +96,6 @@ class ContactsModel {
         });
     }
 
-    // Devuelve un mensaje por ID, incluyendo datos del contacto
     getMessageById(messageId: number): Promise<MessageWithContact | null> {
         return new Promise((resolve, reject) => {
             db.get(
@@ -118,7 +112,6 @@ class ContactsModel {
         });
     }
 
-    // Actualiza el estado y respuesta de un mensaje
     updateMessageReplyStatus(messageId: number, replyMessage: string, repliedBy: string): Promise<void> {
         return new Promise((resolve, reject) => {
             db.run(

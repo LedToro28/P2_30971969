@@ -1,5 +1,3 @@
-// src/models/PaymentModel.ts
-
 import sqlite3 from 'sqlite3';
 
 class PaymentModel {
@@ -9,7 +7,6 @@ class PaymentModel {
         this.db = db;
     }
 
-    // Crea la tabla 'payments' si no existe
     createTable(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.db.run(`
@@ -37,7 +34,6 @@ class PaymentModel {
         });
     }
 
-    // Añade un registro de pago
     async addPaymentRecord(transactionId: string, amount: number, currency: string, status: string, buyerEmail: string | null, description: string | null): Promise<void> {
         return new Promise((resolve, reject) => {
             this.db.run(
@@ -56,7 +52,6 @@ class PaymentModel {
         });
     }
 
-    // Obtiene un registro de pago por ID interno
     async getPaymentById(id: number): Promise<any | undefined> {
         return new Promise((resolve, reject) => {
             this.db.get(
@@ -74,7 +69,6 @@ class PaymentModel {
         });
     }
 
-    // Obtiene todos los registros de pago
     async getAllPayments(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             this.db.all(
@@ -92,7 +86,6 @@ class PaymentModel {
         });
     }
 
-    // Obtiene todos los pagos asociados a un usuario
     async getPaymentsByUserId(userId: number): Promise<any[]> {
         return new Promise((resolve, reject) => {
             this.db.all(
@@ -110,7 +103,6 @@ class PaymentModel {
         });
     }
 
-    // Actualiza el estado de un pago por transactionId
     async updatePaymentStatus(transactionId: string, status: string): Promise<void> {
         return new Promise((resolve, reject) => {
             this.db.run(

@@ -95,5 +95,3 @@ Una vez instaladas las dependencias y configuradas las variables de entorno, se 
 ```bash
 npm run dev
 ```
-
----

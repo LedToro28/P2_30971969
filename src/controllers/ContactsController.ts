@@ -1,11 +1,8 @@
-// src/controllers/ContactController.ts
-
 import { Request, Response } from 'express';
 import ContactsModel from '../models/ContactsModel';
 import MailerService from '../service/MailerService';
 import RecaptchaService from '../service/RecaptchaService';
 
-// Extiende la interfaz Request para incluir 'user'
 declare global {
     namespace Express {
         interface User {
@@ -29,20 +26,16 @@ class ContactController {
         this.showContactForm = this.showContactForm.bind(this);
     }
 
-    // Renderiza el formulario de contacto
     showContactForm(req: Request, res: Response): void {
         res.render('contacto', {
             pageTitle: 'Contacto'
         });
     }
 
-    // Procesa el envío del formulario de contacto
     async add(req: Request, res: Response): Promise<void> {
         const { name, email, message } = req.body;
         const clientIp = req.ip || 'Desconocida';
         const country = 'Desconocido';
-
-        // Valida reCAPTCHA antes de guardar el mensaje
         const recaptchaToken = req.body['g-recaptcha-response'];
         const recaptchaService = new RecaptchaService();
         const recaptchaOk = await recaptchaService.verifyRecaptcha(recaptchaToken, req.ip);
@@ -60,7 +53,6 @@ class ContactController {
                 contactId = contact.id;
             } else {
                 contactId = await this.contactsModel.addContact(name, email, country, clientIp);
-                // Buscar el contacto recién creado para obtener todos los datos
                 contact = await this.contactsModel.findContactByEmail(email);
             }
 
@@ -73,8 +65,8 @@ class ContactController {
                 country,
                 clientIp,
                 true,
-                contact?.id,         // userId
-                contact?.created_at  // createdAt
+                contact?.id,        
+                contact?.created_at 
             );
 
             req.flash('success', contactId
@@ -101,8 +93,7 @@ class ContactController {
             res.redirect('/admin');
         }
     }
-
-    // Renderiza mensajes filtrados por estado
+    
     async getMessagesByStatus(req: Request, res: Response): Promise<void> {
         const { status } = req.params;
 
@@ -118,7 +109,6 @@ class ContactController {
         }
     }
 
-    // Renderiza el detalle de un mensaje específico
     async getMessageById(req: Request, res: Response): Promise<void> {
         const { messageId } = req.params;
 
@@ -134,7 +124,6 @@ class ContactController {
         }
     }
 
-    // Actualiza el estado de un mensaje al responder
     async replyToMessage(req: Request, res: Response): Promise<void> {
         const { messageId, replyContent } = req.body;
         const adminName = req.user?.name ?? 'Administrador';

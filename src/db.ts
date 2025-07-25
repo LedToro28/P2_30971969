@@ -1,5 +1,3 @@
-// src/db.ts
-
 import sqlite3 from 'sqlite3';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -22,7 +20,6 @@ const db = new sqlite3.Database(DB_PATH, (err) => {
     }
 });
 
-// Ejecuta una consulta SQL de forma asíncrona
 function runAsync(sql: string, params: any[] = []): Promise<{ lastID: number; changes: number }> {
     return new Promise((resolve, reject) => {
         db.run(sql, params, function(err) {
@@ -35,9 +32,6 @@ function runAsync(sql: string, params: any[] = []): Promise<{ lastID: number; ch
     });
 }
 
-
-
-// Crea/verifica las tablas principales de la base de datos
 async function initTables(): Promise<void> {
     console.log('Iniciando creación/verificación de tablas...');
     try {

@@ -19,14 +19,12 @@ class PaymentController {
         this.add = this.add.bind(this);
     }
 
-    // Renderiza el formulario de pago
     showPaymentForm(req: Request, res: Response): void {
         res.render('payment', {
             pageTitle: 'Procesar Pago'
         });
     }
 
-    // Procesa el pago y maneja la respuesta de la API simulada
     async add(req: Request, res: Response): Promise<void> {
         const {
             service,
@@ -105,7 +103,7 @@ console.log('parsed:', paymentResult);
                         new Date()
                     );
                 } catch (emailError) {
-                    // Error al enviar correo de confirmación de pago
+
                 }
                 try {
                     await this.paymentModel.addPaymentRecord(
@@ -117,7 +115,7 @@ console.log('parsed:', paymentResult);
                         description
                     );
                 } catch (dbError) {
-                    // Error al guardar registro de pago en DB
+ 
                 }
             } else {
                 console.log('paymentError', `Error en el pago: ${paymentResult.message}`);

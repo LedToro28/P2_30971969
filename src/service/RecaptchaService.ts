@@ -1,14 +1,13 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 
-// 1. Definimos la interfaz para la respuesta de reCAPTCHA
 interface RecaptchaResponse {
     success: boolean;
-    challenge_ts?: string;  // timestamp
+    challenge_ts?: string;  
     hostname?: string;
     "error-codes"?: string[];
-    score?: number;         // para reCAPTCHA v3
-    action?: string;        // para reCAPTCHA v3
+    score?: number;         
+    action?: string;        
 }
 
 export default class RecaptchaService {
@@ -23,7 +22,6 @@ export default class RecaptchaService {
         }
     }
 
-    // Verifica el token de reCAPTCHA con la API de Google
     async verifyRecaptcha(token: string, ipAddress?: string): Promise<boolean> {
         if (!this.secretKey) {
             console.error('RecaptchaService: No se puede verificar reCAPTCHA. La clave secreta no está configurada.');
@@ -45,10 +43,8 @@ export default class RecaptchaService {
                 body: requestBody,
             });
 
-            // 2. Tipamos la respuesta y validamos en runtime
             const data: RecaptchaResponse = await response.json() as RecaptchaResponse;
 
-            // Validación adicional para asegurar que 'success' existe y es booleano
             if (typeof data.success !== 'boolean') {
                 console.error('RecaptchaService: Respuesta inválida de la API - propiedad "success" no es booleana', data);
                 return false;

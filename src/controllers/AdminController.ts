@@ -1,5 +1,3 @@
-// src/controllers/AdminController.ts
-
 import { Request, Response } from 'express';
 import ContactsModel from '../models/ContactsModel';
 import MailerService from '../service/MailerService';
@@ -18,8 +16,7 @@ class AdminController {
     this.showPendingReplies  = this.showPendingReplies.bind(this);
     this.showRepliedMessages = this.showRepliedMessages.bind(this);
     this.sendReply           = this.sendReply.bind(this);
-    // (¡elimina showPaymentList si no lo vas a usar!)
-  }
+}
   async showPaymentsList(req: Request, res: Response): Promise<void> {
     try {
       const payments = await this.paymentModel.getAllPayments();
@@ -37,7 +34,6 @@ class AdminController {
     }
   }
 
-    // Renderiza el panel de administración con todos los datos necesarios
     async showAdminDashboard(req: Request, res: Response): Promise<void> {
         try {
             const allContacts = await this.contactsModel.getAllContacts();
@@ -61,7 +57,6 @@ class AdminController {
         }
     }
 
-    // Redirige a la vista principal del panel
     showContactList(req: Request, res: Response): void {
         res.redirect('/admin');
     }
@@ -78,7 +73,6 @@ class AdminController {
         res.redirect('/admin');
     }
 
-    // Envía una respuesta a un mensaje pendiente
     async sendReply(req: Request, res: Response): Promise<void> {
         const messageId = parseInt(req.params.messageId);
         const { replySubject, replyContent } = req.body;

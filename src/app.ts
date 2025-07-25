@@ -9,7 +9,6 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import UsersModel from './models/UsersModel';
 import { db, initTables } from './db';
 
-// Importa tus modelos, servicios y controladores
 import ContactsModel from './models/ContactsModel';
 import PaymentModel from './models/PaymentModel';
 import MailerService from './service/MailerService';
@@ -18,7 +17,6 @@ import AdminController from './controllers/AdminController';
 import PaymentController from './controllers/PaymentController';
 import ContactController from './controllers/ContactsController';
 import RecaptchaService from './service/RecaptchaService';
-
 
 const app: Application = express(); 
 const usersModel = new UsersModel(db);
@@ -40,12 +38,12 @@ app.use(session({
   secret: SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-  rolling: true,              // renueva el cookie en cada response
+  rolling: true,              
   cookie: {
-    httpOnly: true,                                  // no accesible desde JS
-    sameSite: 'lax',                                 // previene CSRF sin romper OAuth
-    secure: process.env.NODE_ENV === 'production',   // sólo HTTPS en prod
-    maxAge: 15 * 60 * 1000                           // 15 minutos en milisegundos
+    httpOnly: true,                                  
+    sameSite: 'lax',                                 
+    secure: process.env.NODE_ENV === 'production',   
+    maxAge: 15 * 60 * 1000                           
   }
 }));
 app.use(flash());
@@ -78,7 +76,6 @@ passport.use(new GoogleStrategy({
   done(null, user || false);
 }));
 
-// Middleware para hacer los mensajes flash accesibles en las vistas
 app.use((req, res, next) => {
     res.locals.successMessage = req.flash('success');
     res.locals.errorMessage = req.flash('error');
@@ -96,7 +93,7 @@ app.use((req, res, next) => {
   res.locals.successMessage = req.flash('success');
   next();
 });
-// Protege rutas
+
 function isAuthenticated(req: Request, res: Response, next: any) {
   return req.isAuthenticated() ? next() : authCtrl.showLogin(req, res);
 }
@@ -110,12 +107,9 @@ const contactController = new ContactController(contactsModel, mailerService);
 const adminController = new AdminController(contactsModel, mailerService, paymentModel);
 const paymentController = new PaymentController(mailerService, paymentModel);
 
-
-// Hazlo async para esperar a que las tablas se creen antes de iniciar el servidor
 async function startApp() {
     try {
-        // Espera a que las tablas se creen o verifiquen
-        await initTables(); // Llama a initTables sin pasar 'db', ya lo usa desde su módulo
+        await initTables(); 
         console.log('Tablas de base de datos inicializadas.');
 
         const server = app.listen(PORT, () => {
@@ -124,14 +118,14 @@ async function startApp() {
 
         process.on('SIGINT', () => {
             console.log('Recibida señal SIGINT. Cerrando...');
-            server.close(() => { // Cierra el servidor Express primero
+            server.close(() => { 
                 console.log('Servidor HTTP cerrado.');
-                db.close((err) => { // Luego cierra la conexión a la DB importada
+                db.close((err) => { 
                     if (err) {
                         console.error('Error cerrando la base de datos:', err.message);
                     }
                     console.log('Conexión a la base de datos cerrada.');
-                    process.exit(0); // Salir del proceso
+                    process.exit(0);
                 });
             });
         });
@@ -142,10 +136,8 @@ async function startApp() {
     }
 }
 
-// Inicia la aplicación llamando a la función asíncrona
 startApp();
 
-// Rutas principales
 app.get('/', (req: Request, res: Response) => { res.render('index', { pageTitle: 'Inicio Ciclexpress' }); });
 app.get('/servicios', (req: Request, res: Response) => { res.render('servicios', { pageTitle: 'Servicios Ciclexpress' }); });
 app.get('/informacion', (req: Request, res: Response) => { res.render('informacion', { pageTitle: 'Sobre Ciclexpress' }); });
@@ -156,9 +148,6 @@ app.post('/contacto', contactController.add);
 app.get('/payment', paymentController.showPaymentForm);
 app.post('/payment/add', paymentController.add);
 
-
-
-// Rutas de Auth
 app.get('/admin', isAuthenticated, adminController.showAdminDashboard);
 app.get('/admin/contacts', (req, res) => res.redirect('/admin'));
 app.get('/admin/register', isAuthenticated, authCtrl.showRegister);
@@ -168,12 +157,9 @@ app.get('/admin/payments', isAuthenticated, adminController.showPaymentsList);
 app.post('/login',  authCtrl.login);
 app.get('/logout',  authCtrl.logout);
 
-// Google OAuth
 app.get('/auth/google',           authCtrl.googleAuth);
 app.get('/auth/google/callback',  authCtrl.googleCallback);
 
-
-// Página 404
 app.use((req, res) => {
     res.status(404).render('404', { pageTitle: 'Página no encontrada' });
 });

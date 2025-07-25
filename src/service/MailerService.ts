@@ -12,7 +12,7 @@ class MailerService {
             !process.env.EMAIL_PORT ||
             !process.env.EMAIL_USER ||
             !process.env.EMAIL_PASS ||
-            !process.env.EMAIL_FROM_NAME // Cambiado de EMAIL_NAME a EMAIL_FROM_NAME
+            !process.env.EMAIL_FROM_NAME 
         ) {
             console.warn('ADVERTENCIA: Variables de entorno de correo no configuradas.');
         } else {
@@ -28,7 +28,6 @@ class MailerService {
         }
     }
 
-    // Método base para enviar correo
     private async sendMail(
         to: string | string[],
         subject: string,
@@ -41,14 +40,13 @@ class MailerService {
             recipients.push(process.env.TEACHER_EMAIL);
         }
         await this.transporter.sendMail({
-            from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_USER}>`, // Cambiado de EMAIL_NAME a EMAIL_FROM_NAME
+            from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_USER}>`,
             to: recipients,
             subject,
             html,
         });
     }
 
-    // 1. Confirmación de pago al usuario
     async sendPaymentConfirmation(email: string, name: string, transactionId: string, amount: number | string, currency = 'USD', paymentDate: Date = new Date()) {
         const formattedDate = paymentDate.toLocaleString();
         const formattedAmount = typeof amount === 'number' ? `${amount.toFixed(2)} ${currency}` : `${amount} ${currency}`;
@@ -67,7 +65,6 @@ class MailerService {
         await this.sendMail(email, "Confirmación de tu Pago - Gracias por tu Compra", html);
     }
 
-    // 2. Confirmación de contacto (al usuario y/o profesor)
     async sendContactConfirmation(
         name: string,
         email: string,
@@ -95,7 +92,6 @@ class MailerService {
         await this.sendMail(email, "Confirmación de mensaje recibido", html, sendToTeacher);
     }
 
-    // 3. Respuesta a mensaje (al usuario y/o profesor)
     async sendContactReply(userEmail: string, originalMessage: string, replyMessage: string, adminName = 'Administrador', sendToTeacher = false) {
         const html = `
             <h1>Respuesta a tu Mensaje</h1>
